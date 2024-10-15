@@ -17,6 +17,7 @@
 - [Павленко Константин Романович](https://vk.com/kostyapav2005)
 - [Стрельников Николай Родионович](https://vk.com/moan2k)
 - [Школьный Алексей Николаевич](https://vk.com/thesoldierofpunisher)
+
 ###1 курс
 - [Манов Никита Алексеевич](https://vk.com/id587072717)
 - [Полибин Вадим Константинович](https://vk.com/mrpolibin)
