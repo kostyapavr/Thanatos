@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 654227783}
   - component: {fileID: 654227782}
   m_Layer: 5
-  m_Name: start
+  m_Name: Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,8 +250,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4865872, y: 0.5}
   m_AnchorMax: {x: 0.4865872, y: 0.52665114}
-  m_AnchoredPosition: {x: 9, y: 131}
-  m_SizeDelta: {x: 427.0989, y: 44.7939}
+  m_AnchoredPosition: {x: 9, y: -20}
+  m_SizeDelta: {x: 350, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &654227782
 MonoBehaviour:
@@ -481,8 +481,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 654227781}
-  - {fileID: 1298127310}
   - {fileID: 1498684139}
+  - {fileID: 1298127310}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -574,8 +574,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -660,8 +660,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4865872, y: 0.5}
   m_AnchorMax: {x: 0.4865872, y: 0.52665114}
-  m_AnchoredPosition: {x: 9, y: -111}
-  m_SizeDelta: {x: 427.0989, y: 44.7939}
+  m_AnchoredPosition: {x: 9, y: -180}
+  m_SizeDelta: {x: 350, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1298127311
 MonoBehaviour:
@@ -793,8 +793,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4865872, y: 0.5}
   m_AnchorMax: {x: 0.4865872, y: 0.52665114}
-  m_AnchoredPosition: {x: 9, y: 9}
-  m_SizeDelta: {x: 427.0989, y: 44.7939}
+  m_AnchoredPosition: {x: 9, y: -100}
+  m_SizeDelta: {x: 350, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1498684140
 MonoBehaviour:
@@ -962,8 +962,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1096,8 +1096,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
-  m_fontSizeBase: 34
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
