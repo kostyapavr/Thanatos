@@ -18,9 +18,14 @@ public class LevelController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(getNextSceneName(currentSceneName));
+            LoadNextLevel();
         }
+    }
+
+    void LoadNextLevel()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(getNextSceneName(currentSceneName));
     }
 
     string getNextSceneName(string currentName)

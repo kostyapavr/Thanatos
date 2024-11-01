@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Vector2 MovementSpeed = new Vector2(100.0f, 100.0f);
+    private Vector2 MovementSpeed = new Vector2(100.0f, 100.0f);
     private new Rigidbody2D rb;
     private Vector2 inputVector = new Vector2(0.0f, 0.0f);
+    public int acceleration;
 
     void Awake()
     {
@@ -20,6 +21,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.velocity += inputVector * 10;
+        rb.velocity += inputVector * acceleration;
     }
 }
