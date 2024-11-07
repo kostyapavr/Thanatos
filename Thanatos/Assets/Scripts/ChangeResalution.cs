@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ChangeResalution : MonoBehaviour
 {
-    public Dropdown Dropdown;
+    public TMP_Dropdown Dropdown;
 
     public void Change()
     {
@@ -26,6 +27,4 @@ public class ChangeResalution : MonoBehaviour
             Screen.SetResolution(1920, 1080, true);
         }
     }
-
-
 }

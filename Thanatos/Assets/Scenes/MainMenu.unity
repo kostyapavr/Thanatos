@@ -2263,7 +2263,6 @@ GameObject:
   - component: {fileID: 1152604364}
   - component: {fileID: 1152604363}
   - component: {fileID: 1152604362}
-  - component: {fileID: 1152604365}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -2406,19 +2405,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152604360}
   m_CullTransparentMesh: 1
---- !u!114 &1152604365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152604360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d554cbe44abdaaf44ab7a1c70fe4d323, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Dropdown: {fileID: 0}
 --- !u!1 &1208205958
 GameObject:
   m_ObjectHideFlags: 0
@@ -2978,7 +2964,6 @@ GameObject:
   - component: {fileID: 1511754322}
   - component: {fileID: 1511754321}
   - component: {fileID: 1511754320}
-  - component: {fileID: 1511754323}
   - component: {fileID: 1511754324}
   m_Layer: 5
   m_Name: MainSettings
@@ -3008,7 +2993,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.51208496, y: -2.416}
+  m_AnchoredPosition: {x: 0.51208496, y: -2.415985}
   m_SizeDelta: {x: -89.1232, y: -48.4541}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1511754320
@@ -3062,23 +3047,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1511754318}
   m_CullTransparentMesh: 1
---- !u!114 &1511754323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1511754318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a18a7b3863472348b9445a1d38fc748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
-  resolutionDropdown: {fileID: 0}
-  qualityDropdown: {fileID: 0}
-  volumeSlider: {fileID: 0}
-  currentVolume: 0
 --- !u!114 &1511754324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3091,7 +3059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d554cbe44abdaaf44ab7a1c70fe4d323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dropdown: {fileID: 0}
+  Dropdown: {fileID: 1152604362}
 --- !u!1 &1574560272
 GameObject:
   m_ObjectHideFlags: 0
