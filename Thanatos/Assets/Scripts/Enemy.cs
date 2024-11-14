@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public GameObject heartPrefab;
+
     public int GetHealth()
     {
         return currentHealth;
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         LevelController.enemyDeathEvent.Invoke();
+        Instantiate(heartPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }
