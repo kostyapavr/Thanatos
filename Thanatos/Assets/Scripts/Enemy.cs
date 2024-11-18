@@ -4,24 +4,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int maxHealth = 100;
-    private int currentHealth = 100;
+    protected int maxHealth = 100;
+    protected int currentHealth = 100;
+    public GameObject heartPrefab;
 
-    public GameObject arrowPref;
-    public Transform firePoint;
-    public float shootInterval = 2;
-
-    void Start()
+    public virtual void Start()
     {
         currentHealth = maxHealth;
-        InvokeRepeating("Shoot", shootInterval, shootInterval);
     }
 
-    private void Shoot()
+    public virtual void FixedUpdate()
     {
-        GameObject arrow = Instantiate(arrowPref, firePoint.position, firePoint.rotation);
-        Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
-        rb.velocity = (FindObjectOfType<Player>().transform.position - firePoint.position).normalized * 10;
+
     }
 
     public void TakeDamage(int damage)
@@ -34,14 +28,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public GameObject heartPrefab;
-
     public int GetHealth()
     {
         return currentHealth;
     }
 
-    void Die()
+    public void Die()
     {
         LevelController.enemyDeathEvent.Invoke();
         Instantiate(heartPrefab, transform.position, Quaternion.identity);

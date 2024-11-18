@@ -6,25 +6,52 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     public float distance;
-    public int damage = 20;
+    public int damageToEnemy = 20;
+    public float damageToPlayer = 0.5f;
+
+    public bool playerArrow = true;
 
     void Destroy()
     {
         Destroy(gameObject);
     }
 
-    void DamageEnemy(Enemy enemy, int dmg)
+    void DamageEnemy(Collision2D collision, int dmg)
     {
-        enemy.TakeDamage(damage);
+        ShootingEnemy enemy = collision.collider.GetComponent<ShootingEnemy>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(dmg);
+        }
+        else 
+        {
+            MeleeEnemy meleeEnemy = collision.collider.GetComponent<MeleeEnemy>();
+            if (meleeEnemy != null) meleeEnemy.TakeDamage(dmg);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Enemy"))
+        if (playerArrow)//стрелял игрок
         {
-            DamageEnemy(collision.collider.GetComponent<Enemy>(), damage);
-            Destroy();
+            if (collision.collider.CompareTag("Enemy"))
+            {
+                DamageEnemy(collision, damageToEnemy);
+                Destroy();
+            }
+            else Destroy();
         }
-        else if (!collision.collider.CompareTag("Player")) Destroy();
+        else//стрелял враг
+        {
+            if (collision.collider.CompareTag("Player"))
+            {
+                Player player = collision.collider.GetComponent<Player>();
+                if (player != null)
+                {
+                    player.TakeDamage(damageToPlayer);
+                }
+                Destroy(gameObject);
+            }
+        }
     }
 }

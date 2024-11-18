@@ -10,9 +10,9 @@ public class Portal : MonoBehaviour
     const int maxLevels = 5;
     private int[] maxRooms = new int[maxLevels] { 4, 5, 6, 8, 10 };
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.collider.CompareTag("Player") && LevelController.aliveEnemies == 0)
+        if (collider.CompareTag("Player") && LevelController.aliveEnemies == 0)
         {
             LoadNextLevel();
         }

@@ -17,6 +17,10 @@ public class PlayerCombat : MonoBehaviour
         {
             Attack();
         }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GetComponent<Player>().TakeDamage(0.5f);
+        }
     }
 
     void Attack()

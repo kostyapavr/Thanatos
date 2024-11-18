@@ -14,6 +14,8 @@ public class Bow : MonoBehaviour
 
     public int arrowSpeed;
 
+    public Player player;
+
     void Update()
     {
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -22,10 +24,12 @@ public class Bow : MonoBehaviour
 
         if (time <= 0f)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && player.GetCurrentArrows() > 0)
             {
                 Rigidbody2D rb = Instantiate(Arrow, point.position, transform.rotation).GetComponent<Rigidbody2D>();
+                rb.GetComponent<Arrow>().playerArrow = true;
                 rb.AddForce(difference.normalized * arrowSpeed, ForceMode2D.Impulse);
+                player.TakeArrow();
                 time = startTime;
             }
         }
