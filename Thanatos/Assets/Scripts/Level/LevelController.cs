@@ -11,6 +11,7 @@ public class LevelController : MonoBehaviour
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();
+    public static UnityEvent playerHpEvent = new UnityEvent();
 
     void Start()
     {

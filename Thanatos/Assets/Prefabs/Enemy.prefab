@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 146428320603020434}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.454, y: -0.044, z: 0}
+  m_LocalPosition: {x: -0.513, y: -0.044, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1028213964165987354}
   - component: {fileID: 5375973863377520444}
   - component: {fileID: 5301526058090982808}
-  - component: {fileID: 7181867987675282060}
+  - component: {fileID: 1132384493989656446}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -153,7 +153,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7181867987675282060
+--- !u!114 &1132384493989656446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,10 +162,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6107204645674273283}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dee160825ea10e4e91f497b3b13d686, type: 3}
+  m_Script: {fileID: 11500000, guid: 92d3d81a2aab4a946b1e36be8a5b445e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  arrowPref: {fileID: 7961629133171963560, guid: 77dad2272f42c3c48bca39c518fe0283, type: 3}
+  heartPrefab: {fileID: 2473671558451589373, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
+  arrowPref: {fileID: 2055513970730527246, guid: 1574b5ea3e872324ca126e186e1ae407, type: 3}
   firePoint: {fileID: 7263925612673920242}
   shootInterval: 2
