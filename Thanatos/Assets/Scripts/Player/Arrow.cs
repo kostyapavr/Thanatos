@@ -50,8 +50,8 @@ public class Arrow : MonoBehaviour
                 {
                     player.TakeDamage(damageToPlayer);
                 }
-                Destroy(gameObject);
             }
+            Destroy(gameObject);
         }
     }
 }
