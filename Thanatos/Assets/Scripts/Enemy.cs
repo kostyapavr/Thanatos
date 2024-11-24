@@ -2,14 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
-    protected int maxHealth = 100;
-    protected int currentHealth = 100;
     public GameObject heartPrefab;
+
+    private float _currentHealth;
+    private float _maxHealth;
+    public float currentHealth
+    {
+        get
+        {
+            return _currentHealth;
+        }
+        set
+        {
+            _currentHealth = value;
+        }
+    }
+    public float maxHealth 
+    {
+        get
+        {
+            return _maxHealth;
+        }
+        set
+        {
+            _maxHealth = value;
+        }
+    }
 
     public virtual void Start()
     {
+        maxHealth = 5.0f;
         currentHealth = maxHealth;
     }
 
@@ -18,17 +42,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
-    {   
-        currentHealth -= damage;
-        
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
-    }
-
-    public int GetHealth()
+    public float GetHealth()
     {
         return currentHealth;
     }
@@ -38,5 +52,12 @@ public class Enemy : MonoBehaviour
         LevelController.enemyDeathEvent.Invoke();
         Instantiate(heartPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+    public void TakeDamage(float damage, GameObject sender = null)
+    {
+        if (gameObject == sender) return;
+        if (currentHealth - damage > 0) currentHealth -= damage;
+        else Die();
     }
 }
