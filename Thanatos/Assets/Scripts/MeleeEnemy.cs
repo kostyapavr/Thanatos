@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MeleeEnemy : Enemy
 {
     public new float maxHealth;
     public Transform attackPoint;
+    public float damage = 0.5f;
 
     public float attackInterval = 2;
     [HideInInspector] public Transform player;
@@ -25,7 +27,19 @@ public class MeleeEnemy : Enemy
     {
         if (Time.time >= lastAttackTime + attackInterval)
         {
-            lastAttackTime = Time.time;
+            Collider2D[] hitPlayer = Physics2D.OverlapCircleAll(transform.position, attackRange);
+            foreach (var hit in hitPlayer)
+            {
+                if (hit.CompareTag("Player"))
+                {
+                    Player playerHealth = hit.GetComponent<Player>();
+                    if (playerHealth != null)
+                    {
+                        playerHealth.TakeDamage(damage);
+                    }
+                    lastAttackTime = Time.time;
+                }
+            }
         }
     }
 
