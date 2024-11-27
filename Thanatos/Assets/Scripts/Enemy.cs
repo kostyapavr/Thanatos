@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
     public GameObject heartPrefab;
+    protected bool isBoss = false;
 
     private float _currentHealth;
     private float _maxHealth;
@@ -49,9 +50,17 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void Die()
     {
-        LevelController.enemyDeathEvent.Invoke();
-        Instantiate(heartPrefab, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        if (isBoss)
+        {
+            LevelController.bossDeathEvent.Invoke();
+            Destroy(gameObject);
+        }
+        else
+        {
+            LevelController.enemyDeathEvent.Invoke();
+            if (Random.Range(0, 10) < 5) Instantiate(heartPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 
     public void TakeDamage(float damage, GameObject sender = null)

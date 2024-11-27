@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public Transform[] spawnPoints;
     public Enemy[] enemyPrefabs;
-    private List<int> usedInds = new List<int>();
+    private List<int> usedInds;
 
     void Start()
     {
@@ -24,10 +24,17 @@ public class EnemySpawner : MonoBehaviour
             Instantiate(enemyPrefabs[enemyInd], spawnPoints[spawnInd].position, Quaternion.identity);
             LevelController.enemySpawnEvent.Invoke();
         }
-        usedInds.Clear();
     }
 
-    int RandomNoRepeat(int max)
+    public int RandomNoRepeat(int max)
+    {
+        usedInds = new List<int>();
+        int res = GenRandom(max);
+        usedInds.Clear();
+        return res;
+    }
+
+    private int GenRandom(int max)
     {
         int ind = Random.Range(0, max);
         int iter = 0;

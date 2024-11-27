@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform bow;
 
     private int slowAcceleration = 1;
-    private int normalAcceleration = 12;
+    private int normalAcceleration = 8;
 
     void Awake()
     {

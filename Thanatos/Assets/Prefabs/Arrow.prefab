@@ -99,10 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36f69bd43a81d745973048a2004c4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 0
-  damageToEnemy: 20
-  damageToPlayer: 0.5
-  playerArrow: 1
+  owner: 
 --- !u!50 &8805113252737056486
 Rigidbody2D:
   serializedVersion: 4

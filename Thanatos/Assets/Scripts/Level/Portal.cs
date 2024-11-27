@@ -21,7 +21,7 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (LevelController.aliveEnemies == 0)
+        if (isExit && LevelController.aliveEnemies == 0)
         {
             OpenPortal();
         }
@@ -41,6 +41,7 @@ public class Portal : MonoBehaviour
     string getNextSceneName(string currentName)
     {
         if (currentName == "Entrance") return "Level1.1";
+        if (currentName == "Level1.4") return "Level1_Boss";
 
         var splitResult = currentName.Split('.');
         int currentLevel = int.Parse(splitResult[0].Last().ToString());
@@ -52,6 +53,7 @@ public class Portal : MonoBehaviour
         nextRoom = (nextRoom == 0) ? 1 : nextRoom;
 
         string nextSceneName = $"Level{nextLevel}.{nextRoom}";
+
         return nextSceneName;
     }
 

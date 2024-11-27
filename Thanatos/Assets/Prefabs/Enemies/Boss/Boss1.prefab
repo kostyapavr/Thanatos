@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -596522518200358092}
   - component: {fileID: 1231178815454012159}
   m_Layer: 6
-  m_Name: Enemy
+  m_Name: Boss1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,13 +136,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartPrefab: {fileID: 2473671558451589373, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-  minHealth: 1.5
-  maxHealth: 2.5
+  minHealth: 15
+  maxHealth: 25
   shootIntervalMin: 1.5
-  shootIntervalMax: 3
-  arrowSpeedMin: 50
-  arrowSpeedMax: 90
-  arrowSpread: 6
+  shootIntervalMax: 2.5
+  arrowSpeedMin: 60
+  arrowSpeedMax: 100
+  arrowSpread: 4
+  enemyIsBoss: 1
   arrowPref: {fileID: 2055513970730527246, guid: 1574b5ea3e872324ca126e186e1ae407, type: 3}
 --- !u!114 &-596522518200358092
 MonoBehaviour:
