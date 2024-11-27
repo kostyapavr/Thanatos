@@ -4,26 +4,63 @@ using UnityEngine;
 
 public class ShootingEnemy : Enemy
 {
+    public float minHealth;
     public new float maxHealth;
+
+    public float shootIntervalMin;
+    public float shootIntervalMax;
+    
+    public int arrowSpeedMin;
+    public int arrowSpeedMax;
+
+    public int arrowSpread;
+
+    public bool enemyIsBoss = false;
+
     public GameObject arrowPref;
-    public Transform firePoint;
-    public float shootInterval = 2;
-    public int arrowSpeed;
+
+    private Player player;
+    private SpriteRenderer spriteRenderer;
+    private float health;
+    private float shootInterval;
+    private int arrowSpeed;
 
     public override void Start()
     {
-        currentHealth = maxHealth;
+        RandomiseProperties();
+        isBoss = enemyIsBoss;
+
+        currentHealth = health;
+        player = FindObjectOfType<Player>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         InvokeRepeating("Shoot", shootInterval, shootInterval);
     }
 
     private void Shoot()
     {
-        Vector3 direction = (FindObjectOfType<Player>().transform.position - firePoint.position).normalized;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (Vector2.Distance(player.transform.position, transform.position) > 40) return;
 
-        GameObject arrow = Instantiate(arrowPref, firePoint.position, Quaternion.Euler(0, 0, angle + 270));
+        Vector2 diff = player.transform.position - transform.position;
+        float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        float spreadAngle = angle + Random.Range(-arrowSpread, arrowSpread + 1);
+        Vector2 direction = Quaternion.AngleAxis(spreadAngle - angle, Vector3.forward) * diff.normalized;
+
+        if (!spriteRenderer.flipX && direction.x < 0)
+            spriteRenderer.flipX = true;
+        else if (spriteRenderer.flipX && direction.x > 0)
+            spriteRenderer.flipX = false;
+
+        GameObject arrow = Instantiate(arrowPref, transform.position, Quaternion.Euler(0, 0, spreadAngle + 270));
         arrow.GetComponent<Arrow>().owner = "Enemy";
+        if (isBoss) arrow.GetComponent<Arrow>().SetBossDamage();
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
-        rb.velocity = direction * arrowSpeed;
+        rb.AddForce(direction * arrowSpeed + GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
+    }
+
+    private void RandomiseProperties()
+    {
+        health = Random.Range(minHealth, maxHealth);
+        shootInterval = Random.Range(shootIntervalMin, shootIntervalMax);
+        arrowSpeed = Random.Range(arrowSpeedMin, arrowSpeedMax);
     }
 }

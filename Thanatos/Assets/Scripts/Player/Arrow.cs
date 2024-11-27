@@ -11,7 +11,8 @@ public class Arrow : MonoBehaviour
     private void Start()
     {
         GetComponent<Collider2D>().enabled = false;
-        Invoke("EnableCollider", 0.025f);
+        if (owner == "Enemy") Invoke("EnableCollider", 0.1f);
+        else Invoke("EnableCollider", 0.025f);
     }
 
     void EnableCollider()
@@ -38,5 +39,10 @@ public class Arrow : MonoBehaviour
     public void BoostDamage(float additionalDamage)
     {
         damage += additionalDamage;
+    }
+
+    public void SetBossDamage(float dmg = 1.0f)
+    {
+        damage = dmg;
     }
 }

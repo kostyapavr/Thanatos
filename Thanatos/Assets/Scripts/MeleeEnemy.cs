@@ -5,20 +5,32 @@ using UnityEngine;
 
 public class MeleeEnemy : Enemy
 {
+    public float minHealth;
     public new float maxHealth;
-    public Transform attackPoint;
-    public float damage = 0.5f;
 
-    public float attackInterval = 2;
+    public float attackIntervalMin;
+    public float attackIntervalMax;
+
+    public float damage;
+
+    public float moveSpeedMin;
+    public float moveSpeedMax;
+
     [HideInInspector] public Transform player;
-    public float moveSpeed = 2f;
-    public float attackRange = 1f;
+    
+    public float attackRange = 1.5f;
 
     private float lastAttackTime;
 
+    private float health;
+    private float attackInterval;
+    private float moveSpeed;
+
     public override void Start()
     {
-        currentHealth = maxHealth;
+        RandomiseProperties();
+
+        currentHealth = health;
         InvokeRepeating("Attack", attackInterval, attackInterval);
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
@@ -32,14 +44,14 @@ public class MeleeEnemy : Enemy
             {
                 if (hit.CompareTag("Player"))
                 {
-                    Player playerHealth = hit.GetComponent<Player>();
-                    if (playerHealth != null)
+                    Player player = hit.GetComponent<Player>();
+                    if (player != null)
                     {
-                        playerHealth.TakeDamage(damage);
+                        player.TakeDamage(damage);
                     }
-                    lastAttackTime = Time.time;
                 }
             }
+            lastAttackTime = Time.time;
         }
     }
 
@@ -62,7 +74,13 @@ public class MeleeEnemy : Enemy
 
     private void ChasePlayer()
     {
-        Vector2 direction = (player.position - transform.position).normalized;
         transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+    }
+
+    private void RandomiseProperties()
+    {
+        health = Random.Range(minHealth, maxHealth);
+        attackInterval = Random.Range(attackIntervalMin, attackIntervalMax);
+        moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
     }
 }

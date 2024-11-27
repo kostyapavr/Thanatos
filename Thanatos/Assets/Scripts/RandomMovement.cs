@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RandomMovement : Enemy
@@ -10,12 +11,13 @@ public class RandomMovement : Enemy
     public float moveDistance = 5;
 
     private Rigidbody2D rb;
-
+    private SpriteRenderer spriteRenderer;
     private int obstacleMask;
 
     public override void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         obstacleMask = LayerMask.GetMask("Obstacle");
         InvokeRepeating("MoveRandomly", moveIntervalMin, Random.Range(moveIntervalMin, moveIntervalMax));
     }
@@ -23,6 +25,8 @@ public class RandomMovement : Enemy
     private void MoveRandomly()
     {
         Vector2 direction = GenDirection();
+
+        RotateEnemy(direction);
 
         float distance = Random.Range(moveDistance / 2, moveDistance);
 
@@ -57,5 +61,13 @@ public class RandomMovement : Enemy
         }
         //Debug.DrawRay(transform.position, direction * 15, Color.green, 2);
         return direction;
+    }
+
+    private void RotateEnemy(Vector2 dir)
+    {
+        if (!spriteRenderer.flipX && dir.x < 0.0f)
+            spriteRenderer.flipX = true;
+        else if (spriteRenderer.flipX && dir.x > 0.0f) 
+            spriteRenderer.flipX = false;
     }
 }

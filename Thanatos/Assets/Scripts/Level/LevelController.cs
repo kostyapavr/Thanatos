@@ -10,10 +10,12 @@ public class LevelController : MonoBehaviour
     public static int aliveEnemies = 0;
     public static bool playerHasBow;
     public static bool playerHasSword;
+    public static bool isBossLevel;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();
     public static UnityEvent playerHpEvent = new UnityEvent();
+    public static UnityEvent bossDeathEvent = new UnityEvent();
 
     void Awake()
     {
@@ -31,5 +33,15 @@ public class LevelController : MonoBehaviour
     void EnemySpawned()
     {
         aliveEnemies += 1;
+    }
+
+    public static void SetBossLevel()
+    {
+        isBossLevel = true;
+    }
+
+    public static void SetNormalLevel()
+    {
+        isBossLevel = false;
     }
 }

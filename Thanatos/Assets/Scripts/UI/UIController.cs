@@ -35,9 +35,11 @@ public class UIController : MonoBehaviour
     void UpdateHealth()
     {
         float hp = player.currentHealth;
-        int h = Mathf.Min(Mathf.FloorToInt(hp), numberOFLives);
-        int i = 0;
-        for (i = 0; i < h; i++) lives[i].fillAmount = 1;
-        if (i != numberOFLives) lives[i].fillAmount = hp - h;
+        for (int i = 0; i < lives.Length; i++)
+        {
+            float d = Mathf.Clamp(hp, 0, 1);
+            lives[i].fillAmount = d;
+            hp-=d;
+        }
     }
 }

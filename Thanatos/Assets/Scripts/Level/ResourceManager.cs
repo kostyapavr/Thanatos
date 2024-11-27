@@ -8,6 +8,7 @@ public class ResourceManager : MonoBehaviour
     public int enemiesToSpawn;
     public int playerArrowsToGive;
     public int maxPlayerHP;
+    public int rocksToSpawn;
 
     void Awake()
     {
