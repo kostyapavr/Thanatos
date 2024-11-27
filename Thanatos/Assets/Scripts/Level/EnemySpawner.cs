@@ -4,14 +4,44 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    
+    public Transform[] spawnPoints;
+    public Enemy[] enemyPrefabs;
+    private List<int> usedInds = new List<int>();
+
     void Start()
     {
-        
+        if (spawnPoints == null || spawnPoints.Length == 0) Debug.Log("No spawn points!");
+        else if (enemyPrefabs == null || enemyPrefabs.Length == 0) Debug.Log("No enemies to spawn!");
+        else SpawnEnemies();
     }
 
-    void Update()
+    void SpawnEnemies()
     {
-        
+        for (int i = 0; i < ResourceManager.Instance.enemiesToSpawn; i++)
+        {
+            int enemyInd = Random.Range(0, enemyPrefabs.Length);
+            int spawnInd = RandomNoRepeat(spawnPoints.Length);
+            Instantiate(enemyPrefabs[enemyInd], spawnPoints[spawnInd].position, Quaternion.identity);
+            LevelController.enemySpawnEvent.Invoke();
+        }
+        usedInds.Clear();
+    }
+
+    int RandomNoRepeat(int max)
+    {
+        int ind = Random.Range(0, max);
+        int iter = 0;
+        while (usedInds.Contains(ind))
+        {
+            if (iter > 20)
+            {
+                Debug.Log("Random gen error!");
+                return 0;
+            }
+            ind = Random.Range(0, max);
+            iter++;
+        }
+        usedInds.Add(ind);
+        return ind;
     }
 }

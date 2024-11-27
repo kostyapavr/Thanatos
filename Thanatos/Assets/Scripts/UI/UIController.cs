@@ -15,9 +15,9 @@ public class UIController : MonoBehaviour
     {
         numberOFLives = ResourceManager.Instance.maxPlayerHP;
         lives = new Image[numberOFLives];
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<IDamageable>() as Player;
         SpawnIcons();
-        UpdateHealth();
+        Invoke("UpdateHealth", 0.5f);
 
         LevelController.playerHpEvent.AddListener(UpdateHealth);
     }
@@ -34,13 +34,10 @@ public class UIController : MonoBehaviour
 
     void UpdateHealth()
     {
-        float hp = player.GetCurrentHealth();
+        float hp = player.currentHealth;
         int h = Mathf.Min(Mathf.FloorToInt(hp), numberOFLives);
         int i = 0;
-        for (i = 0; i < h; i++)
-        {
-            lives[i].fillAmount = 1;
-        }
+        for (i = 0; i < h; i++) lives[i].fillAmount = 1;
         if (i != numberOFLives) lives[i].fillAmount = hp - h;
     }
 }

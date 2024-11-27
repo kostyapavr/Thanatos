@@ -5,12 +5,14 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     public GameObject Panel;
+    public GameObject mainArt;
 
     public void OpenPanel()
     {
         if (Panel != null)
         {
             Panel.SetActive(true);
+            mainArt.SetActive(false);
         }
     }
     public void ClosePanel()
@@ -18,6 +20,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (Panel != null)
         {
             Panel.SetActive(false);
+            mainArt.SetActive(true);
         }
     }
 }

@@ -8,15 +8,17 @@ using UnityEngine.SceneManagement;
 public class LevelController : MonoBehaviour
 {
     public static int aliveEnemies = 0;
+    public static bool playerHasBow;
+    public static bool playerHasSword;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();
     public static UnityEvent playerHpEvent = new UnityEvent();
 
-    void Start()
+    void Awake()
     {
         enemyDeathEvent.AddListener(EnemyDeath);
-        enemyDeathEvent.AddListener(EnemySpawned);
+        enemySpawnEvent.AddListener(EnemySpawned);
         DontDestroyOnLoad(this);
     }
 

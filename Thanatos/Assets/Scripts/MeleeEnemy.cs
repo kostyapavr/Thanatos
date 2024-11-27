@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class MeleeEnemy : Enemy
 {
+    public new float maxHealth;
     public Transform attackPoint;
 
     public float attackInterval = 2;
-    public Transform player;
+    [HideInInspector] public Transform player;
     public float moveSpeed = 2f;
     public float attackRange = 1f;
 
@@ -17,13 +18,13 @@ public class MeleeEnemy : Enemy
     {
         currentHealth = maxHealth;
         InvokeRepeating("Attack", attackInterval, attackInterval);
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Attack()
     {
         if (Time.time >= lastAttackTime + attackInterval)
         {
-            Debug.Log("Attack!");
             lastAttackTime = Time.time;
         }
     }
