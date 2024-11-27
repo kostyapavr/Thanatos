@@ -11,13 +11,16 @@ public class Player : MonoBehaviour, IDamageable
     public float currentHealth { get => _currentHealth; set => _currentHealth = value; }
     public float maxHealth { get => _maxHealth; set => _maxHealth = value; }
 
+    public bool hasBow = false;
+    public bool hasSword = false;
+
     void Start()
     {
         maxHealth = ResourceManager.Instance.maxPlayerHP;
         arrows = ResourceManager.Instance.playerArrowsToGive;
         currentHealth = maxHealth;
-        Debug.Log(currentHealth);
-        Debug.Log(maxHealth);
+        hasBow = LevelController.playerHasBow;
+        hasSword = LevelController.playerHasSword;
     }
 
     public int GetCurrentArrows()
@@ -35,7 +38,6 @@ public class Player : MonoBehaviour, IDamageable
         if (currentHealth + amount > maxHealth) currentHealth = maxHealth;
         else currentHealth += amount;
         LevelController.playerHpEvent.Invoke();
-        Debug.Log($"Added {amount} HP. Current HP: {currentHealth}");
     }
 
     void Die()
@@ -50,7 +52,6 @@ public class Player : MonoBehaviour, IDamageable
         {
             currentHealth -= damage;
             LevelController.playerHpEvent.Invoke();
-            Debug.Log($"Damage: {damage} HP. Current HP: {currentHealth}");
         }
         else
         {

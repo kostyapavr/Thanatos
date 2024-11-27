@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ShootingEnemy : Enemy
 {
+    public new float maxHealth;
     public GameObject arrowPref;
     public Transform firePoint;
     public float shootInterval = 2;
+    public int arrowSpeed;
 
     public override void Start()
     {
@@ -17,8 +19,8 @@ public class ShootingEnemy : Enemy
     private void Shoot()
     {
         GameObject arrow = Instantiate(arrowPref, firePoint.position, firePoint.rotation);
-        arrow.GetComponent<Arrow>().playerArrow = false;
+        arrow.GetComponent<Arrow>().owner = "Enemy";
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
-        rb.velocity = (FindObjectOfType<Player>().transform.position - firePoint.position).normalized * 10;
+        rb.velocity = (FindObjectOfType<Player>().transform.position - firePoint.position).normalized * arrowSpeed;
     }
 }

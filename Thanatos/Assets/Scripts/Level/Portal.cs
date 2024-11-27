@@ -6,13 +6,27 @@ using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
-    LevelController levelController;
+    public bool isExit;
     const int maxLevels = 5;
+    public Sprite openSprite;
     private int[] maxRooms = new int[maxLevels] { 4, 5, 6, 8, 10 };
+
+    private bool isClosed = true;
+
+    private void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "Entrance") OpenPortal();
+        else if (isExit) LevelController.enemyDeathEvent.AddListener(EnemyDeathEvent);
+    }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Player") && LevelController.aliveEnemies == 0)
+        if (LevelController.aliveEnemies == 0)
+        {
+            OpenPortal();
+        }
+
+        if (collider.CompareTag("Player") && !isClosed)
         {
             LoadNextLevel();
         }
@@ -39,5 +53,19 @@ public class Portal : MonoBehaviour
 
         string nextSceneName = $"Level{nextLevel}.{nextRoom}";
         return nextSceneName;
+    }
+
+    void EnemyDeathEvent()
+    {
+        if (LevelController.aliveEnemies == 0)
+        {
+            OpenPortal();
+        }
+    }
+
+    void OpenPortal()
+    {
+        isClosed = false;
+        GetComponent<SpriteRenderer>().sprite = openSprite;
     }
 }

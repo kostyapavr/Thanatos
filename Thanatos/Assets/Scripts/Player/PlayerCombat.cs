@@ -13,13 +13,9 @@ public class PlayerCombat : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && GetComponent<Player>().hasSword)
         {
             Attack();
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            GetComponent<Player>().TakeDamage(0.5f);
         }
     }
 
@@ -31,7 +27,6 @@ public class PlayerCombat : MonoBehaviour
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
-
     } 
 }
 
