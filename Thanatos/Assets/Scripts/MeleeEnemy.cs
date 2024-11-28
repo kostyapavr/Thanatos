@@ -18,7 +18,7 @@ public class MeleeEnemy : Enemy
 
     [HideInInspector] public Transform player;
     
-    public float attackRange = 1.5f;
+    public float attackRange;
 
     private float lastAttackTime;
 

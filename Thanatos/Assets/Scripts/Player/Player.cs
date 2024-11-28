@@ -12,12 +12,15 @@ public class Player : MonoBehaviour, IDamageable
     public float maxHealth { get => _maxHealth; set => _maxHealth = value; }
 
     public GameObject deathPanel;
+    public GameObject endPanel;
 
     void Start()
     {
         maxHealth = ResourceManager.Instance.maxPlayerHP;
         arrows = ResourceManager.Instance.playerArrowsToGive;
-        currentHealth = maxHealth;
+
+        currentHealth = LevelController.playerHp == 0 ? maxHealth : Mathf.Min(maxHealth, LevelController.playerHp + 1.0f);
+        LevelController.playerHp = currentHealth;
     }
 
     public int GetCurrentArrows()
@@ -28,6 +31,7 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeArrow()
     {
         if (arrows > 0) arrows -= 1;
+        LevelController.playerArrowShootEvent.Invoke();
     }
 
     public void AddHealth(float amount)
@@ -41,7 +45,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         ResetItems();
         deathPanel.SetActive(true);
-        Time.timeScale = 0;
+        Time.timeScale = 0.01f;
     }
 
     public void TakeDamage(float damage, GameObject sender = null)
@@ -65,5 +69,11 @@ public class Player : MonoBehaviour, IDamageable
         LevelController.playerHasBow = false;
         LevelController.playerHasSword = false;
         LevelController.playerHasHelmet = false;
+    }
+
+    public void ShowEndPanel()
+    {
+        endPanel.SetActive(true);
+        Time.timeScale = 0.01f;
     }
 }

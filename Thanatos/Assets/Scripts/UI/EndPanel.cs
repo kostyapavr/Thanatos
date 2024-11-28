@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DeathPanel : MonoBehaviour
+public class EndPanel : MonoBehaviour
 {
-    public void ReturnToEntrance()
+    public void ReturnToMenu()
     {
         Time.timeScale = 1;
         gameObject.SetActive(false);
         LevelController.DestroyController();
-        SceneManager.LoadScene("Entrance");
+        SceneManager.LoadScene("MainMenu");
     }
 }

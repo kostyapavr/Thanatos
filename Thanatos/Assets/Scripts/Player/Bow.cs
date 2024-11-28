@@ -36,11 +36,13 @@ public class Bow : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                if (LevelController.playerHasHelmet) maxChargeTime = 2.0f;
-                if (chargeTime < maxChargeTime)
+                float mxChargeTime = maxChargeTime;
+                if (LevelController.playerHasHelmet) mxChargeTime = 1.5f;
+
+                if (chargeTime < mxChargeTime)
                 {
                     chargeTime += Time.deltaTime;
-                    bowCharge.fillAmount = chargeTime / maxChargeTime;
+                    bowCharge.fillAmount = chargeTime / mxChargeTime;
                     player.GetComponent<PlayerMovement>().SlowDown();
                 }
             }

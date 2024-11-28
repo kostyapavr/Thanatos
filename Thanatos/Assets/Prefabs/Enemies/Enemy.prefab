@@ -136,13 +136,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartPrefab: {fileID: 2473671558451589373, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
+  helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   minHealth: 1.5
   maxHealth: 2.5
   shootIntervalMin: 1.5
   shootIntervalMax: 3
-  arrowSpeedMin: 50
-  arrowSpeedMax: 90
-  arrowSpread: 6
+  arrowSpeedMin: 40
+  arrowSpeedMax: 80
+  arrowSpread: 7
+  enemyIsBoss: 0
   arrowPref: {fileID: 2055513970730527246, guid: 1574b5ea3e872324ca126e186e1ae407, type: 3}
 --- !u!114 &-596522518200358092
 MonoBehaviour:
@@ -157,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heartPrefab: {fileID: 0}
+  helmetPrefab: {fileID: 0}
   moveIntervalMin: 1.5
   moveIntervalMax: 3
   moveSpeed: 6

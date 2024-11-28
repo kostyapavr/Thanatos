@@ -5,7 +5,9 @@ using UnityEngine;
 public class ResourceManager : MonoBehaviour
 {
     public static ResourceManager Instance;
-    public int enemiesToSpawn;
+    public int enemiesToSpawnMin;
+    public int enemiesToSpawnMax;
+    [HideInInspector] public int enemiesToSpawn;
     public int playerArrowsToGive;
     public int maxPlayerHP;
     public int rocksToSpawn;
@@ -14,6 +16,7 @@ public class ResourceManager : MonoBehaviour
     {
         if (Instance == null)
         {
+            enemiesToSpawn = Random.Range(enemiesToSpawnMin, enemiesToSpawnMax+1);
             Instance = this;
         }
         else if (Instance != this)
