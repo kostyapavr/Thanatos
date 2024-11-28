@@ -7,7 +7,7 @@ public class Bow : MonoBehaviour
 {
     private float delay;
     private float chargeTime;
-    private const float maxChargeTime = 3.0f;
+    private float maxChargeTime = 3.0f;
     public float delayLength;
     public float offset;
 
@@ -17,8 +17,14 @@ public class Bow : MonoBehaviour
     public int arrowSpeed;
 
     public Player player;
+    private ItemManager itemManager;
 
     public Image bowCharge;
+
+    private void Start()
+    {
+        itemManager = player.GetComponent<ItemManager>();
+    }
 
     void Update()
     {
@@ -26,10 +32,11 @@ public class Bow : MonoBehaviour
         float rotatez = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotatez + offset);
 
-        if (delay <= 0f && player.hasBow && player.GetCurrentArrows() > 0)
+        if (delay <= 0f && itemManager.hasBow && player.GetCurrentArrows() > 0)
         {
             if (Input.GetMouseButton(0))
             {
+                if (LevelController.playerHasHelmet) maxChargeTime = 2.0f;
                 if (chargeTime < maxChargeTime)
                 {
                     chargeTime += Time.deltaTime;
@@ -39,7 +46,7 @@ public class Bow : MonoBehaviour
             }
             if (Input.GetMouseButtonUp(0))
             {
-                if (chargeTime > 0.5f) ShootArrow(difference.normalized);
+                if (chargeTime > 0.3f) ShootArrow(difference.normalized);
                 delay = delayLength;
                 bowCharge.fillAmount = 0;
                 chargeTime = 0;

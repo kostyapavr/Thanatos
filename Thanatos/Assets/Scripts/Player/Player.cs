@@ -11,16 +11,13 @@ public class Player : MonoBehaviour, IDamageable
     public float currentHealth { get => _currentHealth; set => _currentHealth = value; }
     public float maxHealth { get => _maxHealth; set => _maxHealth = value; }
 
-    public bool hasBow = false;
-    public bool hasSword = false;
+    public GameObject deathPanel;
 
     void Start()
     {
         maxHealth = ResourceManager.Instance.maxPlayerHP;
         arrows = ResourceManager.Instance.playerArrowsToGive;
         currentHealth = maxHealth;
-        hasBow = LevelController.playerHasBow;
-        hasSword = LevelController.playerHasSword;
     }
 
     public int GetCurrentArrows()
@@ -42,7 +39,9 @@ public class Player : MonoBehaviour, IDamageable
 
     void Die()
     {
-        Debug.Log("Player died");
+        ResetItems();
+        deathPanel.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void TakeDamage(float damage, GameObject sender = null)
@@ -56,7 +55,15 @@ public class Player : MonoBehaviour, IDamageable
         else
         {
             currentHealth = 0;
+            LevelController.playerHpEvent.Invoke();
             Die();
         }
+    }
+
+    void ResetItems()
+    {
+        LevelController.playerHasBow = false;
+        LevelController.playerHasSword = false;
+        LevelController.playerHasHelmet = false;
     }
 }

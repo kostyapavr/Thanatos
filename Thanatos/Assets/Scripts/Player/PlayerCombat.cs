@@ -11,9 +11,16 @@ public class PlayerCombat : MonoBehaviour
     public int attackDamage = 30;
     public float attackRange = 0.5f;
 
+    private ItemManager itemManager;
+
+    private void Start()
+    {
+        itemManager = GetComponent<ItemManager>();
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && GetComponent<Player>().hasSword)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && itemManager.hasSword)
         {
             Attack();
         }

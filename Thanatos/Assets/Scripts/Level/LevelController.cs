@@ -10,6 +10,7 @@ public class LevelController : MonoBehaviour
     public static int aliveEnemies = 0;
     public static bool playerHasBow;
     public static bool playerHasSword;
+    public static bool playerHasHelmet;
     public static bool isBossLevel;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
