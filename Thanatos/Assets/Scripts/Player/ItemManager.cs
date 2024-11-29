@@ -16,7 +16,7 @@ public class ItemManager : MonoBehaviour
 
     void Start()
     {
-        player = GetComponent<SpriteRenderer>();
+        /*player = GetComponent<SpriteRenderer>();
 
         hasBow = LevelController.playerHasBow;
         hasSword = LevelController.playerHasSword;
@@ -25,18 +25,18 @@ public class ItemManager : MonoBehaviour
         if (hasBow) player.sprite = basicBowSprite;
         else if (hasSword && !hasBow) player.sprite = basicSwordSprite;
         
-        if (hasHelmet && hasSword) player.sprite = basicHelmetSprite;
+        if (hasHelmet && hasSword) player.sprite = basicHelmetSprite;*/
     }
 
     private void Update()
     {
-        hasBow = LevelController.playerHasBow;
+        /*hasBow = LevelController.playerHasBow;
         hasSword = LevelController.playerHasSword;
         hasHelmet = LevelController.playerHasHelmet;
 
         if (hasBow) player.sprite = basicBowSprite;
         else if (hasSword) player.sprite = basicSwordSprite;
 
-        if (hasHelmet && hasSword) player.sprite = basicHelmetSprite;
+        if (hasHelmet && hasSword) player.sprite = basicHelmetSprite;*/
     }
 }

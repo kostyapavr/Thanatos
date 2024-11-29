@@ -11,16 +11,16 @@ public class PlayerCombat : MonoBehaviour
     public int attackDamage;
     public float attackRange;
 
-    private ItemManager itemManager;
+    //private ItemManager itemManager;
 
     private void Start()
     {
-        itemManager = GetComponent<ItemManager>();
+        //itemManager = GetComponent<ItemManager>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && itemManager.hasSword)
+        if (Input.GetKeyDown(KeyCode.Mouse1) && LevelController.playerHasSword)
         {
             Attack();
         }

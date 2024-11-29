@@ -17,22 +17,29 @@ public class Bow : MonoBehaviour
     public int arrowSpeed;
 
     public Player player;
-    private ItemManager itemManager;
+    //private ItemManager itemManager;
 
     public Image bowCharge;
 
+    public GameObject bowShootPosition;
+
+    private SpriteRenderer bowSprite;
+
     private void Start()
     {
-        itemManager = player.GetComponent<ItemManager>();
+        bowSprite = GetComponent<SpriteRenderer>();
+        //itemManager = player.GetComponent<ItemManager>();
     }
 
     void Update()
     {
+        if (LevelController.playerHasBow) bowSprite.enabled = true;
+
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotatez = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotatez + offset);
+        point.rotation = Quaternion.Euler(0f, 0f, rotatez + offset);
 
-        if (delay <= 0f && itemManager.hasBow && player.GetCurrentArrows() > 0)
+        if (delay <= 0f && LevelController.playerHasBow && player.GetCurrentArrows() > 0)
         {
             if (Input.GetMouseButton(0))
             {
@@ -43,8 +50,11 @@ public class Bow : MonoBehaviour
                 {
                     chargeTime += Time.deltaTime;
                     bowCharge.fillAmount = chargeTime / mxChargeTime;
-                    player.GetComponent<PlayerMovement>().SlowDown();
+                    player.GetComponent<PlayerMovement>().SlowDown(); 
                 }
+
+                bowSprite.enabled = false;
+                bowShootPosition.SetActive(true);
             }
             if (Input.GetMouseButtonUp(0))
             {
@@ -53,6 +63,8 @@ public class Bow : MonoBehaviour
                 bowCharge.fillAmount = 0;
                 chargeTime = 0;
                 player.GetComponent<PlayerMovement>().ReturnToNormalSpeed();
+                bowSprite.enabled = true;
+                bowShootPosition.SetActive(false);
             }
         }
         else
@@ -64,7 +76,7 @@ public class Bow : MonoBehaviour
     void ShootArrow(Vector3 direction, float dmgBoost = 0.0f)
     {
         float boost = chargeTime / maxChargeTime;
-        Rigidbody2D rb = Instantiate(Arrow, point.position, transform.rotation).GetComponent<Rigidbody2D>();
+        Rigidbody2D rb = Instantiate(Arrow, point.position, point.rotation).GetComponent<Rigidbody2D>();
         rb.GetComponent<Arrow>().owner = "Player";
         rb.GetComponent<Arrow>().BoostDamage(boost);
         rb.AddForce(direction * arrowSpeed * (1 + boost) + (Vector3)player.GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);

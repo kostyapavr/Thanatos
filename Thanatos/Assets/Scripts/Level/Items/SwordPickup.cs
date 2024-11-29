@@ -18,6 +18,7 @@ public class SwordPickup : MonoBehaviour, IPickupable
     public void Pickup()
     {
         LevelController.playerHasSword = true;
+        LevelController.playerPickupItemEvent.Invoke();
         Destroy(gameObject);
     }
 }

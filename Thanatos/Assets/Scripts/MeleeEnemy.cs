@@ -31,7 +31,7 @@ public class MeleeEnemy : Enemy
         RandomiseProperties();
 
         currentHealth = health;
-        InvokeRepeating("Attack", attackInterval, attackInterval);
+        //InvokeRepeating("Attack", attackInterval, attackInterval);
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 

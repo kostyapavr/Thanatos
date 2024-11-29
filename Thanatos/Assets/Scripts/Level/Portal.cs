@@ -69,7 +69,7 @@ public class Portal : MonoBehaviour
     void OpenPortal()
     {
         isClosed = false;
-        GetComponent<SpriteRenderer>().sprite = openSprite;
+        if (openSprite != null) GetComponent<SpriteRenderer>().sprite = openSprite;
     }
 
     void ShowEndPanel(Player p)

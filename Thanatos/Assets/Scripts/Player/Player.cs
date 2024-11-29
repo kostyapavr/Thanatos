@@ -13,6 +13,9 @@ public class Player : MonoBehaviour, IDamageable
 
     public GameObject deathPanel;
     public GameObject endPanel;
+    public GameObject helmetSprite;
+
+    private bool godMode = false;
 
     void Start()
     {
@@ -21,6 +24,9 @@ public class Player : MonoBehaviour, IDamageable
 
         currentHealth = LevelController.playerHp == 0 ? maxHealth : Mathf.Min(maxHealth, LevelController.playerHp + 1.0f);
         LevelController.playerHp = currentHealth;
+
+        CheckPickup();
+        LevelController.playerPickupItemEvent.AddListener(CheckPickup);
     }
 
     public int GetCurrentArrows()
@@ -45,12 +51,12 @@ public class Player : MonoBehaviour, IDamageable
     {
         ResetItems();
         deathPanel.SetActive(true);
-        Time.timeScale = 0.01f;
+        Time.timeScale = 0;
     }
 
     public void TakeDamage(float damage, GameObject sender = null)
     {
-        if (gameObject == sender) return;
+        if (gameObject == sender || godMode) return;
         if (currentHealth - damage > 0)
         {
             currentHealth -= damage;
@@ -74,6 +80,11 @@ public class Player : MonoBehaviour, IDamageable
     public void ShowEndPanel()
     {
         endPanel.SetActive(true);
-        Time.timeScale = 0.01f;
+        Time.timeScale = 0;
+    }
+
+    void CheckPickup()
+    {
+        helmetSprite.SetActive(LevelController.playerHasHelmet);
     }
 }
