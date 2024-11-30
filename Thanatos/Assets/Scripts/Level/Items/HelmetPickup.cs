@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BowPickup : MonoBehaviour, IPickupable
+public class HelmetPickup : MonoBehaviour, IPickupable
 {
-    private string _name = "Bow";
-    public string Name {  get => _name; }
+    private string _name = "Helmet";
+    public string Name { get => _name; }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,7 +17,7 @@ public class BowPickup : MonoBehaviour, IPickupable
 
     public void Pickup()
     {
-        LevelController.playerHasBow = true;
+        LevelController.playerHasHelmet = true;
         LevelController.playerPickupItemEvent.Invoke();
         Destroy(gameObject);
     }

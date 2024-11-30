@@ -8,14 +8,32 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public LayerMask enemyLayers;
 
-    public int attackDamage = 30;
-    public float attackRange = 0.5f;
+    public float attackDamage;
+    public float attackRange;
+
+    public GameObject swordSprite;
+    public Bow bow;
+
+    private float attackDelay = 1.0f;
+    private float time = 0.0f;
+
+    //private ItemManager itemManager;
+
+    private void Start()
+    {
+        //itemManager = GetComponent<ItemManager>();
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse1) && GetComponent<Player>().hasSword)
+        if (time <= 0.0f && Input.GetKeyDown(KeyCode.Mouse1) && LevelController.playerHasSword)
         {
             Attack();
+            time = attackDelay;
+        }
+        else
+        {
+            time -= Time.deltaTime;
         }
     }
 
@@ -27,6 +45,16 @@ public class PlayerCombat : MonoBehaviour
         {
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
+
+        swordSprite.SetActive(true);
+        bow.canShoot = false;
+        Invoke("StopAnim", 1);
     } 
+
+    void StopAnim()
+    {
+        swordSprite.SetActive(false);
+        bow.canShoot = true;
+    }
 }
 

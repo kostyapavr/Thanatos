@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,9 @@ public class UIController : MonoBehaviour
     private int numberOFLives;
     public GameObject hpIcon;
 
+    public GameObject arrowIcon;
+    public TMP_Text arrowText;
+
     private Image[] lives;
 
     void Start()
@@ -17,18 +21,27 @@ public class UIController : MonoBehaviour
         lives = new Image[numberOFLives];
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<IDamageable>() as Player;
         SpawnIcons();
-        Invoke("UpdateHealth", 0.5f);
+        Invoke("UpdateHealth", 0.1f);
+        Invoke("UpdateArrows", 0.1f);
 
         LevelController.playerHpEvent.AddListener(UpdateHealth);
+        LevelController.playerArrowShootEvent.AddListener(UpdateArrows);
     }
 
     void SpawnIcons()
     {
-        if (hpIcon == null) return;
-        for (int i = numberOFLives - 1; i >= 0; i--)
+        if (hpIcon != null)
         {
-            Image img = Instantiate(hpIcon, transform.GetChild(0)).transform.GetChild(0).GetComponent<Image>();
-            lives[i] = img;
+            for (int i = numberOFLives - 1; i >= 0; i--)
+            {
+                Image img = Instantiate(hpIcon, transform.GetChild(0)).transform.GetChild(0).GetComponent<Image>();
+                lives[i] = img;
+            }
+        }
+
+        if (LevelController.playerHasBow)
+        {
+            arrowIcon.SetActive(true);
         }
     }
 
@@ -41,5 +54,11 @@ public class UIController : MonoBehaviour
             lives[i].fillAmount = d;
             hp-=d;
         }
+    }
+
+    void UpdateArrows()
+    {
+        int currentArrows = player.GetCurrentArrows();
+        arrowText.text = currentArrows.ToString();
     }
 }

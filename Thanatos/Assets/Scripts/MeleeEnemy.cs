@@ -18,7 +18,7 @@ public class MeleeEnemy : Enemy
 
     [HideInInspector] public Transform player;
     
-    public float attackRange = 1.5f;
+    public float attackRange;
 
     private float lastAttackTime;
 
@@ -31,7 +31,7 @@ public class MeleeEnemy : Enemy
         RandomiseProperties();
 
         currentHealth = health;
-        InvokeRepeating("Attack", attackInterval, attackInterval);
+        //InvokeRepeating("Attack", attackInterval, attackInterval);
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 

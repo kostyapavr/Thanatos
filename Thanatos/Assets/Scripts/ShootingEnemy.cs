@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShootingEnemy : Enemy
 {
@@ -16,6 +17,8 @@ public class ShootingEnemy : Enemy
     public int arrowSpread;
 
     public bool enemyIsBoss = false;
+    public GameObject hpBar;
+    public Image hpBarFill;
 
     public GameObject arrowPref;
 
@@ -38,7 +41,7 @@ public class ShootingEnemy : Enemy
 
     private void Shoot()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) > 40) return;
+        if (Vector2.Distance(player.transform.position, transform.position) > 70) return;
 
         Vector2 diff = player.transform.position - transform.position;
         float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
@@ -62,5 +65,15 @@ public class ShootingEnemy : Enemy
         health = Random.Range(minHealth, maxHealth);
         shootInterval = Random.Range(shootIntervalMin, shootIntervalMax);
         arrowSpeed = Random.Range(arrowSpeedMin, arrowSpeedMax);
+    }
+
+    protected override void ShowDamage()
+    {
+        if (isBoss)
+        {
+            if (!hpBar.activeSelf) hpBar.SetActive(true);
+            hpBarFill.fillAmount = currentHealth / health;
+        }
+        base.ShowDamage();
     }
 }

@@ -1833,6 +1833,14 @@ PrefabInstance:
       propertyPath: rocksToSpawn
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
+      propertyPath: enemiesToSpawnMax
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
+      propertyPath: enemiesToSpawnMin
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3177,67 +3185,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3623569505075893573, guid: 955fd433088fa824196b2997fb30298f, type: 3}
   m_PrefabInstance: {fileID: 2051343822}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &7696218481471003090
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2473671558451589373, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_Name
-      value: Heart
-      objectReference: {fileID: 0}
-    - target: {fileID: 5798188383139877595, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_UsedByComposite
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7772852333836276392, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 7772852333836276392, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 8.63
-      objectReference: {fileID: 0}
-    - target: {fileID: 7772852333836276392, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7772852333836276392, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7772852333836276392, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7772852333836276392, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7772852333836276392, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7772852333836276392, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7772852333836276392, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7772852333836276392, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3248,7 +3195,6 @@ SceneRoots:
   - {fileID: 406382208}
   - {fileID: 204132061}
   - {fileID: 1995500483}
-  - {fileID: 7696218481471003090}
   - {fileID: 1580674677}
   - {fileID: 567158181}
   - {fileID: 436505296}

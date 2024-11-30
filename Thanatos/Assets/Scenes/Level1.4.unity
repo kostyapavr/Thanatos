@@ -3567,7 +3567,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 592138627382551095, guid: 15a525ccc3566264fb08cffb89d345ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 118.32157
+      value: 116.2
       objectReference: {fileID: 0}
     - target: {fileID: 592138627382551095, guid: 15a525ccc3566264fb08cffb89d345ed, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3605,9 +3605,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 663298201216902218, guid: 15a525ccc3566264fb08cffb89d345ed, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e7ea34e2c7fbc204c953b870383f49ae, type: 3}
     - target: {fileID: 5291676791771968954, guid: 15a525ccc3566264fb08cffb89d345ed, type: 3}
       propertyPath: m_Name
       value: ExitPortal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668491944987300856, guid: 15a525ccc3566264fb08cffb89d345ed, type: 3}
+      propertyPath: openSprite
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5883,6 +5891,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3623569505075893573, guid: 955fd433088fa824196b2997fb30298f, type: 3}
   m_PrefabInstance: {fileID: 1603884053}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1624739336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1624739339}
+  - component: {fileID: 1624739338}
+  - component: {fileID: 1624739337}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1624739337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624739336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &1624739338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624739336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &1624739339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624739336}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1644095596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6973,8 +7049,16 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
+      propertyPath: enemiesToSpawnMax
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
+      propertyPath: enemiesToSpawnMin
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: playerArrowsToGive
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7805,3 +7889,4 @@ SceneRoots:
   - {fileID: 1090012673}
   - {fileID: 1521799151}
   - {fileID: 354858683}
+  - {fileID: 1624739339}

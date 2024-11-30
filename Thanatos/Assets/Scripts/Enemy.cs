@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamageable
 {
     public GameObject heartPrefab;
+    public GameObject helmetPrefab;
     protected bool isBoss = false;
 
     private float _currentHealth;
@@ -20,7 +21,7 @@ public class Enemy : MonoBehaviour, IDamageable
             _currentHealth = value;
         }
     }
-    public float maxHealth 
+    public float maxHealth
     {
         get
         {
@@ -58,7 +59,7 @@ public class Enemy : MonoBehaviour, IDamageable
         else
         {
             LevelController.enemyDeathEvent.Invoke();
-            if (Random.Range(0, 10) < 5) Instantiate(heartPrefab, transform.position, Quaternion.identity);
+            SpawnRandomItem();
             Destroy(gameObject);
         }
     }
@@ -66,7 +67,38 @@ public class Enemy : MonoBehaviour, IDamageable
     public void TakeDamage(float damage, GameObject sender = null)
     {
         if (gameObject == sender) return;
-        if (currentHealth - damage > 0) currentHealth -= damage;
+        if (currentHealth - damage > 0)
+        {
+            currentHealth -= damage;
+            ShowDamage();
+        }
         else Die();
+    }
+
+    private void SpawnRandomItem()
+    {
+        int rnd = Random.Range(0, 100);
+        if (rnd < 6)
+        {
+            if (helmetPrefab == null) return;
+            if (!LevelController.playerHasHelmet)
+                Instantiate(helmetPrefab, transform.position, Quaternion.identity);
+        }
+        else if (rnd < 40)
+        {
+            if (heartPrefab == null) return;
+            Instantiate(heartPrefab, transform.position, Quaternion.identity);
+        }
+    }
+
+    protected virtual void ShowDamage()
+    {
+        GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.3f);
+        Invoke("StopShowDamage", 0.1f);
+    }
+
+    private void StopShowDamage()
+    {
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

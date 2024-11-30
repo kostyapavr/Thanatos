@@ -11,16 +11,33 @@ public class Player : MonoBehaviour, IDamageable
     public float currentHealth { get => _currentHealth; set => _currentHealth = value; }
     public float maxHealth { get => _maxHealth; set => _maxHealth = value; }
 
-    public bool hasBow = false;
-    public bool hasSword = false;
+    public GameObject deathPanel;
+    public GameObject endPanel;
+    public GameObject helmetSprite;
+
+    private bool godMode = false;
 
     void Start()
     {
         maxHealth = ResourceManager.Instance.maxPlayerHP;
         arrows = ResourceManager.Instance.playerArrowsToGive;
-        currentHealth = maxHealth;
-        hasBow = LevelController.playerHasBow;
-        hasSword = LevelController.playerHasSword;
+
+        currentHealth = LevelController.playerHp == 0 ? maxHealth : Mathf.Min(maxHealth, LevelController.playerHp + 1.0f);
+        LevelController.playerHp = currentHealth;
+
+        CheckPickup();
+        LevelController.playerPickupItemEvent.AddListener(CheckPickup);
+
+        godMode = LevelController.playerIsGod;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            godMode = !godMode;
+            LevelController.playerIsGod = godMode;
+        }
     }
 
     public int GetCurrentArrows()
@@ -31,6 +48,7 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeArrow()
     {
         if (arrows > 0) arrows -= 1;
+        LevelController.playerArrowShootEvent.Invoke();
     }
 
     public void AddHealth(float amount)
@@ -42,12 +60,14 @@ public class Player : MonoBehaviour, IDamageable
 
     void Die()
     {
-        Debug.Log("Player died");
+        ResetItems();
+        deathPanel.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void TakeDamage(float damage, GameObject sender = null)
     {
-        if (gameObject == sender) return;
+        if (gameObject == sender || godMode) return;
         if (currentHealth - damage > 0)
         {
             currentHealth -= damage;
@@ -56,7 +76,26 @@ public class Player : MonoBehaviour, IDamageable
         else
         {
             currentHealth = 0;
+            LevelController.playerHpEvent.Invoke();
             Die();
         }
+    }
+
+    void ResetItems()
+    {
+        LevelController.playerHasBow = false;
+        LevelController.playerHasSword = false;
+        LevelController.playerHasHelmet = false;
+    }
+
+    public void ShowEndPanel()
+    {
+        endPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    void CheckPickup()
+    {
+        helmetSprite.SetActive(LevelController.playerHasHelmet);
     }
 }

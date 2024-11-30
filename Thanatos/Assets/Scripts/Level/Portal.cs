@@ -28,7 +28,8 @@ public class Portal : MonoBehaviour
 
         if (collider.CompareTag("Player") && !isClosed)
         {
-            LoadNextLevel();
+            if (SceneManager.GetActiveScene().name == "Level1_Boss") ShowEndPanel(collider.GetComponent<Player>());
+            else LoadNextLevel();
         }
     }
 
@@ -68,6 +69,11 @@ public class Portal : MonoBehaviour
     void OpenPortal()
     {
         isClosed = false;
-        GetComponent<SpriteRenderer>().sprite = openSprite;
+        if (openSprite != null) GetComponent<SpriteRenderer>().sprite = openSprite;
+    }
+
+    void ShowEndPanel(Player p)
+    {
+        p.ShowEndPanel();
     }
 }
