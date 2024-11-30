@@ -15,6 +15,8 @@ public class Player : MonoBehaviour, IDamageable
     public GameObject endPanel;
     public GameObject helmetSprite;
 
+    public GameObject pauseMenu;
+
     private bool godMode = false;
 
     void Start()
@@ -37,6 +39,20 @@ public class Player : MonoBehaviour, IDamageable
         {
             godMode = !godMode;
             LevelController.playerIsGod = godMode;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseMenu.activeSelf)
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1;
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
     }
 
