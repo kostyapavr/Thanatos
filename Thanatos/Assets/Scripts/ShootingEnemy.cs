@@ -72,7 +72,7 @@ public class ShootingEnemy : Enemy
         if (isBoss)
         {
             if (!hpBar.activeSelf) hpBar.SetActive(true);
-            hpBarFill.fillAmount = health / currentHealth;
+            hpBarFill.fillAmount = currentHealth / health;
         }
         base.ShowDamage();
     }

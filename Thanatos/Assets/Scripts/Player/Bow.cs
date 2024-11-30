@@ -23,6 +23,8 @@ public class Bow : MonoBehaviour
 
     public GameObject bowShootPosition;
 
+    [HideInInspector] public bool canShoot = true;
+
     private SpriteRenderer bowSprite;
 
     private void Start()
@@ -39,7 +41,7 @@ public class Bow : MonoBehaviour
         float rotatez = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         point.rotation = Quaternion.Euler(0f, 0f, rotatez + offset);
 
-        if (delay <= 0f && LevelController.playerHasBow && player.GetCurrentArrows() > 0)
+        if (delay <= 0f && LevelController.playerHasBow && player.GetCurrentArrows() > 0 && canShoot)
         {
             if (Input.GetMouseButton(0))
             {
@@ -70,6 +72,8 @@ public class Bow : MonoBehaviour
         else
         {
             delay -= Time.deltaTime;
+            if (!canShoot && bowSprite.enabled) bowSprite.enabled = false;
+            else if (canShoot && !bowSprite.enabled) bowSprite.enabled = true;
         }
     }
 

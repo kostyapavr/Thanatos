@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour, IDamageable
             _currentHealth = value;
         }
     }
-    public float maxHealth 
+    public float maxHealth
     {
         get
         {
@@ -80,11 +80,13 @@ public class Enemy : MonoBehaviour, IDamageable
         int rnd = Random.Range(0, 100);
         if (rnd < 6)
         {
+            if (helmetPrefab == null) return;
             if (!LevelController.playerHasHelmet)
                 Instantiate(helmetPrefab, transform.position, Quaternion.identity);
         }
         else if (rnd < 40)
         {
+            if (heartPrefab == null) return;
             Instantiate(heartPrefab, transform.position, Quaternion.identity);
         }
     }

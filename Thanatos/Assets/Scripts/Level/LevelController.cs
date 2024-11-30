@@ -13,6 +13,7 @@ public class LevelController : MonoBehaviour
     public static bool playerHasSword;
     public static bool playerHasHelmet;
     public static bool isBossLevel;
+    public static bool playerIsGod = false;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();

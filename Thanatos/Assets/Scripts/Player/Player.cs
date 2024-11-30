@@ -27,6 +27,17 @@ public class Player : MonoBehaviour, IDamageable
 
         CheckPickup();
         LevelController.playerPickupItemEvent.AddListener(CheckPickup);
+
+        godMode = LevelController.playerIsGod;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            godMode = !godMode;
+            LevelController.playerIsGod = godMode;
+        }
     }
 
     public int GetCurrentArrows()

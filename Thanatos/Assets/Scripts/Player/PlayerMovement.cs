@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform bow;
     public Transform helmet;
     public Transform bowShootPos;
+    public Transform swordSpritePos;
 
     private int slowAcceleration = 1;
     private int normalAcceleration = 8;
@@ -39,6 +40,9 @@ public class PlayerMovement : MonoBehaviour
             bowShootPos.localPosition = new Vector3(-bowShootPos.localPosition.x, bowShootPos.localPosition.y, 0);
             bowShootPos.GetComponent<SpriteRenderer>().flipY = true;
 
+            swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
+            swordSpritePos.eulerAngles = new Vector3(0, 0, 170);
+
             //bow.rotation = new Quaternion(bow.rotation.x, 180, bow.rotation.z, bow.rotation.w);
             hasFlipped = true;
         }
@@ -55,6 +59,9 @@ public class PlayerMovement : MonoBehaviour
             //bowShootPos.rotation = new Quaternion(bowShootPos.rotation.x, 0, bowShootPos.rotation.z, bowShootPos.rotation.w);
             bowShootPos.localPosition = new Vector3(-bowShootPos.localPosition.x, bowShootPos.localPosition.y, 0);
             bowShootPos.GetComponent<SpriteRenderer>().flipY = false;
+
+            swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
+            swordSpritePos.eulerAngles = new Vector3(0, 0, 58);
 
             //bow.rotation = new Quaternion(bow.rotation.x, 0, bow.rotation.z, bow.rotation.w);
             hasFlipped = false;
