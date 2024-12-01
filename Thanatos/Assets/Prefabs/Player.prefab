@@ -1628,6 +1628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 3545983317623436652}
+  clip: {fileID: 0}
   attackPoint: {fileID: 6853995468236256313}
   enemyLayers:
     serializedVersion: 2

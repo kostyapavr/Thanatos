@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     public Animator animator;
+    public AnimationClip clip;
     public Transform attackPoint;
     public LayerMask enemyLayers;
 
@@ -53,18 +54,15 @@ public class PlayerCombat : MonoBehaviour
             enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
         }
 
-        //swordSprite.SetActive(true);
-        //bow.HideBow();
         animator.enabled = true;
-        animator.Play("BasicSwordAnimation");
+        //animator.SetBool("IsSwordAttack", true);
         Invoke("StopAnim", 0.25f);
     } 
 
     void StopAnim()
     {
-        //swordSprite.SetActive(false);
-        //bow.ShowBow();
         animator.enabled = false;
+        //animator.SetBool("IsSwordAttack", false);
         GetComponent<SpriteRenderer>().sprite = swordPlayerSprite;
     }
 
