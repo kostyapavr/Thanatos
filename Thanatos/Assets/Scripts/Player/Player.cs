@@ -17,12 +17,16 @@ public class Player : MonoBehaviour, IDamageable
 
     public GameObject pauseMenu;
 
+    public Bow bow;
+    private int selectedWeapon = 0;
+    private PlayerCombat sword;
     private bool godMode = false;
 
     void Start()
     {
         maxHealth = ResourceManager.Instance.maxPlayerHP;
         arrows = ResourceManager.Instance.playerArrowsToGive;
+        if (!LevelController.playerHasSword && LevelController.playerHasBow) arrows += 10;
 
         currentHealth = LevelController.playerHp == 0 ? maxHealth : Mathf.Min(maxHealth, LevelController.playerHp + 1.0f);
         LevelController.playerHp = currentHealth;
@@ -31,6 +35,11 @@ public class Player : MonoBehaviour, IDamageable
         LevelController.playerPickupItemEvent.AddListener(CheckPickup);
 
         godMode = LevelController.playerIsGod;
+
+        sword = GetComponent<PlayerCombat>();
+
+        if (LevelController.playerHasBow || LevelController.playerHasSword)
+            SelectWeapon(LevelController.playerSelectedWeapon);
     }
 
     private void Update()
@@ -54,6 +63,39 @@ public class Player : MonoBehaviour, IDamageable
                 Time.timeScale = 0;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SwitchWeapon(selectedWeapon);
+        }
+    }
+
+    public void SwitchWeapon(int n)
+    {
+        if (n == 1 && LevelController.playerHasBow) SelectBow();
+        else if (n == 0 && LevelController.playerHasSword) SelectSword();
+    }
+
+    public void SelectWeapon(int n)
+    {
+        if (n == 1 && LevelController.playerHasSword) SelectSword();
+        else if (n == 0 && LevelController.playerHasBow) SelectBow();
+    }
+
+    private void SelectSword()
+    {
+        bow.HideBow();
+        sword.ShowSword();
+        selectedWeapon = 1;
+        LevelController.playerSelectedWeapon = 1;
+    }
+
+    private void SelectBow()
+    {
+        bow.ShowBow();
+        sword.HideSword();
+        selectedWeapon = 0;
+        LevelController.playerSelectedWeapon = 0;
     }
 
     public int GetCurrentArrows()
@@ -63,7 +105,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeArrow()
     {
-        if (arrows > 0) arrows -= 1;
+        if (arrows > 0 && !godMode) arrows -= 1;
         LevelController.playerArrowShootEvent.Invoke();
     }
 
@@ -113,5 +155,6 @@ public class Player : MonoBehaviour, IDamageable
     void CheckPickup()
     {
         helmetSprite.SetActive(LevelController.playerHasHelmet);
+        helmetSprite.GetComponent<SpriteRenderer>().flipX = GetComponent<SpriteRenderer>().flipX;
     }
 }

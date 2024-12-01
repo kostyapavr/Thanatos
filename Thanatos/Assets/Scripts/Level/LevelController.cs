@@ -14,6 +14,7 @@ public class LevelController : MonoBehaviour
     public static bool playerHasHelmet;
     public static bool isBossLevel;
     public static bool playerIsGod = false;
+    public static int playerSelectedWeapon = 0;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();
@@ -28,6 +29,22 @@ public class LevelController : MonoBehaviour
         enemySpawnEvent.AddListener(EnemySpawned);
         playerHpEvent.AddListener(PlayerTookDamage);
         DontDestroyOnLoad(this);
+
+        SceneManager.sceneLoaded += CheckScene;
+    }
+
+    void CheckScene(Scene arg0, LoadSceneMode arg1)
+    {
+        string sceneName = arg0.name;
+        if (sceneName == "MainMenu" || sceneName == "Entrance")
+        {
+            aliveEnemies = 0;
+            playerHp = 0;
+            playerHasBow = false;
+            playerHasSword = false;
+            playerHasHelmet = false;
+            isBossLevel = false;
+        }
     }
 
     void EnemyDeath()

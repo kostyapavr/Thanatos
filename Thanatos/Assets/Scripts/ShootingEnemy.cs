@@ -54,7 +54,8 @@ public class ShootingEnemy : Enemy
             spriteRenderer.flipX = false;
 
         GameObject arrow = Instantiate(arrowPref, transform.position, Quaternion.Euler(0, 0, spreadAngle + 270));
-        arrow.GetComponent<Arrow>().owner = "Enemy";
+        arrow.GetComponent<Arrow>().ownerType = "Enemy";
+        arrow.GetComponent<Arrow>().ownerID = gameObject.GetInstanceID();
         if (isBoss) arrow.GetComponent<Arrow>().SetBossDamage();
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
         rb.AddForce(direction * arrowSpeed + GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);

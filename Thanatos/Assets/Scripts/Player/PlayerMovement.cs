@@ -11,10 +11,12 @@ public class PlayerMovement : MonoBehaviour
     public Transform bow;
     public Transform helmet;
     public Transform bowShootPos;
-    public Transform swordSpritePos;
 
     private int slowAcceleration = 1;
-    private int normalAcceleration = 8;
+    private int normalAcceleration = 7;
+    private int bothWeaponsAcceleration = 5;
+    private int onlySwordAcceleration = 8;
+    private int helmetAcceleration = 9;
     private bool hasFlipped = false;
 
     void Awake()
@@ -23,48 +25,76 @@ public class PlayerMovement : MonoBehaviour
         acceleration = normalAcceleration;
     }
 
+    private void Start()
+    {
+        CheckAcceleration();
+    }
+
     void Update()
     {
         inputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
-        if (inputVector.x < 0.0f && !hasFlipped)
+        if (inputVector.x < 0.0f && !hasFlipped && !bow.GetComponent<Bow>().isCharging)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
-            attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, 0);
-            //attackPoint.rotation = new Quaternion(attackPoint.rotation.x, 180, attackPoint.rotation.z, 0);
-            bow.localPosition = new Vector3(-bow.localPosition.x, bow.localPosition.y, 0);
-
-            helmet.localPosition = new Vector3(-helmet.localPosition.x, helmet.localPosition.y, 0);
-            helmet.rotation = new Quaternion(helmet.rotation.x, 180, helmet.rotation.z, helmet.rotation.w);
-
-            bowShootPos.localPosition = new Vector3(-bowShootPos.localPosition.x, bowShootPos.localPosition.y, 0);
-            bowShootPos.GetComponent<SpriteRenderer>().flipY = true;
-
-            swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
-            swordSpritePos.eulerAngles = new Vector3(0, 0, 170);
-
-            //bow.rotation = new Quaternion(bow.rotation.x, 180, bow.rotation.z, bow.rotation.w);
-            hasFlipped = true;
+            FlipPlayer();
         }
-        else if (inputVector.x > 0.0f && hasFlipped)
+        else if (inputVector.x > 0.0f && hasFlipped && !bow.GetComponent<Bow>().isCharging)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
-            attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, 0);
-            //attackPoint.rotation = new Quaternion(attackPoint.rotation.x, 0, attackPoint.rotation.z, 0);
-            bow.localPosition = new Vector3(-bow.localPosition.x, bow.localPosition.y, 0);
+            UnflipPlayer();
+        }
 
-            helmet.localPosition = new Vector3(-helmet.localPosition.x, helmet.localPosition.y, 0);
-            helmet.rotation = new Quaternion(helmet.rotation.x, 0, helmet.rotation.z, helmet.rotation.w);
+        CheckAcceleration();
+    }
 
-            //bowShootPos.rotation = new Quaternion(bowShootPos.rotation.x, 0, bowShootPos.rotation.z, bowShootPos.rotation.w);
-            bowShootPos.localPosition = new Vector3(-bowShootPos.localPosition.x, bowShootPos.localPosition.y, 0);
-            bowShootPos.GetComponent<SpriteRenderer>().flipY = false;
+    public void FlipPlayer()
+    {
+        if (hasFlipped) return;
+        GetComponent<SpriteRenderer>().flipX = true;
+        attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, 0);
+        bow.localPosition = new Vector3(-bow.localPosition.x, bow.localPosition.y, 0);
 
-            swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
-            swordSpritePos.eulerAngles = new Vector3(0, 0, 58);
+        helmet.localPosition = new Vector3(-helmet.localPosition.x, helmet.localPosition.y, 0);
+        helmet.GetComponent<SpriteRenderer>().flipX = true;
 
-            //bow.rotation = new Quaternion(bow.rotation.x, 0, bow.rotation.z, bow.rotation.w);
-            hasFlipped = false;
+        bowShootPos.localPosition = new Vector3(-bowShootPos.localPosition.x, bowShootPos.localPosition.y, 0);
+        bowShootPos.GetComponent<SpriteRenderer>().flipY = true;
+
+        //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
+        //swordSpritePos.eulerAngles = new Vector3(0, 0, 170);
+
+        hasFlipped = true;
+    }
+
+    public void UnflipPlayer()
+    {
+        if (!hasFlipped) return;
+        GetComponent<SpriteRenderer>().flipX = false;
+        attackPoint.localPosition = new Vector3(-attackPoint.localPosition.x, attackPoint.localPosition.y, 0);
+        bow.localPosition = new Vector3(-bow.localPosition.x, bow.localPosition.y, 0);
+
+        helmet.localPosition = new Vector3(-helmet.localPosition.x, helmet.localPosition.y, 0);
+        helmet.GetComponent<SpriteRenderer>().flipX = false;
+
+        bowShootPos.localPosition = new Vector3(-bowShootPos.localPosition.x, bowShootPos.localPosition.y, 0);
+        bowShootPos.GetComponent<SpriteRenderer>().flipY = false;
+
+        //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
+        //swordSpritePos.eulerAngles = new Vector3(0, 0, 58);
+
+        hasFlipped = false;
+    }
+
+    void CheckAcceleration()
+    {
+        if (LevelController.playerHasBow && LevelController.playerHasSword && LevelController.playerSelectedWeapon == 0)
+        {
+            acceleration = bothWeaponsAcceleration;
+            normalAcceleration = bothWeaponsAcceleration;
+        }
+        else if (LevelController.playerHasSword && (!LevelController.playerHasBow || LevelController.playerSelectedWeapon == 1))
+        {
+            acceleration = LevelController.playerHasHelmet ? helmetAcceleration : onlySwordAcceleration;
+            normalAcceleration = acceleration;
         }
     }
 

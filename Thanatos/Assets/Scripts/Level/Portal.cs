@@ -60,6 +60,11 @@ public class Portal : MonoBehaviour
 
     void EnemyDeathEvent()
     {
+        Invoke("CheckEnemies", 0.1f);
+    }
+
+    void CheckEnemies()
+    {
         if (LevelController.aliveEnemies == 0)
         {
             OpenPortal();

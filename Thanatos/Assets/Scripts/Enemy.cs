@@ -54,6 +54,9 @@ public class Enemy : MonoBehaviour, IDamageable
         if (isBoss)
         {
             LevelController.bossDeathEvent.Invoke();
+            GameObject portal = GameObject.Find("ExitPortal");
+            portal.GetComponent<SpriteRenderer>().enabled = true;
+            portal.GetComponent<Collider2D>().enabled = true;
             Destroy(gameObject);
         }
         else
