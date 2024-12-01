@@ -157,4 +157,9 @@ public class Player : MonoBehaviour, IDamageable
         helmetSprite.SetActive(LevelController.playerHasHelmet);
         helmetSprite.GetComponent<SpriteRenderer>().flipX = GetComponent<SpriteRenderer>().flipX;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Boss1") TakeDamage(0.5f, collision.gameObject);
+    }
 }
