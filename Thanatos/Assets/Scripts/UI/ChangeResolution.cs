@@ -10,21 +10,25 @@ public class ChangeResolution : MonoBehaviour
 
     public void Change()
     {
-        if(Dropdown.value == 0)
+        if (Dropdown.value == 0)
         {
-            Screen.SetResolution(800, 600, true);
+            Screen.SetResolution(2560, 1440, true);
         }
-        else if (Dropdown.value == 1)
+        if (Dropdown.value == 1)
         {
-           Screen.SetResolution(1024, 768, true);
+            Screen.SetResolution(1920, 1080, true);
         }
         else if (Dropdown.value == 2)
         {
-            Screen.SetResolution(1366, 768, true);
+           Screen.SetResolution(1366, 768, true);
         }
         else if (Dropdown.value == 3)
         {
-            Screen.SetResolution(1920, 1080, true);
+            Screen.SetResolution(1280, 720, true);
+        }
+        else if (Dropdown.value == 4)
+        {
+            Screen.SetResolution(800, 600, true);
         }
     }
 }

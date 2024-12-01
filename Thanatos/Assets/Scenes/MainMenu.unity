@@ -989,7 +989,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 140986015}
   m_HandleRect: {fileID: 1448700871}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.01
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
@@ -2938,7 +2938,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 12914238}
   m_HandleRect: {fileID: 105750637}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.01
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 1
@@ -3187,11 +3187,13 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: 2560x1440
+      m_Image: {fileID: 0}
     - m_Text: 1920x1080
       m_Image: {fileID: 0}
     - m_Text: 1366x768
       m_Image: {fileID: 0}
-    - m_Text: 1024x768
+    - m_Text: 1280x720
       m_Image: {fileID: 0}
     - m_Text: 800x600
       m_Image: {fileID: 0}
@@ -4069,6 +4071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 2b0d0dcb76c6c8146b1109cb9c77d9a4, type: 2}
+  musicSlider: {fileID: 196856709}
 --- !u!1 &1574560272
 GameObject:
   m_ObjectHideFlags: 0

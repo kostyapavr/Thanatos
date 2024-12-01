@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ChangeVolume : MonoBehaviour
 {
     public AudioMixer mixer;
-
+    public Slider musicSlider;
     private float musicVolume = 1f;
 
     private void Start()
@@ -19,6 +20,7 @@ public class ChangeVolume : MonoBehaviour
 
     public void Change(float value)
     {
+        Debug.Log(value);
         mixer.SetFloat("MusicVol", Mathf.Log10(value) * 20);
         musicVolume = value;
     }
@@ -38,5 +40,6 @@ public class ChangeVolume : MonoBehaviour
     private void LoadVolume()
     {
         musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1);
+        musicSlider.value = musicVolume;
     }
 }

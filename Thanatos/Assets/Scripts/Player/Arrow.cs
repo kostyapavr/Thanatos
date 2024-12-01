@@ -6,12 +6,13 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     private float damage = 0.5f;
-    [HideInInspector] public string owner;
+    [HideInInspector] public string ownerType;
+    [HideInInspector] public int ownerID;
 
     private void Start()
     {
         GetComponent<Collider2D>().enabled = false;
-        if (owner == "Enemy") Invoke("EnableCollider", 0.1f);
+        if (ownerType == "Enemy") Invoke("EnableCollider", 0.1f);
         else Invoke("EnableCollider", 0.025f);
     }
 
@@ -28,8 +29,9 @@ public class Arrow : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         IDamageable damageable = collision.collider.GetComponent<IDamageable>();
-        if (owner == "Player" && collision.collider.tag == "Player") return;
-        if (damageable != null && collision.collider.tag != owner)
+        if (ownerType == "Player" && collision.collider.tag == "Player") return;
+        if (ownerID == collision.collider.gameObject.GetInstanceID()) return;
+        if (damageable != null && collision.collider.tag != ownerType)
         {
             damageable.TakeDamage(damage, gameObject);
         }
