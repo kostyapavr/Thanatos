@@ -15,6 +15,7 @@ public class LevelController : MonoBehaviour
     public static bool isBossLevel;
     public static bool playerIsGod = false;
     public static int playerSelectedWeapon = 0;
+    public static IPickupableWeapon currentPlayerWeapon;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();

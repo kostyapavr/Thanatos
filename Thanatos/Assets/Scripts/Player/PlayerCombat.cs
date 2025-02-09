@@ -10,7 +10,6 @@ public class PlayerCombat : MonoBehaviour
     public Transform attackPoint;
     public LayerMask enemyLayers;
 
-    public float attackDamage;
     public float attackRange;
     public float bonusAttackRange;
 
@@ -19,6 +18,8 @@ public class PlayerCombat : MonoBehaviour
     public Sprite normalSprite;
     public Sprite swordPlayerSprite;
     private bool isHidden = false;
+
+    public IPickupableWeapon currentWeapon;
 
     private float attackDelay = 1.0f;
     private float time = 0.0f;
@@ -51,7 +52,13 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            /*if (currentWeapon == null)
+            {
+                Debug.Log("Current weapon is null!");
+                return;
+            }
+            enemy.GetComponent<Enemy>().TakeDamage(currentWeapon.Damage);*/
+            enemy.GetComponent<Enemy>().TakeDamage(1);
         }
 
         animator.enabled = true;
