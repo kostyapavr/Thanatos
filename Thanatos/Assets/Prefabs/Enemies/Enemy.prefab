@@ -148,6 +148,10 @@ MonoBehaviour:
   hpBar: {fileID: 0}
   hpBarFill: {fileID: 0}
   arrowPref: {fileID: 2055513970730527246, guid: 1574b5ea3e872324ca126e186e1ae407, type: 3}
+  shootingRange: 70
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 384
 --- !u!114 &-596522518200358092
 MonoBehaviour:
   m_ObjectHideFlags: 0

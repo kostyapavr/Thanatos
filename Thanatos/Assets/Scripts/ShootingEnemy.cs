@@ -22,6 +22,9 @@ public class ShootingEnemy : Enemy
 
     public GameObject arrowPref;
 
+    public float shootingRange;
+    public LayerMask PlayerMask;
+
     private Player player;
     private SpriteRenderer spriteRenderer;
     private float health;
@@ -39,9 +42,23 @@ public class ShootingEnemy : Enemy
         InvokeRepeating("Shoot", shootInterval, shootInterval);
     }
 
+    private bool PlayerInSight()
+    {
+        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        if (distanceToPlayer <= shootingRange)
+        {
+            Vector2 directionToPlayer = (player.transform.position - transform.position);
+            
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, directionToPlayer, shootingRange, PlayerMask);
+            
+            if (hit.collider.GetComponent<Player>()) return true;
+        }
+        return false;
+    }
+
     private void Shoot()
     {
-        if (Vector2.Distance(player.transform.position, transform.position) > 70) return;
+        if (!PlayerInSight()) return;
 
         Vector2 diff = player.transform.position - transform.position;
         float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
