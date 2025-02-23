@@ -24,8 +24,8 @@ public class Player : MonoBehaviour, IDamageable
 
     void Start()
     {
-        maxHealth = ResourceManager.Instance.maxPlayerHP;
-        arrows = ResourceManager.Instance.playerArrowsToGive;
+        maxHealth = ResourceManager.Instance.MaxPlayerHP;
+        arrows = ResourceManager.Instance.PlayerArrowsToGive;
         if (!LevelController.playerHasSword && LevelController.playerHasBow) arrows += 10;
 
         currentHealth = LevelController.playerHp == 0 ? maxHealth : Mathf.Min(maxHealth, LevelController.playerHp + 1.0f);

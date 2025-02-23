@@ -16,6 +16,7 @@ public class LevelController : MonoBehaviour
     public static bool playerIsGod = false;
     public static int playerSelectedWeapon = 0;
     public static IPickupableWeapon currentPlayerWeapon;
+    public static bool isNormalDifficulty = true;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();
@@ -45,6 +46,7 @@ public class LevelController : MonoBehaviour
             playerHasSword = false;
             playerHasHelmet = false;
             isBossLevel = false;
+            isNormalDifficulty = true;
         }
     }
 

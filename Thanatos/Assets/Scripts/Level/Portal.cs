@@ -33,7 +33,7 @@ public class Portal : MonoBehaviour
         }
     }
 
-    void LoadNextLevel()
+    public virtual void LoadNextLevel()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(getNextSceneName(currentSceneName));

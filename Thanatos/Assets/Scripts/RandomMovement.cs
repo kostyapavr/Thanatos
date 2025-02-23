@@ -67,7 +67,7 @@ public class RandomMovement : Enemy
     {
         if (!spriteRenderer.flipX && dir.x < 0.0f)
             spriteRenderer.flipX = true;
-        else if (spriteRenderer.flipX && dir.x > 0.0f) 
+        else if (spriteRenderer.flipX && dir.x > 0.0f)
             spriteRenderer.flipX = false;
     }
 }

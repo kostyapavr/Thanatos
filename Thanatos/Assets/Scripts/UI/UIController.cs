@@ -17,7 +17,7 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        numberOFLives = ResourceManager.Instance.maxPlayerHP;
+        numberOFLives = ResourceManager.Instance.MaxPlayerHP;
         lives = new Image[numberOFLives];
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<IDamageable>() as Player;
         SpawnIcons();

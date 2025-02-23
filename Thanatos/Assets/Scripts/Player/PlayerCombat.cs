@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
 
     public float attackRange;
     public float bonusAttackRange;
+    public float bonusAttackDelay;
 
     public GameObject swordSprite;
     public Bow bow;
@@ -103,7 +104,7 @@ public class PlayerCombat : MonoBehaviour
         if (LevelController.playerHasHelmet && LevelController.playerHasSword)
         {
             attackRange = bonusAttackRange;
-            attackDelay = 0.75f;
+            attackDelay = bonusAttackDelay;
         }
     }
 }
