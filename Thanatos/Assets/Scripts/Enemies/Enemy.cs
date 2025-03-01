@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     public GameObject heartPrefab;
     public GameObject helmetPrefab;
-    protected bool isBoss = false;
+    public bool isBoss;
 
     private float _currentHealth;
     private float _maxHealth;

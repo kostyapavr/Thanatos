@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RandomMovement : Enemy
+public class RandomMovement : MonoBehaviour
 {
     public float moveIntervalMin = 2.0f;
     public float moveIntervalMax = 5.0f;
@@ -14,7 +14,7 @@ public class RandomMovement : Enemy
     private SpriteRenderer spriteRenderer;
     private int obstacleMask;
 
-    public override void Start()
+    public void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();

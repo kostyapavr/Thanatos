@@ -11,30 +11,26 @@ public class ShootingEnemy : Enemy
     public float shootIntervalMin;
     public float shootIntervalMax;
     
-    public int arrowSpeedMin;
-    public int arrowSpeedMax;
+    public int ammoSpeedMin;
+    public int ammoSpeedMax;
 
-    public int arrowSpread;
+    public int ammoSpread;
 
-    public bool enemyIsBoss = false;
-    public GameObject hpBar;
-    public Image hpBarFill;
-
-    public GameObject arrowPref;
+    public GameObject ammoPrefab;
 
     public float shootingRange;
     public LayerMask PlayerMask;
 
-    private Player player;
-    private SpriteRenderer spriteRenderer;
-    private float health;
-    private float shootInterval;
-    private int arrowSpeed;
+    protected Player player;
+    protected SpriteRenderer spriteRenderer;
+
+    protected float health;
+    protected float shootInterval;
+    protected int ammoSpeed;
 
     public override void Start()
     {
         RandomiseProperties();
-        isBoss = enemyIsBoss;
 
         currentHealth = health;
         player = FindObjectOfType<Player>();
@@ -42,7 +38,7 @@ public class ShootingEnemy : Enemy
         InvokeRepeating("Shoot", shootInterval, shootInterval);
     }
 
-    private bool PlayerInSight()
+    protected bool PlayerInSight()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         if (distanceToPlayer <= shootingRange)
@@ -56,13 +52,13 @@ public class ShootingEnemy : Enemy
         return false;
     }
 
-    private void Shoot()
+    protected virtual void Shoot()
     {
         if (!PlayerInSight()) return;
 
         Vector2 diff = player.transform.position - transform.position;
         float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        float spreadAngle = angle + Random.Range(-arrowSpread, arrowSpread + 1);
+        float spreadAngle = angle + Random.Range(-ammoSpread, ammoSpread + 1);
         Vector2 direction = Quaternion.AngleAxis(spreadAngle - angle, Vector3.forward) * diff.normalized;
 
         if (!spriteRenderer.flipX && direction.x < 0)
@@ -70,28 +66,17 @@ public class ShootingEnemy : Enemy
         else if (spriteRenderer.flipX && direction.x > 0)
             spriteRenderer.flipX = false;
 
-        GameObject arrow = Instantiate(arrowPref, transform.position, Quaternion.Euler(0, 0, spreadAngle + 270));
-        arrow.GetComponent<Arrow>().ownerType = "Enemy";
-        arrow.GetComponent<Arrow>().ownerID = gameObject.GetInstanceID();
-        if (isBoss) arrow.GetComponent<Arrow>().SetBossDamage();
+        GameObject arrow = Instantiate(ammoPrefab, transform.position, Quaternion.Euler(0, 0, spreadAngle + 270));
+        arrow.GetComponent<Arrow>().OwnerType = "Enemy";
+        arrow.GetComponent<Arrow>().OwnerID = gameObject.GetInstanceID();
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
-        rb.AddForce(direction * arrowSpeed + GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
+        rb.AddForce(direction * ammoSpeed + GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
     }
 
-    private void RandomiseProperties()
+    protected virtual void RandomiseProperties()
     {
         health = Random.Range(minHealth, maxHealth);
         shootInterval = Random.Range(shootIntervalMin, shootIntervalMax);
-        arrowSpeed = Random.Range(arrowSpeedMin, arrowSpeedMax);
-    }
-
-    protected override void ShowDamage()
-    {
-        if (isBoss)
-        {
-            if (!hpBar.activeSelf) hpBar.SetActive(true);
-            hpBarFill.fillAmount = currentHealth / health;
-        }
-        base.ShowDamage();
+        ammoSpeed = Random.Range(ammoSpeedMin, ammoSpeedMax);
     }
 }

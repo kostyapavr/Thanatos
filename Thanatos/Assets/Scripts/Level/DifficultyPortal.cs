@@ -7,7 +7,6 @@ public class DifficultyPortal : Portal
     public override void LoadNextLevel()
     {
         LevelController.isNormalDifficulty = false;
-        Debug.Log(LevelController.isNormalDifficulty);
         base.LoadNextLevel();
     }
 }

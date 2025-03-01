@@ -86,9 +86,9 @@ public class Bow : MonoBehaviour
     {
         float boost = chargeTime / (LevelController.playerHasHelmet ? maxChargeTime - 1.5f : maxChargeTime);
         Rigidbody2D rb = Instantiate(Arrow, point.position, point.rotation).GetComponent<Rigidbody2D>();
-        rb.GetComponent<Arrow>().ownerType = "Player";
-        rb.GetComponent<Arrow>().ownerID = gameObject.GetInstanceID();
-        rb.GetComponent<Arrow>().BoostDamage(boost);
+        rb.GetComponent<Arrow>().OwnerType = "Player";
+        rb.GetComponent<Arrow>().OwnerID = gameObject.GetInstanceID();
+        rb.GetComponent<Arrow>().Damage += boost;
         rb.AddForce(direction * arrowSpeed * (1 + boost) + (Vector3)player.GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
         player.TakeArrow();
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4793463110736478435}
   - component: {fileID: 837442700820043591}
   - component: {fileID: 7105585562761260228}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: PauseText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 1319021669510268382}
   - component: {fileID: 7847837925755157598}
   - component: {fileID: 1600203278080503288}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7716527545678648811}
   - component: {fileID: 505105002925944901}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: HelmetSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -336,7 +336,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6853995468236256313}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Attack Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 7113382303745439895}
   - component: {fileID: 4941368169299137320}
   - component: {fileID: 4605066048808334086}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: EndButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 7049727622852891756}
   - component: {fileID: 3107299584247057006}
   - component: {fileID: 8436823694930403337}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: EndText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -636,7 +636,7 @@ GameObject:
   - component: {fileID: 5132678136693709769}
   - component: {fileID: 8909793941847121755}
   - component: {fileID: 6768821184719086566}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: EndButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -769,7 +769,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8378073909045984753}
   - component: {fileID: 8205410008451345796}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: BowShootPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -855,7 +855,7 @@ GameObject:
   - component: {fileID: 4904388434396680531}
   - component: {fileID: 3514822526220179528}
   - component: {fileID: 8012777172285551019}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: DeathPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -946,7 +946,7 @@ GameObject:
   - component: {fileID: 5929834597299962569}
   - component: {fileID: 1574179393930315512}
   - component: {fileID: 565336096364877684}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,7 +1048,7 @@ GameObject:
   - component: {fileID: 2573533222842047258}
   - component: {fileID: 5954819749291883938}
   - component: {fileID: 657482185217175778}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: DeathText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1182,7 +1182,7 @@ GameObject:
   - component: {fileID: 6950795986906657410}
   - component: {fileID: 8203953182768452682}
   - component: {fileID: 6736939768621964809}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: DeathButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1316,7 +1316,7 @@ GameObject:
   - component: {fileID: 3943069320005381053}
   - component: {fileID: 309703775752268783}
   - component: {fileID: 90204492108140439}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: ArrowCountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1456,7 +1456,7 @@ GameObject:
   - component: {fileID: 8672131767125395044}
   - component: {fileID: 5252139942418543028}
   - component: {fileID: 3545983317623436652}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1708,7 +1708,7 @@ GameObject:
   - component: {fileID: 2089005095342759104}
   - component: {fileID: 8373095437718551476}
   - component: {fileID: 5925815661797272489}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: ContinueButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1840,7 +1840,7 @@ GameObject:
   - component: {fileID: 1116660578592722052}
   - component: {fileID: 7752353063255458383}
   - component: {fileID: 8804237184948542335}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: EndButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1973,7 +1973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4245524362862075310}
   - component: {fileID: 3412505386980621007}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2034,7 +2034,7 @@ GameObject:
   - component: {fileID: 5138536671294148785}
   - component: {fileID: 1045380261468974298}
   - component: {fileID: 2205117882616952765}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: BowCharge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2107,7 +2107,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7488410742730533712}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: ClothingSpots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2141,7 +2141,7 @@ GameObject:
   - component: {fileID: 986525674628297708}
   - component: {fileID: 3900130658959073891}
   - component: {fileID: 2582979898241043404}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: EndButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2273,7 +2273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2122326978147062104}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2308,7 +2308,7 @@ GameObject:
   - component: {fileID: 4304346174921335158}
   - component: {fileID: 5184440745492564182}
   - component: {fileID: 1811081279580927575}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2428,7 +2428,7 @@ GameObject:
   - component: {fileID: 2865627593458844516}
   - component: {fileID: 2436040308059701180}
   - component: {fileID: 7323844777407549174}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: ArrowIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2505,7 +2505,7 @@ GameObject:
   - component: {fileID: 7117176101968475889}
   - component: {fileID: 6052059757677904080}
   - component: {fileID: 510729986561087834}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: DeathButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2638,7 +2638,7 @@ GameObject:
   - component: {fileID: 7969482681284669420}
   - component: {fileID: 327937453462696905}
   - component: {fileID: 8817776711978532699}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2771,7 +2771,7 @@ GameObject:
   - component: {fileID: 6520005774673737671}
   - component: {fileID: 3888265629599544135}
   - component: {fileID: 4318358826009554573}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: BowCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2873,7 +2873,7 @@ GameObject:
   - component: {fileID: 8328189146845953476}
   - component: {fileID: 7957397669825862882}
   - component: {fileID: 821386296986969199}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: EndPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 
-public class Arrow : MonoBehaviour, IShootable
+public class Fireball : MonoBehaviour, IShootable
 {
-    private string _name = "Arrow";
+    private string _name = "Fireball";
     [HideInInspector]
     public string Name
     {

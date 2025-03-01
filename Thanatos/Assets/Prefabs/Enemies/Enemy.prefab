@@ -141,17 +141,14 @@ MonoBehaviour:
   maxHealth: 2.5
   shootIntervalMin: 1.5
   shootIntervalMax: 3
-  arrowSpeedMin: 40
-  arrowSpeedMax: 80
-  arrowSpread: 7
-  enemyIsBoss: 0
-  hpBar: {fileID: 0}
-  hpBarFill: {fileID: 0}
-  arrowPref: {fileID: 2055513970730527246, guid: 1574b5ea3e872324ca126e186e1ae407, type: 3}
+  ammoSpeedMin: 60
+  ammoSpeedMax: 80
+  ammoSpread: 7
+  ammoPrefab: {fileID: 2055513970730527246, guid: 1574b5ea3e872324ca126e186e1ae407, type: 3}
   shootingRange: 70
   PlayerMask:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 128
 --- !u!114 &-596522518200358092
 MonoBehaviour:
   m_ObjectHideFlags: 0
