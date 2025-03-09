@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class MeleeEnemy : Enemy
 {
@@ -17,7 +19,9 @@ public class MeleeEnemy : Enemy
     public float moveSpeedMax;
 
     [HideInInspector] public Transform player;
-    
+
+    public float detectionDistance;
+
     public float attackRange;
 
     private float lastAttackTime;
@@ -26,6 +30,8 @@ public class MeleeEnemy : Enemy
     private float attackInterval;
     private float moveSpeed;
 
+    private int obstacleMask;
+
     public override void Start()
     {
         RandomiseProperties();
@@ -33,6 +39,7 @@ public class MeleeEnemy : Enemy
         currentHealth = health;
         //InvokeRepeating("Attack", attackInterval, attackInterval);
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        obstacleMask = LayerMask.GetMask("Obstacle");
     }
 
     private void Attack()
@@ -74,7 +81,21 @@ public class MeleeEnemy : Enemy
 
     private void ChasePlayer()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        Vector2 direction = (player.position - transform.position).normalized;
+
+        transform.position = Vector2.MoveTowards(direction, player.position, moveSpeed * Time.deltaTime);
+
+
+        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction, detectionDistance, obstacleMask);
+        if (hit.collider != null)
+        {
+            Vector2 newDirection = Vector2.Perpendicular(direction);
+            transform.position = Vector2.MoveTowards(newDirection, player.position, moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = Vector2.MoveTowards(direction, player.position, moveSpeed * Time.deltaTime);
+        }
     }
 
     private void RandomiseProperties()
