@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heartPrefab: {fileID: 2473671558451589373, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
+  isBoss: 0
   minHealth: 1.5
   maxHealth: 2.5
   attackIntervalMin: 1.25
@@ -186,6 +187,7 @@ MonoBehaviour:
   moveSpeedMin: 6
   moveSpeedMax: 15
   player: {fileID: 0}
+  detectionDistance: 5
   attackRange: 5.6
 --- !u!50 &9136374743361488656
 Rigidbody2D:
