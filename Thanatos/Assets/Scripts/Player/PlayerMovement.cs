@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     private int helmetAcceleration = 9;
     private bool hasFlipped = false;
 
+    private bool isSlowedDown = false;
+
     void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -86,6 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckAcceleration()
     {
+        if (isSlowedDown) return;
         if (LevelController.playerHasBow && LevelController.playerHasSword && LevelController.playerSelectedWeapon == 0)
         {
             acceleration = bothWeaponsAcceleration;
@@ -106,10 +109,12 @@ public class PlayerMovement : MonoBehaviour
     public void SlowDown()
     {
         acceleration = slowAcceleration;
+        isSlowedDown = true;
     }
 
     public void ReturnToNormalSpeed()
     {
         acceleration = normalAcceleration;
+        isSlowedDown = false;
     }
 }

@@ -1635,7 +1635,7 @@ MonoBehaviour:
     m_Bits: 64
   attackRange: 7
   bonusAttackRange: 9
-  bonusAttackDelay: 0
+  bonusAttackDelay: 0.75
   swordSprite: {fileID: 0}
   bow: {fileID: 7847837925755157598}
   normalSprite: {fileID: 21300000, guid: 3537539414483e44d9ac249eb9ac88c4, type: 3}

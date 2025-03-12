@@ -12,7 +12,7 @@ public class Arrow : MonoBehaviour, IShootable
         get { return _name; }
         set { _name = value; }
     }
-    private float _damage = 0.5f;
+    private float _damage = 1.0f;
     [HideInInspector]
     public float Damage
     {

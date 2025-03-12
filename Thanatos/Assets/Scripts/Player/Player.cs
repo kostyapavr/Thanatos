@@ -22,13 +22,16 @@ public class Player : MonoBehaviour, IDamageable
     private PlayerCombat sword;
     private bool godMode = false;
 
+    private float hpAddWhenNewLevel = 2f;
+    private float hpAddWhenNewLevel_hard = 1f;
+
     void Start()
     {
         maxHealth = ResourceManager.Instance.MaxPlayerHP;
         arrows = ResourceManager.Instance.PlayerArrowsToGive;
         if (!LevelController.playerHasSword && LevelController.playerHasBow) arrows += 10;
 
-        currentHealth = LevelController.playerHp == 0 ? maxHealth : Mathf.Min(maxHealth, LevelController.playerHp + 1.0f);
+        currentHealth = LevelController.playerHp == 0 ? maxHealth : Mathf.Min(maxHealth, LevelController.playerHp + (LevelController.isNormalDifficulty ? hpAddWhenNewLevel : hpAddWhenNewLevel_hard));
         LevelController.playerHp = currentHealth;
 
         CheckPickup();

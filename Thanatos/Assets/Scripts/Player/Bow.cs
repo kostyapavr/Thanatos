@@ -82,7 +82,7 @@ public class Bow : MonoBehaviour
         }
     }
 
-    void ShootArrow(Vector3 direction, float dmgBoost = 0.0f)
+    void ShootArrow(Vector3 direction)
     {
         float boost = chargeTime / (LevelController.playerHasHelmet ? maxChargeTime - 1.5f : maxChargeTime);
         Rigidbody2D rb = Instantiate(Arrow, point.position, point.rotation).GetComponent<Rigidbody2D>();

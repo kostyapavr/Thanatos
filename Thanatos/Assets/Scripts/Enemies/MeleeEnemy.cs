@@ -20,9 +20,10 @@ public class MeleeEnemy : Enemy
 
     [HideInInspector] public Transform player;
 
-    public float detectionDistance;
+    private float detectionDistance = 5f;
 
     public float attackRange;
+    private float chaseRange = 60f;
 
     private float lastAttackTime;
 
@@ -72,7 +73,7 @@ public class MeleeEnemy : Enemy
             {
                 Attack();
             }
-            else
+            else if (distanceToPlayer <= chaseRange)
             {
                 ChasePlayer();
             }
@@ -83,18 +84,15 @@ public class MeleeEnemy : Enemy
     {
         Vector2 direction = (player.position - transform.position).normalized;
 
-        transform.position = Vector2.MoveTowards(direction, player.position, moveSpeed * Time.deltaTime);
-
-
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction, detectionDistance, obstacleMask);
-        if (hit.collider != null)
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, 2f, direction, detectionDistance, obstacleMask);
+        if (hit.collider != null && !hit.collider.GetComponent<Player>())
         {
-            Vector2 newDirection = Vector2.Perpendicular(direction);
-            transform.position = Vector2.MoveTowards(newDirection, player.position, moveSpeed * Time.deltaTime);
+            Vector2 newDirection = direction + Vector2.Perpendicular(direction)*2;
+            transform.position = Vector2.MoveTowards(transform.position, (Vector2)transform.position + newDirection, moveSpeed * Time.deltaTime);
         }
         else
         {
-            transform.position = Vector2.MoveTowards(direction, player.position, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
         }
     }
 
