@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform bowShootPos;
 
     private int slowAcceleration = 1;
+    private int puddleAcceleration = 2;
     private int normalAcceleration = 7;
     private int bothWeaponsAcceleration = 5;
     private int onlySwordAcceleration = 8;
@@ -109,6 +110,12 @@ public class PlayerMovement : MonoBehaviour
     public void SlowDown()
     {
         acceleration = slowAcceleration;
+        isSlowedDown = true;
+    }
+
+    public void PuddleSlowDown()
+    {
+        acceleration = puddleAcceleration;
         isSlowedDown = true;
     }
 

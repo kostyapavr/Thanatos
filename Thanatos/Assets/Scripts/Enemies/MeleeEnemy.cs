@@ -20,7 +20,7 @@ public class MeleeEnemy : Enemy
 
     [HideInInspector] public Transform player;
 
-    private float detectionDistance = 5f;
+    private float detectionDistance = 6f;
 
     public float attackRange;
     private float chaseRange = 60f;
