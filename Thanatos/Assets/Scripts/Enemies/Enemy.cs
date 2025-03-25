@@ -67,7 +67,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(float damage, GameObject sender = null)
+    public void TakeDamage(float damage, GameObject sender = null, DamageEffects damageEffect = DamageEffects.Nothing)
     {
         if (gameObject == sender) return;
         if (currentHealth - damage > 0)

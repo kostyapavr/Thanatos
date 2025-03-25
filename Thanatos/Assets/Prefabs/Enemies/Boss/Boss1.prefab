@@ -253,6 +253,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &5994395008525822145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4223531046982877345}
+  m_Layer: 6
+  m_Name: FireballSpawnPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4223531046982877345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5994395008525822145}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.188, y: 0.561, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1028213964165987354}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6107204645674273283
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,6 +320,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2656913781167743664}
+  - {fileID: 4223531046982877345}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5375973863377520444
@@ -390,9 +422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639b8ce7cb2f1184c90f312bba8a0944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartPrefab: {fileID: 0}
-  helmetPrefab: {fileID: 0}
-  isBoss: 1
   moveIntervalMin: 1.5
   moveIntervalMax: 2.5
   moveSpeed: 7
@@ -419,13 +448,16 @@ MonoBehaviour:
   ammoSpeedMin: 70
   ammoSpeedMax: 90
   ammoSpread: 5
-  ammoPrefab: {fileID: 2055513970730527246, guid: 1574b5ea3e872324ca126e186e1ae407, type: 3}
+  ammoPrefab: {fileID: 7703349128565279827, guid: 6637c78fca72a3c4183529d615053b79, type: 3}
   shootingRange: 60
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128
+  shootAhead: 0
   hpBar: {fileID: 5672444032098536406}
   hpBarFill: {fileID: 5507760336078473348}
+  fireballGrowPosition: {fileID: 4223531046982877345}
+  fireballGrow: {fileID: 7703349128565279827, guid: 2b45daf21d7239843afec94b9283b484, type: 3}
 --- !u!50 &1231178815454012159
 Rigidbody2D:
   serializedVersion: 4

@@ -4997,7 +4997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: enemiesToSpawnMax
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: enemiesToSpawnMin

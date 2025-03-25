@@ -151,6 +151,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   shootAhead: 1
+  playerDamageEffect: 1
 --- !u!114 &-596522518200358092
 MonoBehaviour:
   m_ObjectHideFlags: 0

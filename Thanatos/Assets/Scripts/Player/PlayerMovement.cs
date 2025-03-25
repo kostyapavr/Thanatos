@@ -11,9 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public Transform bow;
     public Transform helmet;
     public Transform bowShootPos;
+    public Player player;
 
     private int slowAcceleration = 1;
     private int puddleAcceleration = 2;
+    private int slowEffectAcceleration = 3;
     private int normalAcceleration = 7;
     private int bothWeaponsAcceleration = 5;
     private int onlySwordAcceleration = 8;
@@ -62,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
         bowShootPos.localPosition = new Vector3(-bowShootPos.localPosition.x, bowShootPos.localPosition.y, 0);
         bowShootPos.GetComponent<SpriteRenderer>().flipY = true;
 
+        player.slowEffectSprite.transform.localPosition = new Vector3(-1, player.slowEffectSprite.transform.localPosition.y, 0);
+
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 170);
 
@@ -80,6 +84,8 @@ public class PlayerMovement : MonoBehaviour
 
         bowShootPos.localPosition = new Vector3(-bowShootPos.localPosition.x, bowShootPos.localPosition.y, 0);
         bowShootPos.GetComponent<SpriteRenderer>().flipY = false;
+
+        player.slowEffectSprite.transform.localPosition = new Vector3(-0.59f, player.slowEffectSprite.transform.localPosition.y, 0);
 
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 58);
@@ -107,6 +113,12 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity += inputVector * acceleration;
     }
 
+    public void SlowDown_Effect()
+    {
+        acceleration = slowEffectAcceleration;
+        isSlowedDown = true;
+    }
+
     public void SlowDown()
     {
         acceleration = slowAcceleration;
@@ -121,6 +133,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void ReturnToNormalSpeed()
     {
+        if (player.is_enemySlowEffect)
+        {
+            acceleration = slowEffectAcceleration;
+            return;
+        }
         acceleration = normalAcceleration;
         isSlowedDown = false;
     }

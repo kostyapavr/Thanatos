@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour, IShootable
@@ -34,6 +35,11 @@ public class Arrow : MonoBehaviour, IShootable
         set { _ownerID = value; }
     }
 
+    public ParticleSystem particles;
+
+    [HideInInspector]
+    public DamageEffects damageEffect = DamageEffects.Nothing;
+
     public virtual void Start()
     {
         GetComponent<Collider2D>().enabled = false;
@@ -56,10 +62,15 @@ public class Arrow : MonoBehaviour, IShootable
         IDamageable damageable = collision.collider.GetComponent<IDamageable>();
         if (OwnerType == "Player" && collision.collider.tag == "Player") return;
         if (OwnerID == collision.collider.gameObject.GetInstanceID()) return;
+
+        GetComponent<Collider2D>().enabled = false;
         if (damageable != null && collision.collider.tag != OwnerType)
         {
-            damageable.TakeDamage(Damage, gameObject);
+            damageable.TakeDamage(Damage, gameObject, damageEffect);
         }
+
+        //GameObject g = Instantiate(particles.gameObject, transform.position, Quaternion.identity);
+        //Destroy(g, 1);
         Destroy();
     }
 }

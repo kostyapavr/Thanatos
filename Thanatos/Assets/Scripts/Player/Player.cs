@@ -17,6 +17,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public GameObject pauseMenu;
 
+    public GameObject slowEffectSprite;
+
     public Bow bow;
     private int selectedWeapon = 0;
     private PlayerCombat sword;
@@ -24,6 +26,11 @@ public class Player : MonoBehaviour, IDamageable
 
     private float hpAddWhenNewLevel = 2f;
     private float hpAddWhenNewLevel_hard = 1f;
+
+    [HideInInspector]
+    public bool is_enemySlowEffect = false;
+    private float enemySlowEffectDuration = 5.0f;
+    private float enemySlowEffectTime = 0f;
 
     void Start()
     {
@@ -71,6 +78,25 @@ public class Player : MonoBehaviour, IDamageable
         {
             SwitchWeapon(selectedWeapon);
         }
+
+        if (is_enemySlowEffect)
+        {
+            if (enemySlowEffectTime > 0) enemySlowEffectTime -= Time.deltaTime;
+            else
+            {
+                is_enemySlowEffect = false;
+                GetComponent<PlayerMovement>().ReturnToNormalSpeed();
+                slowEffectSprite.SetActive(false);
+            }
+        }
+    }
+
+    public void ApplyEnemySlowEffect()
+    {
+        is_enemySlowEffect = true;
+        enemySlowEffectTime = enemySlowEffectDuration;
+        slowEffectSprite.SetActive(true);
+        GetComponent<PlayerMovement>().SlowDown_Effect();
     }
 
     public void SwitchWeapon(int n)
@@ -126,11 +152,12 @@ public class Player : MonoBehaviour, IDamageable
         Time.timeScale = 0;
     }
 
-    public void TakeDamage(float damage, GameObject sender = null)
+    public void TakeDamage(float damage, GameObject sender = null, DamageEffects damageEffect = DamageEffects.Nothing)
     {
         if (gameObject == sender || godMode) return;
         if (currentHealth - damage > 0)
-        {
+        { 
+            if (damageEffect == DamageEffects.SlowDown) ApplyEnemySlowEffect();
             currentHealth -= damage;
             LevelController.playerHpEvent.Invoke();
         }

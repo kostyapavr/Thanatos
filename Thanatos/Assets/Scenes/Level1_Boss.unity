@@ -501,9 +501,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3975318791176842760, guid: 92c08d5bd98f94f46b4196469d99d0da, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.2215576
+      objectReference: {fileID: 0}
+    - target: {fileID: 3975318791176842760, guid: 92c08d5bd98f94f46b4196469d99d0da, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.433289
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752551629617850779, guid: 92c08d5bd98f94f46b4196469d99d0da, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.9335327
+      objectReference: {fileID: 0}
     - target: {fileID: 6208924275716043763, guid: 92c08d5bd98f94f46b4196469d99d0da, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8198025453457764232, guid: 92c08d5bd98f94f46b4196469d99d0da, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.9335327
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1949,6 +1965,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss1
       objectReference: {fileID: 0}
+    - target: {fileID: 8309290163721638265, guid: c15b629151a20f543855d570e59fb5ed, type: 3}
+      propertyPath: ammoPrefab
+      value: 
+      objectReference: {fileID: 7703349128565279827, guid: 6637c78fca72a3c4183529d615053b79, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2722,7 +2742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: enemiesToSpawnMax
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: enemiesToSpawnMin

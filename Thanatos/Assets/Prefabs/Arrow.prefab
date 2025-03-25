@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36f69bd43a81d745973048a2004c4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoName: Arrow
-  damage: 0.5
+  particles: {fileID: 5396771539067668993, guid: f2793b3a062f4f7409fe3379f533c0c4, type: 3}
+  damageEffect: 0
 --- !u!50 &8805113252737056486
 Rigidbody2D:
   serializedVersion: 4
@@ -127,7 +127,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &2537483995640619690
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
