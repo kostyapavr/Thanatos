@@ -25,9 +25,6 @@ public class RandomMovement : MonoBehaviour
     private void MoveRandomly()
     {
         Vector2 direction = GenDirection();
-
-        RotateEnemy(direction);
-
         float distance = Random.Range(moveDistance / 2, moveDistance);
 
         rb.velocity = direction * moveSpeed;
@@ -44,11 +41,7 @@ public class RandomMovement : MonoBehaviour
     {
         Vector2 direction = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
         RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction, 15, obstacleMask);
-        if (!hit)
-        {
-            //Debug.DrawRay(transform.position, direction * 15, Color.green, 2);
-            return direction;
-        }
+        if (!hit) return direction;
 
         int iter = 0;
         while (hit.collider != null)
@@ -56,18 +49,9 @@ public class RandomMovement : MonoBehaviour
             if (iter >= 10) break;
             direction = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
             hit = Physics2D.Raycast((Vector2)transform.position, direction, 15, obstacleMask);
-            //Debug.DrawRay(transform.position, direction * 15, Color.red, 2);
             iter++;
         }
-        //Debug.DrawRay(transform.position, direction * 15, Color.green, 2);
+        
         return direction;
-    }
-
-    private void RotateEnemy(Vector2 dir)
-    {
-        if (!spriteRenderer.flipX && dir.x < 0.0f)
-            spriteRenderer.flipX = true;
-        else if (spriteRenderer.flipX && dir.x > 0.0f)
-            spriteRenderer.flipX = false;
     }
 }
