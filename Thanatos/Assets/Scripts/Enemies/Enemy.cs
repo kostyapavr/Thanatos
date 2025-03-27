@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    public GameObject heartPrefab;
+    public int itemDropChance;
+    public GameObject[] dropItems;
     public GameObject helmetPrefab;
     public bool isBoss;
 
@@ -81,16 +82,20 @@ public class Enemy : MonoBehaviour, IDamageable
     private void SpawnRandomItem()
     {
         int rnd = Random.Range(0, 100);
-        if (rnd < 6)
+        if (rnd <= 5)
         {
             if (helmetPrefab == null) return;
             if (!LevelController.playerHasHelmet)
                 Instantiate(helmetPrefab, transform.position, Quaternion.identity);
+            return;
         }
-        else if (rnd < 40)
+
+        if (rnd <= itemDropChance)
         {
-            if (heartPrefab == null) return;
-            Instantiate(heartPrefab, transform.position, Quaternion.identity);
+            int rndInd = Random.Range(0, dropItems.Length);
+            if (dropItems == null || dropItems.Length == 0) return;
+            if (dropItems[rnd].GetComponent<BonusPickup>().bonusType == BonusTypes.AriadneThread && LevelController.isBossLevel) return;
+            Instantiate(dropItems[rndInd], transform.position, Quaternion.identity);
         }
     }
 

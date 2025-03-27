@@ -59,7 +59,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1741829887
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &4427781438607361214
@@ -438,7 +438,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2f0b7ea05562e43aa1200e90465d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartPrefab: {fileID: 2473671558451589373, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
+  itemDropChance: 0
+  dropItems: []
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   isBoss: 1
   minHealth: 15
@@ -454,10 +455,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   shootAhead: 0
+  playerDamageEffect: 0
   hpBar: {fileID: 5672444032098536406}
   hpBarFill: {fileID: 5507760336078473348}
   fireballGrowPosition: {fileID: 4223531046982877345}
   fireballGrow: {fileID: 7703349128565279827, guid: 2b45daf21d7239843afec94b9283b484, type: 3}
+  maxGrowSize: 0.19
 --- !u!50 &1231178815454012159
 Rigidbody2D:
   serializedVersion: 4

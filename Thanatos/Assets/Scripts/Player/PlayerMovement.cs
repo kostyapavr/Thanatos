@@ -65,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
         bowShootPos.GetComponent<SpriteRenderer>().flipY = true;
 
         player.slowEffectSprite.transform.localPosition = new Vector3(-1, player.slowEffectSprite.transform.localPosition.y, 0);
+        player.ambrosiaEffectSprite.transform.localPosition = new Vector3(-1f, player.ambrosiaEffectSprite.transform.localPosition.y, 0);
+        player.miasmaEffectSprite.transform.localPosition = new Vector3(-1f, player.miasmaEffectSprite.transform.localPosition.y, 0);
 
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 170);
@@ -86,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
         bowShootPos.GetComponent<SpriteRenderer>().flipY = false;
 
         player.slowEffectSprite.transform.localPosition = new Vector3(-0.59f, player.slowEffectSprite.transform.localPosition.y, 0);
+        player.ambrosiaEffectSprite.transform.localPosition = new Vector3(-0.59f, player.ambrosiaEffectSprite.transform.localPosition.y, 0);
+        player.miasmaEffectSprite.transform.localPosition = new Vector3(-0.59f, player.miasmaEffectSprite.transform.localPosition.y, 0);
 
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 58);

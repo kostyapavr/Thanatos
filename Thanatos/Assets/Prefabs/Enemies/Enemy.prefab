@@ -135,8 +135,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d3d81a2aab4a946b1e36be8a5b445e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartPrefab: {fileID: 2473671558451589373, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
+  itemDropChance: 80
+  dropItems:
+  - {fileID: 7764764626976366879, guid: 9412c81ef9da33c4599e0d0465f698a7, type: 3}
+  - {fileID: 1053340612470127474, guid: b34f3f8e102507641ad27c3c1564d35c, type: 3}
+  - {fileID: 7819326001113033101, guid: 7764afdc9fcd53f43919fb78589e736d, type: 3}
+  - {fileID: 8351605167315825785, guid: e3e2d4863c116374799c86f230242b3a, type: 3}
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
+  isBoss: 0
   minHealth: 1.5
   maxHealth: 2.5
   shootIntervalMin: 1.5
@@ -149,6 +155,8 @@ MonoBehaviour:
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128
+  shootAhead: 0
+  playerDamageEffect: 0
 --- !u!114 &-596522518200358092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,8 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639b8ce7cb2f1184c90f312bba8a0944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartPrefab: {fileID: 0}
-  helmetPrefab: {fileID: 0}
   moveIntervalMin: 1.5
   moveIntervalMax: 3
   moveSpeed: 6

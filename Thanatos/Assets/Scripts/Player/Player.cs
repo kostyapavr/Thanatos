@@ -18,6 +18,8 @@ public class Player : MonoBehaviour, IDamageable
     public GameObject pauseMenu;
 
     public GameObject slowEffectSprite;
+    public GameObject ambrosiaEffectSprite;
+    public GameObject miasmaEffectSprite;
 
     public Bow bow;
     private int selectedWeapon = 0;
@@ -31,6 +33,9 @@ public class Player : MonoBehaviour, IDamageable
     public bool is_enemySlowEffect = false;
     private float enemySlowEffectDuration = 5.0f;
     private float enemySlowEffectTime = 0f;
+
+    private bool miasmaEffect = false;
+    private bool ambrosiaEffect = false;
 
     void Start()
     {
@@ -155,6 +160,15 @@ public class Player : MonoBehaviour, IDamageable
     public void TakeDamage(float damage, GameObject sender = null, DamageEffects damageEffect = DamageEffects.Nothing)
     {
         if (gameObject == sender || godMode) return;
+
+        if (miasmaEffect) damage += 0.5f;
+        if (ambrosiaEffect)
+        {
+            Debug.Log("Attack deflected!");
+            RemoveAmbrosiaEffect();
+            return;
+        }
+
         if (currentHealth - damage > 0)
         { 
             if (damageEffect == DamageEffects.SlowDown) ApplyEnemySlowEffect();
@@ -186,10 +200,59 @@ public class Player : MonoBehaviour, IDamageable
     {
         helmetSprite.SetActive(LevelController.playerHasHelmet);
         helmetSprite.GetComponent<SpriteRenderer>().flipX = GetComponent<SpriteRenderer>().flipX;
+
+        switch (LevelController.playerBonusType)
+        {
+            case BonusTypes.None: break;
+            case BonusTypes.Moli: AddHealth(0.5f); LevelController.playerBonusType = BonusTypes.None; break;
+            case BonusTypes.Baytulus: AddHealth(2f); LevelController.playerBonusType = BonusTypes.None; break;
+            case BonusTypes.Cornucopia: AddHealth(1f); LevelController.playerBonusType = BonusTypes.None; break;
+            case BonusTypes.Miasma: ApplyMiasmaEffect(); break;
+            case BonusTypes.Ambrosia: ApplyAmbrosiaEffect(); break;
+            case BonusTypes.Garnet: ApplyGarnetEffect(); LevelController.playerBonusType = BonusTypes.None; break;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag == "ExitPortal")
+        {
+            if (miasmaEffect) RemoveMiasmaEffect();
+            if (ambrosiaEffect) RemoveAmbrosiaEffect();
+        }
         if (collision.name == "Boss1") TakeDamage(0.5f, collision.gameObject);
+    }
+
+    private void ApplyAmbrosiaEffect()
+    {
+        ambrosiaEffect = true;
+        ambrosiaEffectSprite.SetActive(true);
+    }
+
+    private void RemoveAmbrosiaEffect()
+    {
+        ambrosiaEffect = false;
+        ambrosiaEffectSprite.SetActive(false);
+        LevelController.playerBonusType = BonusTypes.None;
+    }
+
+    private void ApplyMiasmaEffect()
+    {
+        miasmaEffect = true;
+        miasmaEffectSprite.SetActive(true);
+    }
+
+    private void RemoveMiasmaEffect()
+    {
+        miasmaEffect = false;
+        miasmaEffectSprite.SetActive(false);
+        LevelController.playerBonusType = BonusTypes.None;
+    }
+
+    private void ApplyGarnetEffect()
+    {
+        int rnd = Random.Range(0, 100);
+        if (rnd < 50) AddHealth(5);
+        else TakeDamage(10);
     }
 }

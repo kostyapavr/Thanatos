@@ -16,3 +16,10 @@ public interface IPickupableAttire
     public float SpeedModifier { get; }
     public void Pickup();
 }
+
+public interface IPickupableBonus
+{
+    public string Name { get; }
+    public ParticleSystem PickupEffect { get; }
+    public void Pickup();
+}

@@ -131,7 +131,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ea4f7233f042b4097c054f60cf3075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartPrefab: {fileID: 2473671558451589373, guid: 4ea31dd2501016f4b8cc6b86defc9eb8, type: 3}
+  itemDropChance: 50
+  dropItems:
+  - {fileID: 1053340612470127474, guid: b34f3f8e102507641ad27c3c1564d35c, type: 3}
+  - {fileID: 7764764626976366879, guid: 9412c81ef9da33c4599e0d0465f698a7, type: 3}
+  - {fileID: 6185606649841456735, guid: 742f1f1d027de85429466a8b7ad73f7b, type: 3}
+  - {fileID: 33841420135341204, guid: 4e3cb97225af53942a45c979d7a68d6d, type: 3}
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   isBoss: 0
   minHealth: 1

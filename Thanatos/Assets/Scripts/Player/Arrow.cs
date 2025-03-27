@@ -43,8 +43,8 @@ public class Arrow : MonoBehaviour, IShootable
     public virtual void Start()
     {
         GetComponent<Collider2D>().enabled = false;
-        if (OwnerType == "Enemy") Invoke("EnableCollider", 0.1f);
-        else Invoke("EnableCollider", 0.025f);
+        if (OwnerType == "Enemy") Invoke("EnableCollider", 0.15f);
+        else Invoke("EnableCollider", 0.03f);
     }
 
     public void EnableCollider()
@@ -59,6 +59,7 @@ public class Arrow : MonoBehaviour, IShootable
 
     public virtual void OnCollisionEnter2D(Collision2D collision)
     {
+        var pos = transform.position;
         IDamageable damageable = collision.collider.GetComponent<IDamageable>();
         if (OwnerType == "Player" && collision.collider.tag == "Player") return;
         if (OwnerID == collision.collider.gameObject.GetInstanceID()) return;
@@ -69,8 +70,8 @@ public class Arrow : MonoBehaviour, IShootable
             damageable.TakeDamage(Damage, gameObject, damageEffect);
         }
 
-        //GameObject g = Instantiate(particles.gameObject, transform.position, Quaternion.identity);
-        //Destroy(g, 1);
+        GameObject g = Instantiate(particles.gameObject, pos, Quaternion.identity);
+        Destroy(g, 1);
         Destroy();
     }
 }

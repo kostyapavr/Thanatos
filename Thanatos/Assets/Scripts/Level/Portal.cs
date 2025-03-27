@@ -21,7 +21,7 @@ public class Portal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (isExit && LevelController.aliveEnemies == 0)
+        if (isExit && (LevelController.aliveEnemies == 0 || GameObject.FindGameObjectsWithTag("Enemy").Length <= 0))
         {
             OpenPortal();
         }
@@ -44,6 +44,8 @@ public class Portal : MonoBehaviour
         if (currentName == "Entrance") return "Level1.1";
         if (currentName == "Level1.4") return "Level1_Boss";
         if (currentName == "Level1_Boss") return "Level2.1";
+        if (currentName == "Level2.4") return "Level2_Boss";
+        if (currentName == "Level2_Boss") return "Level3.1";
 
         var splitResult = currentName.Split('.');
         int currentLevel = int.Parse(splitResult[0].Last().ToString());
@@ -72,7 +74,7 @@ public class Portal : MonoBehaviour
         }
     }
 
-    void OpenPortal()
+    public void OpenPortal()
     {
         isClosed = false;
         if (openSprite != null) GetComponent<SpriteRenderer>().sprite = openSprite;

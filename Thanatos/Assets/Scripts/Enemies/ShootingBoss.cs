@@ -10,6 +10,7 @@ public class ShootingBoss : ShootingEnemy
     public Transform fireballGrowPosition;
 
     public GameObject fireballGrow;
+    public float maxGrowSize;
 
     private GameObject fb_grow;
     bool growFireball = false;
@@ -56,8 +57,8 @@ public class ShootingBoss : ShootingEnemy
     {
         if (growFireball && fb_grow != null)
         {
-            if (fb_grow.transform.localScale.x < 0.19f)
-                fb_grow.transform.localScale += Vector3.one * Time.deltaTime * 0.1f;
+            if (fb_grow.transform.localScale.x < maxGrowSize)
+                fb_grow.transform.localScale += Vector3.one * Time.deltaTime * (2 / shootInterval) * 0.1f;
         }
         else
         {
