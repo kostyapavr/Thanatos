@@ -22,6 +22,7 @@ public class HelmetPickup : MonoBehaviour, IPickupableAttire
 
     public void Pickup()
     {
+        LevelController.helmetHP = 15;
         LevelController.playerHasHelmet = true;
         LevelController.playerPickupItemEvent.Invoke();
         Destroy(gameObject);

@@ -17,6 +17,8 @@ public class LevelController : MonoBehaviour
     public static int playerSelectedWeapon = 0;
     public static IPickupableWeapon currentPlayerWeapon;
     public static bool isNormalDifficulty = true;
+    public static int helmetHP = 15;
+    public static BonusTypes playerBonusType = BonusTypes.None;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();
@@ -64,6 +66,12 @@ public class LevelController : MonoBehaviour
     void PlayerTookDamage()
     {
         playerHp = FindObjectOfType<Player>().currentHealth;
+        helmetHP--;
+        if (helmetHP <= 0)
+        {
+            FindObjectOfType<Player>().GetComponent<PlayerMovement>().helmet.gameObject.SetActive(false);
+            playerHasHelmet = false;
+        }
     }
 
     public static void SetBossLevel()
@@ -79,5 +87,15 @@ public class LevelController : MonoBehaviour
     public static void DestroyController()
     {
         Destroy(GameObject.Find("LevelController"));
+    }
+
+    public static void ApplyBonus(BonusTypes bonusType)
+    {
+        playerBonusType = bonusType;
+
+        if (bonusType == BonusTypes.AriadneThread)
+        {
+            GameObject.FindGameObjectWithTag("ExitPortal").GetComponent<Portal>().OpenPortal();
+        }
     }
 }
