@@ -140,14 +140,18 @@ MonoBehaviour:
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   isBoss: 0
   minHealth: 1
-  maxHealth: 2
+  maxHealth: 1.5
   attackIntervalMin: 1.25
   attackIntervalMax: 2
   damage: 0.5
-  moveSpeedMin: 5
-  moveSpeedMax: 10
+  moveSpeedMin: 6
+  moveSpeedMax: 9
+  obstacleDetectSize: 2
   player: {fileID: 0}
   attackRange: 4
+  firstSprite: {fileID: 0}
+  secondSprite: {fileID: 0}
+  walkAnimTime: 0
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4

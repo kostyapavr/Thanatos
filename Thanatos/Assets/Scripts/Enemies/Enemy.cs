@@ -50,25 +50,14 @@ public class Enemy : MonoBehaviour, IDamageable
         return currentHealth;
     }
 
-    public void Die()
+    public virtual void Die()
     {
-        if (isBoss)
-        {
-            LevelController.bossDeathEvent.Invoke();
-            GameObject portal = GameObject.Find("ExitPortal");
-            portal.GetComponent<SpriteRenderer>().enabled = true;
-            portal.GetComponent<Collider2D>().enabled = true;
-            Destroy(gameObject);
-        }
-        else
-        {
-            LevelController.enemyDeathEvent.Invoke();
-            SpawnRandomItem();
-            Destroy(gameObject);
-        }
+        LevelController.enemyDeathEvent.Invoke();
+        SpawnRandomItem();
+        Destroy(gameObject);
     }
 
-    public void TakeDamage(float damage, GameObject sender = null, DamageEffects damageEffect = DamageEffects.Nothing)
+    public virtual void TakeDamage(float damage, GameObject sender = null, DamageEffects damageEffect = DamageEffects.Nothing)
     {
         if (gameObject == sender) return;
         if (currentHealth - damage > 0)
@@ -79,10 +68,10 @@ public class Enemy : MonoBehaviour, IDamageable
         else Die();
     }
 
-    private void SpawnRandomItem()
+    protected virtual void SpawnRandomItem()
     {
         int rnd = Random.Range(0, 100);
-        if (rnd <= 5)
+        if (rnd <= 4 && !isBoss)
         {
             if (helmetPrefab == null) return;
             if (!LevelController.playerHasHelmet)
@@ -94,7 +83,7 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             int rndInd = Random.Range(0, dropItems.Length);
             if (dropItems == null || dropItems.Length == 0) return;
-            if (dropItems[rnd].GetComponent<BonusPickup>().bonusType == BonusTypes.AriadneThread && LevelController.isBossLevel) return;
+            if (dropItems[rndInd].GetComponent<BonusPickup>().bonusType == BonusTypes.AriadneThread && LevelController.isBossLevel) return;
             Instantiate(dropItems[rndInd], transform.position, Quaternion.identity);
         }
     }

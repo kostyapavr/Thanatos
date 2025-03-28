@@ -68,6 +68,9 @@ public class PlayerMovement : MonoBehaviour
         player.ambrosiaEffectSprite.transform.localPosition = new Vector3(-1f, player.ambrosiaEffectSprite.transform.localPosition.y, 0);
         player.miasmaEffectSprite.transform.localPosition = new Vector3(-1f, player.miasmaEffectSprite.transform.localPosition.y, 0);
 
+        player.lavaBoots.transform.localPosition = new Vector3(-0.172f, player.lavaBoots.transform.localPosition.y, 0);
+        player.lavaBoots.GetComponent<SpriteRenderer>().flipX = true;
+
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 170);
 
@@ -87,9 +90,12 @@ public class PlayerMovement : MonoBehaviour
         bowShootPos.localPosition = new Vector3(-bowShootPos.localPosition.x, bowShootPos.localPosition.y, 0);
         bowShootPos.GetComponent<SpriteRenderer>().flipY = false;
 
-        player.slowEffectSprite.transform.localPosition = new Vector3(-0.59f, player.slowEffectSprite.transform.localPosition.y, 0);
-        player.ambrosiaEffectSprite.transform.localPosition = new Vector3(-0.59f, player.ambrosiaEffectSprite.transform.localPosition.y, 0);
-        player.miasmaEffectSprite.transform.localPosition = new Vector3(-0.59f, player.miasmaEffectSprite.transform.localPosition.y, 0);
+        player.slowEffectSprite.transform.localPosition = new Vector3(-0.64f, player.slowEffectSprite.transform.localPosition.y, 0);
+        player.ambrosiaEffectSprite.transform.localPosition = new Vector3(-0.64f, player.ambrosiaEffectSprite.transform.localPosition.y, 0);
+        player.miasmaEffectSprite.transform.localPosition = new Vector3(-0.64f, player.miasmaEffectSprite.transform.localPosition.y, 0);
+
+        player.lavaBoots.transform.localPosition = new Vector3(0.154f, player.lavaBoots.transform.localPosition.y, 0);
+        player.lavaBoots.GetComponent<SpriteRenderer>().flipX = false;
 
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 58);
@@ -100,12 +106,12 @@ public class PlayerMovement : MonoBehaviour
     void CheckAcceleration()
     {
         if (isSlowedDown) return;
-        if (LevelController.playerHasBow && LevelController.playerHasSword && LevelController.playerSelectedWeapon == 0)
+        if (LevelController.playerHasBow && LevelController.playerHasSword && LevelController.currentPlayerWeapon.Name.Contains("Bow"))
         {
             acceleration = bothWeaponsAcceleration;
             normalAcceleration = bothWeaponsAcceleration;
         }
-        else if (LevelController.playerHasSword && (!LevelController.playerHasBow || LevelController.playerSelectedWeapon == 1))
+        else if (LevelController.playerHasSword && (!LevelController.playerHasBow || LevelController.currentPlayerWeapon.Name.Contains("Sword")))
         {
             acceleration = LevelController.playerHasHelmet ? helmetAcceleration : onlySwordAcceleration;
             normalAcceleration = acceleration;

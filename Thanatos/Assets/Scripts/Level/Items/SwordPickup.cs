@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SwordPickup : MonoBehaviour, IPickupableWeapon
 {
-    private string _name = "Sword";
-    private float damage = 1.0f;
+    [SerializeField]
+    private string _name;
+    [SerializeField]
+    private float damage;
     public string Name { get => _name; }
 
     public float Damage { get => damage; }
@@ -20,9 +22,11 @@ public class SwordPickup : MonoBehaviour, IPickupableWeapon
 
     public virtual void Pickup()
     {
+        if (LevelController.playerHasSword) return;
         LevelController.playerHasSword = true;
-        LevelController.playerSelectedWeapon = 1;
+        LevelController.currentPlayerWeapon = this;
         LevelController.playerPickupItemEvent.Invoke();
+        LevelController.playerWeapons.Add(this);
         Destroy(gameObject);
     }
 }

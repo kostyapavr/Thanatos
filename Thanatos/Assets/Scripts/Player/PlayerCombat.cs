@@ -18,6 +18,7 @@ public class PlayerCombat : MonoBehaviour
     public Bow bow;
     public Sprite normalSprite;
     public Sprite swordPlayerSprite;
+    public Sprite peleus_swordPlayerSprite;
     private bool isHidden = false;
 
     public IPickupableWeapon currentWeapon;
@@ -53,13 +54,12 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            /*if (currentWeapon == null)
+            if (currentWeapon == null)
             {
                 Debug.Log("Current weapon is null!");
                 return;
             }
-            enemy.GetComponent<Enemy>().TakeDamage(currentWeapon.Damage);*/
-            enemy.GetComponent<Enemy>().TakeDamage(1);
+            enemy.GetComponent<Enemy>().TakeDamage(currentWeapon.Damage);
         }
 
         animator.enabled = true;
@@ -90,15 +90,13 @@ public class PlayerCombat : MonoBehaviour
 
     void CheckPickup()
     {
-        if (LevelController.playerHasSword && LevelController.playerSelectedWeapon == 1)
+        if (LevelController.playerHasSword && LevelController.currentPlayerWeapon.Name.Contains("Sword"))
         {
             ShowSword();
-            LevelController.playerSelectedWeapon = 1;
         }
         else
         {
             HideSword();
-            LevelController.playerSelectedWeapon = 0;
         }
 
         if (LevelController.playerHasHelmet && LevelController.playerHasSword)

@@ -63,7 +63,7 @@ public class Fireball : MonoBehaviour, IShootable
 
     private void DoAoA_Damage()
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 4, transform.position);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 4f, transform.position);
         if (hits.Where(x => x.collider != null && x.collider.GetComponent<Player>()).Count() > 0)
         {
             hits.First(x => x.collider.GetComponent<Player>()).collider.GetComponent<Player>().TakeDamage(0.5f, gameObject);

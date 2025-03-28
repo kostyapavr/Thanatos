@@ -144,10 +144,14 @@ MonoBehaviour:
   attackIntervalMin: 1.25
   attackIntervalMax: 2
   damage: 1
-  moveSpeedMin: 6
+  moveSpeedMin: 7
   moveSpeedMax: 15
+  obstacleDetectSize: 3
   player: {fileID: 0}
   attackRange: 5.6
+  firstSprite: {fileID: 0}
+  secondSprite: {fileID: 0}
+  walkAnimTime: 0
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4

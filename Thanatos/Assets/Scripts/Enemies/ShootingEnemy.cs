@@ -18,6 +18,9 @@ public class ShootingEnemy : Enemy
 
     public GameObject ammoPrefab;
 
+    public Sprite normalSprite;
+    public Sprite aimSprite;
+
     public float shootingRange;
     public LayerMask PlayerMask;
 
@@ -31,6 +34,8 @@ public class ShootingEnemy : Enemy
     protected float shootInterval;
     protected int ammoSpeed;
 
+    private bool stopOneShot = false;
+
     public override void Start()
     {
         RandomiseProperties();
@@ -38,7 +43,8 @@ public class ShootingEnemy : Enemy
         currentHealth = health;
         player = FindObjectOfType<Player>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        InvokeRepeating("Shoot", shootInterval, shootInterval);
+        InvokeRepeating("Aim", shootInterval-0.75f, shootInterval-0.75f);
+        InvokeRepeating("Shoot", shootInterval+1, shootInterval);
     }
 
     protected bool PlayerInSight()
@@ -55,9 +61,21 @@ public class ShootingEnemy : Enemy
         return false;
     }
 
+    protected void Aim()
+    {
+        if (aimSprite == null) return;
+        spriteRenderer.sprite = aimSprite;
+    }
+
     protected virtual void Shoot()
     {
+        spriteRenderer.sprite = normalSprite;
         if (!PlayerInSight()) return;
+        if (stopOneShot)
+        {
+            stopOneShot = false;
+            return;
+        }
 
         Vector2 diff = player.transform.position - transform.position;
         if (shootAhead) diff = ((Vector2)player.transform.position + player.GetComponent<Rigidbody2D>().velocity*0.3f) - (Vector2)transform.position;
@@ -84,5 +102,11 @@ public class ShootingEnemy : Enemy
         health = Random.Range(minHealth, maxHealth);
         shootInterval = Random.Range(shootIntervalMin, shootIntervalMax);
         ammoSpeed = Random.Range(ammoSpeedMin, ammoSpeedMax);
+    }
+
+    public override void TakeDamage(float damage, GameObject sender = null, DamageEffects damageEffect = DamageEffects.Nothing)
+    {
+        base.TakeDamage(damage, sender, damageEffect);
+        if (damageEffect == DamageEffects.StopOneShot) stopOneShot = true;
     }
 }

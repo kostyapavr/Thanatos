@@ -5,7 +5,7 @@ using UnityEngine;
 public class HelmetPickup : MonoBehaviour, IPickupableAttire
 {
     private string _name = "Helmet";
-    private float enemyDamageModifier = 0.8f;
+    private float enemyDamageModifier = 0.75f;
     private float speedModifier = 1.1f;
     public string Name { get => _name; }
 
@@ -22,7 +22,8 @@ public class HelmetPickup : MonoBehaviour, IPickupableAttire
 
     public void Pickup()
     {
-        LevelController.helmetHP = 15;
+        if (LevelController.playerHasHelmet) return;
+        LevelController.helmetHP = 20;
         LevelController.playerHasHelmet = true;
         LevelController.playerPickupItemEvent.Invoke();
         Destroy(gameObject);

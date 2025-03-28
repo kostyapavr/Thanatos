@@ -146,13 +146,15 @@ MonoBehaviour:
   isBoss: 0
   minHealth: 2
   maxHealth: 3
-  shootIntervalMin: 1.25
+  shootIntervalMin: 1.5
   shootIntervalMax: 2.5
   ammoSpeedMin: 60
   ammoSpeedMax: 80
-  ammoSpread: 6
+  ammoSpread: 9
   ammoPrefab: {fileID: 2055513970730527246, guid: 1574b5ea3e872324ca126e186e1ae407, type: 3}
-  shootingRange: 70
+  normalSprite: {fileID: 21300000, guid: 2a0b335f00196df46b365b6065e13444, type: 3}
+  aimSprite: {fileID: 21300000, guid: fdad751ce0915ef40b8efd3de686328c, type: 3}
+  shootingRange: 60
   PlayerMask:
     serializedVersion: 2
     m_Bits: 128

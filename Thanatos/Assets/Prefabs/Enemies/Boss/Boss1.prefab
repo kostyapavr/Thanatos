@@ -438,8 +438,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f2f0b7ea05562e43aa1200e90465d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDropChance: 0
-  dropItems: []
+  itemDropChance: 100
+  dropItems:
+  - {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
+  - {fileID: 8892067519067675165, guid: baa99553c58f7d64caf44b17e5a76081, type: 3}
+  - {fileID: 7819326001113033101, guid: 7764afdc9fcd53f43919fb78589e736d, type: 3}
+  - {fileID: 2594602861398474934, guid: b12e571ae13316549a1a90eb5350c0e5, type: 3}
+  - {fileID: 1053340612470127474, guid: b34f3f8e102507641ad27c3c1564d35c, type: 3}
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   isBoss: 1
   minHealth: 15

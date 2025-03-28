@@ -24,6 +24,8 @@ public class Player : MonoBehaviour, IDamageable
     public Sprite defaultArmorSprite;
     public Sprite goldenArmorSprite;
 
+    public GameObject lavaBoots;
+
     public Bow bow;
     private int selectedWeapon = 0;
     private PlayerCombat sword;
@@ -41,6 +43,7 @@ public class Player : MonoBehaviour, IDamageable
     private bool ambrosiaEffect = false;
     private bool goldenArmorEffect = false;
     private bool hasArmor = false;
+    private bool hasLavaBoots = false;
 
     void Start()
     {
@@ -59,9 +62,10 @@ public class Player : MonoBehaviour, IDamageable
         sword = GetComponent<PlayerCombat>();
 
         if (LevelController.playerHasBow || LevelController.playerHasSword)
-            SelectWeapon(LevelController.playerSelectedWeapon);
+            SelectWeapon(LevelController.currentPlayerWeapon);
 
         if (LevelController.playerHasArmor) EquipArmor();
+        if (LevelController.playerHasLavaBoots) EquipLavaBoots();
     }
 
     private void Update()
@@ -117,10 +121,10 @@ public class Player : MonoBehaviour, IDamageable
         else if (n == 0 && LevelController.playerHasSword) SelectSword();
     }
 
-    public void SelectWeapon(int n)
+    public void SelectWeapon(IPickupableWeapon curWeapon)
     {
-        if (n == 1 && LevelController.playerHasSword) SelectSword();
-        else if (n == 0 && LevelController.playerHasBow) SelectBow();
+        if (curWeapon.Name.Contains("Sword") && LevelController.playerHasSword) SelectSword();
+        else if (curWeapon.Name.Contains("Bow") && LevelController.playerHasBow) SelectBow();
     }
 
     private void SelectSword()
@@ -128,7 +132,7 @@ public class Player : MonoBehaviour, IDamageable
         bow.HideBow();
         sword.ShowSword();
         selectedWeapon = 1;
-        LevelController.playerSelectedWeapon = 1;
+        LevelController.currentPlayerWeapon = LevelController.playerWeapons.Find(x => x.Name.Contains("Sword"));
     }
 
     private void SelectBow()
@@ -136,7 +140,7 @@ public class Player : MonoBehaviour, IDamageable
         bow.ShowBow();
         sword.HideSword();
         selectedWeapon = 0;
-        LevelController.playerSelectedWeapon = 0;
+        LevelController.currentPlayerWeapon = LevelController.playerWeapons.Find(x => x.Name.Contains("Bow"));
     }
 
     public int GetCurrentArrows()
@@ -200,6 +204,7 @@ public class Player : MonoBehaviour, IDamageable
         LevelController.playerHasBow = false;
         LevelController.playerHasSword = false;
         LevelController.playerHasHelmet = false;
+        LevelController.playerHasArmor = false;
     }
 
     public void ShowEndPanel()
@@ -214,6 +219,7 @@ public class Player : MonoBehaviour, IDamageable
         helmetSprite.GetComponent<SpriteRenderer>().flipX = GetComponent<SpriteRenderer>().flipX;
 
         if (!hasArmor && LevelController.playerHasArmor) EquipArmor();
+        if (!hasLavaBoots && LevelController.playerHasLavaBoots) EquipLavaBoots();
 
         switch (LevelController.playerBonusType)
         {
@@ -282,5 +288,17 @@ public class Player : MonoBehaviour, IDamageable
         GetComponent<SpriteRenderer>().sprite = defaultArmorSprite;
         goldenArmorEffect = false;
         hasArmor = false;
+    }
+
+    public void EquipLavaBoots()
+    {
+        lavaBoots.SetActive(true);
+        hasLavaBoots = true;
+    }
+
+    public void RemoveLavaBoots()
+    {
+        lavaBoots.SetActive(false);
+        hasLavaBoots = false;
     }
 }

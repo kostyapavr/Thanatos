@@ -15,12 +15,13 @@ public class LevelController : MonoBehaviour
     public static bool playerHasArmor;
     public static bool isBossLevel;
     public static bool playerIsGod = false;
-    public static int playerSelectedWeapon = 0;
+    public static List<IPickupableWeapon> playerWeapons = new List<IPickupableWeapon>();
     public static IPickupableWeapon currentPlayerWeapon;
     public static bool isNormalDifficulty = true;
     public static int helmetHP = 20;
     public static int armorHP = 15;
     public static BonusTypes playerBonusType = BonusTypes.None;
+    public static bool playerHasLavaBoots = false;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();
@@ -52,6 +53,8 @@ public class LevelController : MonoBehaviour
             isBossLevel = false;
             isNormalDifficulty = true;
         }
+
+        if (sceneName.Contains("Boss")) SetBossLevel();
     }
 
     void EnemyDeath()
@@ -112,5 +115,19 @@ public class LevelController : MonoBehaviour
         {
             GameObject.FindGameObjectWithTag("ExitPortal").GetComponent<Portal>().OpenPortal();
         }
+    }
+
+    public static void NextWeapon()
+    {
+
+    }
+
+    public static void SelectWeapon(int ind)
+    {
+        int arrInd = 0;
+        if (ind == 1) arrInd = playerWeapons.FindIndex(x => x.Name.Contains("Bow"));
+        else if (ind == 2) arrInd = playerWeapons.FindIndex(x => x.Name.Contains("Sword"));
+        else if (ind == 3) arrInd = playerWeapons.FindIndex(x => x.Name.Contains("Shield"));
+        currentPlayerWeapon = playerWeapons[arrInd];
     }
 }

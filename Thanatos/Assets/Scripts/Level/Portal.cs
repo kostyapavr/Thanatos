@@ -28,7 +28,7 @@ public class Portal : MonoBehaviour
 
         if (collider.CompareTag("Player") && !isClosed)
         {
-            if (SceneManager.GetActiveScene().name == "Level2_Boss") ShowEndPanel(collider.GetComponent<Player>());
+            if (SceneManager.GetActiveScene().name == "Level3_Boss") ShowEndPanel(collider.GetComponent<Player>());
             else LoadNextLevel();
         }
     }

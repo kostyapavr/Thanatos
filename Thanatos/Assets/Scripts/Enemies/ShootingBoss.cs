@@ -15,6 +15,8 @@ public class ShootingBoss : ShootingEnemy
     private GameObject fb_grow;
     bool growFireball = false;
 
+    public GameObject lavaBoots;
+
     protected override void Shoot()
     {
         if (!PlayerInSight()) return;
@@ -67,5 +69,47 @@ public class ShootingBoss : ShootingEnemy
             fb_grow.transform.localScale = Vector3.zero;
             growFireball = true;
         }
+    }
+
+    protected override void SpawnRandomItem()
+    {
+        int rnd = Random.Range(0, 100);
+        
+        if (rnd < itemDropChance)
+        {
+            int startInd = 0;
+            if (LevelController.playerHasHelmet) startInd = 1;
+            if (LevelController.playerHasArmor) startInd = 2;
+            int rndInd = Random.Range(startInd, dropItems.Length);
+            Instantiate(dropItems[rndInd], transform.position, Quaternion.identity);
+        }
+        
+        if (lavaBoots != null)
+        {
+            Instantiate(lavaBoots, transform.position + Vector3.right * 2, Quaternion.identity);
+        }
+    }
+
+    public override void Die()
+    {
+        LevelController.bossDeathEvent.Invoke();
+        GameObject portal = GameObject.Find("ExitPortal");
+        portal.GetComponent<SpriteRenderer>().enabled = true;
+        portal.GetComponent<Collider2D>().enabled = true;
+        SpawnRandomItem();
+
+        GameObject pb = GameObject.Find("PandoraBox");
+        if (pb)
+        {
+            pb.GetComponent<SpriteRenderer>().enabled = true;
+            pb.GetComponent<Collider2D>().enabled = true;
+        }
+
+        Destroy(gameObject);
+    }
+
+    public override void TakeDamage(float damage, GameObject sender = null, DamageEffects damageEffect = DamageEffects.Nothing)
+    {
+        base.TakeDamage(damage, sender, damageEffect);
     }
 }

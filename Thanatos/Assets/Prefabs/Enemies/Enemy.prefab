@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d3d81a2aab4a946b1e36be8a5b445e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDropChance: 80
+  itemDropChance: 50
   dropItems:
   - {fileID: 7764764626976366879, guid: 9412c81ef9da33c4599e0d0465f698a7, type: 3}
   - {fileID: 1053340612470127474, guid: b34f3f8e102507641ad27c3c1564d35c, type: 3}
@@ -145,12 +145,14 @@ MonoBehaviour:
   isBoss: 0
   minHealth: 1.5
   maxHealth: 2.5
-  shootIntervalMin: 1.5
+  shootIntervalMin: 2
   shootIntervalMax: 3
   ammoSpeedMin: 60
   ammoSpeedMax: 80
-  ammoSpread: 7
+  ammoSpread: 12
   ammoPrefab: {fileID: 2055513970730527246, guid: 1574b5ea3e872324ca126e186e1ae407, type: 3}
+  normalSprite: {fileID: 21300000, guid: 90604674f3d93b54e9a6f64b489935ac, type: 3}
+  aimSprite: {fileID: 0}
   shootingRange: 70
   PlayerMask:
     serializedVersion: 2
