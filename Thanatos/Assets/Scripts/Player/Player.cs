@@ -21,6 +21,9 @@ public class Player : MonoBehaviour, IDamageable
     public GameObject ambrosiaEffectSprite;
     public GameObject miasmaEffectSprite;
 
+    public Sprite defaultArmorSprite;
+    public Sprite goldenArmorSprite;
+
     public Bow bow;
     private int selectedWeapon = 0;
     private PlayerCombat sword;
@@ -36,6 +39,8 @@ public class Player : MonoBehaviour, IDamageable
 
     private bool miasmaEffect = false;
     private bool ambrosiaEffect = false;
+    private bool goldenArmorEffect = false;
+    private bool hasArmor = false;
 
     void Start()
     {
@@ -55,6 +60,8 @@ public class Player : MonoBehaviour, IDamageable
 
         if (LevelController.playerHasBow || LevelController.playerHasSword)
             SelectWeapon(LevelController.playerSelectedWeapon);
+
+        if (LevelController.playerHasArmor) EquipArmor();
     }
 
     private void Update()
@@ -164,10 +171,15 @@ public class Player : MonoBehaviour, IDamageable
         if (miasmaEffect) damage += 0.5f;
         if (ambrosiaEffect)
         {
-            Debug.Log("Attack deflected!");
             RemoveAmbrosiaEffect();
             return;
         }
+        if (goldenArmorEffect)
+        {
+            goldenArmorEffect = false;
+            return;
+        }
+        if (LevelController.playerHasArmor) damage -= 0.5f;
 
         if (currentHealth - damage > 0)
         { 
@@ -200,6 +212,8 @@ public class Player : MonoBehaviour, IDamageable
     {
         helmetSprite.SetActive(LevelController.playerHasHelmet);
         helmetSprite.GetComponent<SpriteRenderer>().flipX = GetComponent<SpriteRenderer>().flipX;
+
+        if (!hasArmor && LevelController.playerHasArmor) EquipArmor();
 
         switch (LevelController.playerBonusType)
         {
@@ -254,5 +268,19 @@ public class Player : MonoBehaviour, IDamageable
         int rnd = Random.Range(0, 100);
         if (rnd < 50) AddHealth(5);
         else TakeDamage(10);
+    }
+
+    public void EquipArmor()
+    {
+        GetComponent<SpriteRenderer>().sprite = goldenArmorSprite;
+        goldenArmorEffect = true;
+        hasArmor = true;
+    }
+
+    public void RemoveArmor()
+    {
+        GetComponent<SpriteRenderer>().sprite = defaultArmorSprite;
+        goldenArmorEffect = false;
+        hasArmor = false;
     }
 }

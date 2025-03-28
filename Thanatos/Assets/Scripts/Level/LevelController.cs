@@ -12,12 +12,14 @@ public class LevelController : MonoBehaviour
     public static bool playerHasBow;
     public static bool playerHasSword;
     public static bool playerHasHelmet;
+    public static bool playerHasArmor;
     public static bool isBossLevel;
     public static bool playerIsGod = false;
     public static int playerSelectedWeapon = 0;
     public static IPickupableWeapon currentPlayerWeapon;
     public static bool isNormalDifficulty = true;
-    public static int helmetHP = 15;
+    public static int helmetHP = 20;
+    public static int armorHP = 15;
     public static BonusTypes playerBonusType = BonusTypes.None;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
@@ -66,11 +68,24 @@ public class LevelController : MonoBehaviour
     void PlayerTookDamage()
     {
         playerHp = FindObjectOfType<Player>().currentHealth;
-        helmetHP--;
-        if (helmetHP <= 0)
+
+        if (playerHasHelmet)
         {
-            FindObjectOfType<Player>().GetComponent<PlayerMovement>().helmet.gameObject.SetActive(false);
-            playerHasHelmet = false;
+            helmetHP--;
+            if (helmetHP <= 0)
+            {
+                FindObjectOfType<Player>().GetComponent<PlayerMovement>().helmet.gameObject.SetActive(false);
+                playerHasHelmet = false;
+            }
+        }
+        if (playerHasArmor)
+        {
+            armorHP--;
+            if (armorHP <= 0)
+            {
+                FindObjectOfType<Player>().RemoveArmor();
+                playerHasArmor = false;
+            }
         }
     }
 
