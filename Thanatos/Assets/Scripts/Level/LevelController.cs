@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
-    public static int maxArmorHP = 25;
-    public static int maxHelmetHP = 30;
+    public static int maxArmorHP = 20;
+    public static int maxHelmetHP = 25;
 
     public static int aliveEnemies = 0;
     public static float playerHp = 0;
@@ -28,7 +28,7 @@ public class LevelController : MonoBehaviour
     public static bool isNormalDifficulty = true;
     public static int helmetHP = maxHelmetHP;
     public static int armorHP = maxArmorHP;
-    public static int lavaBootsHP = 50;
+    public static int lavaBootsHP = 40;
     public static BonusTypes playerBonusType = BonusTypes.None;
     public static bool playerHasLavaBoots = false;
 
