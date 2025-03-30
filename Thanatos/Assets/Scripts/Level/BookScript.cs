@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class BookScript : MonoBehaviour
 {
+    public GameObject panels;
     public GameObject bookPanel;
+    public GameObject bookPanel2;
     public GameObject interactTip;
+    public GameObject nextButton;
+    public GameObject prevButton;
+
+    public List<GameObject> itemDescriptions;
+    public List<GameObject> armorDescriptions;
     bool canInteract = false;
-    bool isOpen = false;
+    [HideInInspector]
+    public bool isOpen = false;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -42,14 +50,24 @@ public class BookScript : MonoBehaviour
     public void OpenBook()
     {
         Time.timeScale = 0;
-        bookPanel.SetActive(true);
+        panels.SetActive(true);
         isOpen = true;
+
+        for (int i = 0; i < itemDescriptions.Count; i++)
+        {
+            if (PlayerPrefs.GetInt(itemDescriptions[i].name, 0) == 1) itemDescriptions[i].SetActive(true); 
+        }
+        for (int i = 0; i < armorDescriptions.Count; i++)
+        {
+            if (PlayerPrefs.GetInt(armorDescriptions[i].name, 0) == 1) armorDescriptions[i].SetActive(true);
+        }
     }
 
     public void CloseBook()
     {
         Time.timeScale = 1;
-        bookPanel.SetActive(false);
+        OpenFirstPage();
+        panels.SetActive(false);
         isOpen = false;
     }
 
@@ -62,6 +80,24 @@ public class BookScript : MonoBehaviour
                 if (!isOpen) OpenBook();
                 else CloseBook();
             }
+
+            if (Input.GetKeyDown(KeyCode.Escape) && isOpen) CloseBook();
         }
+    }
+
+    public void OpenFirstPage()
+    {
+        bookPanel.SetActive(true);
+        bookPanel2.SetActive(false);
+        nextButton.SetActive(true);
+        prevButton.SetActive(false);
+    }
+
+    public void OpenSecondPage()
+    {
+        bookPanel.SetActive(false);
+        bookPanel2.SetActive(true);
+        nextButton.SetActive(false);
+        prevButton.SetActive(true);
     }
 }

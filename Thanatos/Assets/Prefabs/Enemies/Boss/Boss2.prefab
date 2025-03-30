@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2031522754797940865}
   - component: {fileID: 2306541513158672679}
   - component: {fileID: 647588031828547268}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Boss2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -170,6 +170,8 @@ MonoBehaviour:
   ammoSpeedMax: 90
   ammoSpread: 7
   ammoPrefab: {fileID: 7703349128565279827, guid: b15f95cc40420b1499a999309339f81a, type: 3}
+  normalSprite: {fileID: 0}
+  aimSprite: {fileID: 0}
   shootingRange: 60
   PlayerMask:
     serializedVersion: 2
@@ -253,7 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2546354443341164504}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: FireballSpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +288,7 @@ GameObject:
   - component: {fileID: 3323070260793591798}
   - component: {fileID: 3419027340400583143}
   - component: {fileID: 1469882270126279854}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +363,7 @@ GameObject:
   - component: {fileID: 8695885040095916091}
   - component: {fileID: 2208892720747763768}
   - component: {fileID: 8668733848447729051}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HP-Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -438,7 +440,7 @@ GameObject:
   - component: {fileID: 8541144175822687411}
   - component: {fileID: 7919592700544938923}
   - component: {fileID: 5049742488189156652}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

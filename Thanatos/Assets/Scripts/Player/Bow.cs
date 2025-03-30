@@ -42,15 +42,19 @@ public class Bow : MonoBehaviour
     {
         if (LevelController.playerHasBow)
         {
-            bowSprite.enabled = LevelController.currentPlayerWeapon.Name.Contains("Bow") ? true : false;
-            if (LevelController.currentPlayerWeapon.Name == "Fire Bow") bowSprite.sprite = fireBowSprite;
+            bowSprite.enabled = true;
+        }
+        if (LevelController.playerHasFireBow)
+        {
+            bowSprite.enabled = true;
+            bowSprite.sprite = fireBowSprite;
         }
 
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotatez = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         point.rotation = Quaternion.Euler(0f, 0f, rotatez + offset);
 
-        if (delay <= 0f && LevelController.playerHasBow && player.GetCurrentArrows() > 0 && canShoot)
+        if (delay <= 0f && (LevelController.playerHasBow || LevelController.playerHasFireBow) && player.GetCurrentArrows() > 0 && canShoot)
         {
             if (Input.GetMouseButton(0))
             {
@@ -69,7 +73,7 @@ public class Bow : MonoBehaviour
                 isCharging = true;
                 bowSprite.enabled = false;
                 bowShootPosition.SetActive(true);
-                if (LevelController.currentPlayerWeapon.Name == "Fire Bow") bowShootPosition.GetComponent<SpriteRenderer>().sprite = fireBowSprite;
+                if (LevelController.playerHasFireBow) bowShootPosition.GetComponent<SpriteRenderer>().sprite = fireBowSprite;
             }
             if (Input.GetMouseButtonUp(0))
             {
@@ -80,7 +84,7 @@ public class Bow : MonoBehaviour
                 isCharging = false;
                 player.GetComponent<PlayerMovement>().ReturnToNormalSpeed();
                 bowSprite.enabled = true;
-                if (LevelController.currentPlayerWeapon.Name == "Fire Bow") bowSprite.sprite = fireBowSprite;
+                if (LevelController.playerHasFireBow) bowSprite.sprite = fireBowSprite;
                 bowShootPosition.SetActive(false);
             }
         }

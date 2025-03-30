@@ -15,20 +15,61 @@ public class BonusPickup : MonoBehaviour, IPickupableBonus
 
     public ParticleSystem PickupEffect { get => pickupEffect; }
 
+    public GameObject interactButton;
+    bool canInteract = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            if (pickupEffect != null) Instantiate(pickupEffect, collision.transform);
-            Pickup();
+            ShowInteract();   
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        HideInteract();
     }
 
     public virtual void Pickup()
     {
         LevelController.ApplyBonus(bonusType);
         LevelController.playerPickupItemEvent.Invoke();
+        SaveItem();
         Destroy(gameObject);
+    }
+
+    private void ShowInteract()
+    {
+        interactButton.SetActive(true);
+        canInteract = true;
+    }
+
+    private void HideInteract()
+    {
+        interactButton.SetActive(false);
+        canInteract = false;
+    }
+
+    private void LateUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (canInteract)
+            {
+                //if (pickupEffect != null) Instantiate(pickupEffect, collision.transform);
+                Pickup();
+            }
+        }
+    }
+
+    private void SaveItem()
+    {
+        if (PlayerPrefs.GetInt(_name, 0) == 0)
+        {
+            PlayerPrefs.SetInt(_name, 1);
+            PlayerPrefs.Save();
+        }
     }
 }
 

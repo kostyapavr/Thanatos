@@ -66,7 +66,7 @@ public class MeleeEnemy : Enemy
                     Player player = hit.GetComponent<Player>();
                     if (player != null)
                     {
-                        player.TakeDamage(damage);
+                        player.TakeDamage(damage, gameObject, DamageEffects.Nothing);
                     }
                 }
             }

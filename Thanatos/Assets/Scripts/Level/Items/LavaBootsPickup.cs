@@ -22,6 +22,7 @@ public class LavaBootsPickup : MonoBehaviour, IPickupableAttire
 
     public virtual void Pickup()
     {
+        LevelController.lavaBootsHP = 50;
         LevelController.playerHasLavaBoots = true;
         LevelController.playerPickupItemEvent.Invoke();
         Destroy(gameObject);

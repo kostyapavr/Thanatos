@@ -107,7 +107,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1928116525
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 655adfb88eac6c24ebfc34d1d60f2fb1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -148,9 +148,9 @@ MonoBehaviour:
   obstacleDetectSize: 3
   player: {fileID: 0}
   attackRange: 5.6
-  firstSprite: {fileID: 0}
-  secondSprite: {fileID: 0}
-  walkAnimTime: 0
+  firstSprite: {fileID: 21300000, guid: 655adfb88eac6c24ebfc34d1d60f2fb1, type: 3}
+  secondSprite: {fileID: 21300000, guid: cbb965fc0baa4644598f6981a11a410f, type: 3}
+  walkAnimTime: 0.1
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4
@@ -164,7 +164,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDrag: 1
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

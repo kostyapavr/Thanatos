@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
@@ -14,6 +15,9 @@ public class Player : MonoBehaviour, IDamageable
     public GameObject deathPanel;
     public GameObject endPanel;
     public GameObject helmetSprite;
+    public GameObject armorSprite;
+    public GameObject achillesHelmetSprite;
+    public GameObject achillesArmorSprite;
 
     public GameObject pauseMenu;
 
@@ -21,14 +25,13 @@ public class Player : MonoBehaviour, IDamageable
     public GameObject ambrosiaEffectSprite;
     public GameObject miasmaEffectSprite;
 
-    public Sprite defaultArmorSprite;
     public Sprite goldenArmorSprite;
 
     public GameObject lavaBoots;
 
     public Bow bow;
-    private int selectedWeapon = 0;
     private PlayerCombat sword;
+    public Shield shield;
     private bool godMode = false;
 
     private float hpAddWhenNewLevel = 2f;
@@ -44,6 +47,8 @@ public class Player : MonoBehaviour, IDamageable
     private bool goldenArmorEffect = false;
     private bool hasArmor = false;
     private bool hasLavaBoots = false;
+    private bool achillesArmorEffect = false;
+    private bool achillesHelmetEffect = false;
 
     void Start()
     {
@@ -61,7 +66,7 @@ public class Player : MonoBehaviour, IDamageable
 
         sword = GetComponent<PlayerCombat>();
 
-        if (LevelController.playerHasBow || LevelController.playerHasSword)
+        if (LevelController.playerHasBow || LevelController.playerHasSword || LevelController.playerHasShield)
             SelectWeapon(LevelController.currentPlayerWeapon);
 
         if (LevelController.playerHasArmor) EquipArmor();
@@ -78,21 +83,37 @@ public class Player : MonoBehaviour, IDamageable
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (pauseMenu.activeSelf)
+            BookScript bs = FindObjectOfType<BookScript>();
+            if (bs == null || !bs.isOpen)
             {
-                pauseMenu.SetActive(false);
-                Time.timeScale = 1;
-            }
-            else
-            {
-                pauseMenu.SetActive(true);
-                Time.timeScale = 0;
+                if (pauseMenu.activeSelf)
+                {
+                    pauseMenu.SetActive(false);
+                    Time.timeScale = 1;
+                }
+                else
+                {
+                    pauseMenu.SetActive(true);
+                    Time.timeScale = 0;
+                }
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SwitchWeapon(selectedWeapon);
+            SelectWeapon(LevelController.playerWeapons.Where(x => x.Name.Contains("Bow")).FirstOrDefault());
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SelectWeapon(LevelController.playerWeapons.Where(x => x.Name.Contains("Sword")).FirstOrDefault());
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SelectWeapon(LevelController.playerWeapons.Where(x => x.Name.Contains("Shield")).FirstOrDefault());
+        }
+        else if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            GameObject.FindGameObjectWithTag("ExitPortal").GetComponent<Portal>().LoadNextLevel();
         }
 
         if (is_enemySlowEffect)
@@ -117,21 +138,25 @@ public class Player : MonoBehaviour, IDamageable
 
     public void SwitchWeapon(int n)
     {
-        if (n == 1 && LevelController.playerHasBow) SelectBow();
-        else if (n == 0 && LevelController.playerHasSword) SelectSword();
+        if (n == 1 && LevelController.playerHasBow && !sword.isAttacking && !LevelController.playerShieldActive) SelectBow();
+        else if (n == 0 && LevelController.playerHasSword && !bow.isCharging && !LevelController.playerShieldActive) SelectSword();
+        else if (n == 2 && LevelController.playerHasShield && !bow.isCharging && !sword.isAttacking) SelectShield();
     }
 
-    public void SelectWeapon(IPickupableWeapon curWeapon)
+    public void SelectWeapon(IPickupableWeapon weapon)
     {
-        if (curWeapon.Name.Contains("Sword") && LevelController.playerHasSword) SelectSword();
-        else if (curWeapon.Name.Contains("Bow") && LevelController.playerHasBow) SelectBow();
+        if (weapon == null) return;
+        if (weapon.Name.Contains("Sword") && LevelController.playerHasSword && !bow.isCharging && !LevelController.playerShieldActive) SelectSword();
+        else if (weapon.Name.Contains("Bow") && (LevelController.playerHasBow || LevelController.playerHasFireBow) && !sword.isAttacking && !LevelController.playerShieldActive) SelectBow();
+        else if (weapon.Name.Contains("Shield") && LevelController.playerHasShield && !bow.isCharging && !sword.isAttacking) SelectShield();
     }
 
     private void SelectSword()
     {
         bow.HideBow();
         sword.ShowSword();
-        selectedWeapon = 1;
+        shield.HideShield();
+        //selectedWeapon = 1;
         LevelController.currentPlayerWeapon = LevelController.playerWeapons.Find(x => x.Name.Contains("Sword"));
     }
 
@@ -139,8 +164,18 @@ public class Player : MonoBehaviour, IDamageable
     {
         bow.ShowBow();
         sword.HideSword();
-        selectedWeapon = 0;
+        shield.HideShield();
+        //selectedWeapon = 0;
         LevelController.currentPlayerWeapon = LevelController.playerWeapons.Find(x => x.Name.Contains("Bow"));
+    }
+
+    private void SelectShield()
+    {
+        bow.HideBow();
+        sword.HideSword();
+        shield.ShowShield();
+        //selectedWeapon = 0;
+        LevelController.currentPlayerWeapon = LevelController.playerWeapons.Find(x => x.Name.Contains("Shield"));
     }
 
     public int GetCurrentArrows()
@@ -172,6 +207,8 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (gameObject == sender || godMode) return;
 
+        if (LevelController.playerShieldActive) return;
+
         if (miasmaEffect) damage += 0.5f;
         if (ambrosiaEffect)
         {
@@ -181,15 +218,28 @@ public class Player : MonoBehaviour, IDamageable
         if (goldenArmorEffect)
         {
             goldenArmorEffect = false;
+            ShowArmorTakeDamage();
             return;
         }
-        if (LevelController.playerHasArmor) damage -= 0.5f;
+        if (achillesArmorEffect && sender != null && sender.GetComponent<MeleeEnemy>())
+        {
+            damage = 0.25f;
+            ShowArmorTakeDamage();
+        }
+
+        if (LevelController.playerHasArmor)
+        {
+            damage /= 2f;
+            ShowArmorTakeDamage();
+        }
+        
 
         if (currentHealth - damage > 0)
         { 
             if (damageEffect == DamageEffects.SlowDown) ApplyEnemySlowEffect();
             currentHealth -= damage;
             LevelController.playerHpEvent.Invoke();
+            ShowArmorTakeDamage();
         }
         else
         {
@@ -205,6 +255,10 @@ public class Player : MonoBehaviour, IDamageable
         LevelController.playerHasSword = false;
         LevelController.playerHasHelmet = false;
         LevelController.playerHasArmor = false;
+        LevelController.playerHasFireBow = false;
+        LevelController.playerHasAchillesArmor = false;
+        LevelController.playerHasAchillesHelmet = false;
+        LevelController.playerHasShield = false;
     }
 
     public void ShowEndPanel()
@@ -219,6 +273,8 @@ public class Player : MonoBehaviour, IDamageable
         helmetSprite.GetComponent<SpriteRenderer>().flipX = GetComponent<SpriteRenderer>().flipX;
 
         if (!hasArmor && LevelController.playerHasArmor) EquipArmor();
+        if (!hasArmor && LevelController.playerHasAchillesArmor) EquipAchillesArmor();
+        if (!achillesHelmetEffect && LevelController.playerHasAchillesHelmet) EquipAchillesHelmet();
         if (!hasLavaBoots && LevelController.playerHasLavaBoots) EquipLavaBoots();
 
         switch (LevelController.playerBonusType)
@@ -241,6 +297,23 @@ public class Player : MonoBehaviour, IDamageable
             if (ambrosiaEffect) RemoveAmbrosiaEffect();
         }
         if (collision.name == "Boss1") TakeDamage(0.5f, collision.gameObject);
+    }
+
+    private void ShowArmorTakeDamage()
+    {
+        helmetSprite.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.5f, 0.5f, 1f);
+        achillesArmorSprite.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.5f, 0.5f, 1f);
+        achillesHelmetSprite.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.5f, 0.5f, 1f);
+        armorSprite.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.5f, 0.5f, 1f);
+        Invoke("StopShowDamage", 0.1f);
+    }
+
+    private void StopShowDamage()
+    {
+        helmetSprite.GetComponent<SpriteRenderer>().color = Color.white;
+        achillesArmorSprite.GetComponent<SpriteRenderer>().color = Color.white;
+        achillesHelmetSprite.GetComponent<SpriteRenderer>().color = Color.white;
+        armorSprite.GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     private void ApplyAmbrosiaEffect()
@@ -278,14 +351,14 @@ public class Player : MonoBehaviour, IDamageable
 
     public void EquipArmor()
     {
-        GetComponent<SpriteRenderer>().sprite = goldenArmorSprite;
+        armorSprite.SetActive(true);
         goldenArmorEffect = true;
         hasArmor = true;
     }
 
     public void RemoveArmor()
     {
-        GetComponent<SpriteRenderer>().sprite = defaultArmorSprite;
+        armorSprite.SetActive(false);
         goldenArmorEffect = false;
         hasArmor = false;
     }
@@ -300,5 +373,31 @@ public class Player : MonoBehaviour, IDamageable
     {
         lavaBoots.SetActive(false);
         hasLavaBoots = false;
+    }
+
+    public void EquipAchillesArmor()
+    {
+        achillesArmorSprite.SetActive(true);
+        achillesArmorEffect = true;
+        hasArmor = true;
+    }
+
+    public void RemoveAchillesArmor()
+    {
+        achillesArmorSprite.SetActive(false);
+        achillesArmorEffect = false;
+        hasArmor = false;
+    }
+
+    public void EquipAchillesHelmet()
+    {
+        achillesHelmetSprite.SetActive(true);
+        achillesHelmetEffect = true;
+    }
+
+    public void RemoveAchillesHelmet()
+    {
+        achillesHelmetSprite.SetActive(false);
+        achillesHelmetEffect = false;
     }
 }

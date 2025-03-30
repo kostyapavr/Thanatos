@@ -39,7 +39,7 @@ public class Fireball : MonoBehaviour, IShootable
     public virtual void Start()
     {
         GetComponent<Collider2D>().enabled = false;
-        if (OwnerType == "Enemy") Invoke("EnableCollider", 0.15f);
+        if (OwnerType == "Enemy") Invoke("EnableCollider", 0.1f);
         else Invoke("EnableCollider", 0.025f);
     }
 
@@ -63,7 +63,7 @@ public class Fireball : MonoBehaviour, IShootable
 
     private void DoAoA_Damage()
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 4f, transform.position);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 4f, transform.position, 0);
         if (hits.Where(x => x.collider != null && x.collider.GetComponent<Player>()).Count() > 0)
         {
             hits.First(x => x.collider.GetComponent<Player>()).collider.GetComponent<Player>().TakeDamage(0.5f, gameObject);
@@ -88,16 +88,13 @@ public class Fireball : MonoBehaviour, IShootable
 			Destroy();
 			return;
 		}
-		
+
+        DoAoA_Damage();
+
         if (damageable != null && collision.collider.tag != OwnerType)
         {
             damageable.TakeDamage(Damage, gameObject);
-            Destroy();
         }
-        else
-        {
-            DoAoA_Damage();
-            Destroy();
-        }
+        Destroy();
     }
 }

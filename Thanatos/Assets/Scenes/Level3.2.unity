@@ -7808,11 +7808,11 @@ PrefabInstance:
     - target: {fileID: 4967257267314230895, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: stonePrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 228300618774666987, guid: a252d5274a5da31458d4c2ed79ec8242, type: 3}
+      objectReference: {fileID: 8086417415032854992, guid: b053f5b2316d05b428f22beedb2c876b, type: 3}
     - target: {fileID: 4967257267314230895, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: stonePrefabs.Array.data[1]
       value: 
-      objectReference: {fileID: 3109828426935720649, guid: c7f9068fbc047fa45ad7ad397a639a34, type: 3}
+      objectReference: {fileID: 1723155293913808454, guid: 7248fe78f9c63344d879e7321910136d, type: 3}
     - target: {fileID: 7040495209026698511, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 688.71295

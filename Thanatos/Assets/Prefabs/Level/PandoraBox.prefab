@@ -417,6 +417,7 @@ MonoBehaviour:
   - {fileID: 1071950377741248178}
   - {fileID: 1665740767701347136}
   - {fileID: 6044529450389223701}
+  openedSprite: {fileID: 21300000, guid: bfe80b2bc243bf34799125161668d348, type: 3}
 --- !u!1 &4750658871694441717
 GameObject:
   m_ObjectHideFlags: 0

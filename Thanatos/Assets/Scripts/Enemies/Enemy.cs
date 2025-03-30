@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour, IDamageable
     protected virtual void SpawnRandomItem()
     {
         int rnd = Random.Range(0, 100);
-        if (rnd <= 4 && !isBoss)
+        if (rnd <= 1 && !isBoss)
         {
             if (helmetPrefab == null) return;
             if (!LevelController.playerHasHelmet)

@@ -46,6 +46,7 @@ public class Portal : MonoBehaviour
         if (currentName == "Level1_Boss") return "Level2.1";
         if (currentName == "Level2.4") return "Level2_Boss";
         if (currentName == "Level2_Boss") return "Level3.1";
+        if (currentName == "Level3.4") return "Level3_Boss";
 
         var splitResult = currentName.Split('.');
         int currentLevel = int.Parse(splitResult[0].Last().ToString());

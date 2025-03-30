@@ -107,7 +107,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1928116525
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 4f252937d9f0d37438898d792c2d4d45, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ea4f7233f042b4097c054f60cf3075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDropChance: 50
+  itemDropChance: 30
   dropItems:
   - {fileID: 1053340612470127474, guid: b34f3f8e102507641ad27c3c1564d35c, type: 3}
   - {fileID: 6185606649841456735, guid: 742f1f1d027de85429466a8b7ad73f7b, type: 3}
@@ -164,7 +164,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 7
+  m_Mass: 8
   m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0

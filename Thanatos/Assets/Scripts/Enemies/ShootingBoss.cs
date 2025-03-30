@@ -86,7 +86,7 @@ public class ShootingBoss : ShootingEnemy
         
         if (lavaBoots != null)
         {
-            Instantiate(lavaBoots, transform.position + Vector3.right * 2, Quaternion.identity);
+            Instantiate(lavaBoots, transform.position + Vector3.right * 4, Quaternion.identity);
         }
     }
 
@@ -101,8 +101,7 @@ public class ShootingBoss : ShootingEnemy
         GameObject pb = GameObject.Find("PandoraBox");
         if (pb)
         {
-            pb.GetComponent<SpriteRenderer>().enabled = true;
-            pb.GetComponent<Collider2D>().enabled = true;
+            pb.GetComponent<PandoraBox>().RevealBox();
         }
 
         Destroy(gameObject);

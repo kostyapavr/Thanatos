@@ -17,10 +17,11 @@ public class PlayerMovement : MonoBehaviour
     private int puddleAcceleration = 2;
     private int slowEffectAcceleration = 3;
     private int normalAcceleration = 7;
-    private int bothWeaponsAcceleration = 5;
+    private int bothWeaponsAcceleration = 6;
     private int onlySwordAcceleration = 8;
     private int helmetAcceleration = 9;
-    private bool hasFlipped = false;
+    [HideInInspector]
+    public bool hasFlipped = false;
 
     private bool isSlowedDown = false;
 
@@ -71,6 +72,18 @@ public class PlayerMovement : MonoBehaviour
         player.lavaBoots.transform.localPosition = new Vector3(-0.172f, player.lavaBoots.transform.localPosition.y, 0);
         player.lavaBoots.GetComponent<SpriteRenderer>().flipX = true;
 
+        player.armorSprite.transform.localPosition = new Vector3(-player.armorSprite.transform.localPosition.x, player.armorSprite.transform.localPosition.y, 0);
+        player.armorSprite.GetComponent<SpriteRenderer>().flipX = true;
+
+        player.achillesArmorSprite.transform.localPosition = new Vector3(-player.achillesArmorSprite.transform.localPosition.x, player.achillesArmorSprite.transform.localPosition.y, 0);
+        player.achillesArmorSprite.GetComponent<SpriteRenderer>().flipX = true;
+
+        player.achillesHelmetSprite.transform.localPosition = new Vector3(-player.achillesHelmetSprite.transform.localPosition.x, player.achillesHelmetSprite.transform.localPosition.y, 0);
+        player.achillesHelmetSprite.GetComponent<SpriteRenderer>().flipX = true;
+
+        player.shield.transform.localPosition = new Vector3(-player.shield.transform.localPosition.x, player.shield.transform.localPosition.y, 0);
+        player.shield.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 170);
 
@@ -97,6 +110,18 @@ public class PlayerMovement : MonoBehaviour
         player.lavaBoots.transform.localPosition = new Vector3(0.154f, player.lavaBoots.transform.localPosition.y, 0);
         player.lavaBoots.GetComponent<SpriteRenderer>().flipX = false;
 
+        player.armorSprite.transform.localPosition = new Vector3(-player.armorSprite.transform.localPosition.x, player.armorSprite.transform.localPosition.y, 0);
+        player.armorSprite.GetComponent<SpriteRenderer>().flipX = false;
+
+        player.achillesArmorSprite.transform.localPosition = new Vector3(-player.achillesArmorSprite.transform.localPosition.x, player.achillesArmorSprite.transform.localPosition.y, 0);
+        player.achillesArmorSprite.GetComponent<SpriteRenderer>().flipX = false;
+
+        player.achillesHelmetSprite.transform.localPosition = new Vector3(-player.achillesHelmetSprite.transform.localPosition.x, player.achillesHelmetSprite.transform.localPosition.y, 0);
+        player.achillesHelmetSprite.GetComponent<SpriteRenderer>().flipX = false;
+
+        player.shield.transform.localPosition = new Vector3(-player.shield.transform.localPosition.x, player.shield.transform.localPosition.y, 0);
+        player.shield.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 58);
 
@@ -106,12 +131,12 @@ public class PlayerMovement : MonoBehaviour
     void CheckAcceleration()
     {
         if (isSlowedDown) return;
-        if (LevelController.playerHasBow && LevelController.playerHasSword && LevelController.currentPlayerWeapon.Name.Contains("Bow"))
+        if ((LevelController.playerHasBow || LevelController.playerHasFireBow) && LevelController.currentPlayerWeapon.Name.Contains("Bow"))
         {
             acceleration = bothWeaponsAcceleration;
             normalAcceleration = bothWeaponsAcceleration;
         }
-        else if (LevelController.playerHasSword && (!LevelController.playerHasBow || LevelController.currentPlayerWeapon.Name.Contains("Sword")))
+        else if (LevelController.playerHasSword && LevelController.currentPlayerWeapon.Name.Contains("Sword"))
         {
             acceleration = LevelController.playerHasHelmet ? helmetAcceleration : onlySwordAcceleration;
             normalAcceleration = acceleration;

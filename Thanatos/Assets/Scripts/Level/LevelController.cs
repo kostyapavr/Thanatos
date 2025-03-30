@@ -7,19 +7,28 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
+    public static int maxArmorHP = 25;
+    public static int maxHelmetHP = 30;
+
     public static int aliveEnemies = 0;
     public static float playerHp = 0;
     public static bool playerHasBow;
     public static bool playerHasSword;
     public static bool playerHasHelmet;
+    public static bool playerHasAchillesHelmet;
+    public static bool playerHasAchillesArmor;
     public static bool playerHasArmor;
+    public static bool playerHasFireBow;
+    public static bool playerHasShield = false;
+    public static bool playerShieldActive = false;
     public static bool isBossLevel;
     public static bool playerIsGod = false;
     public static List<IPickupableWeapon> playerWeapons = new List<IPickupableWeapon>();
     public static IPickupableWeapon currentPlayerWeapon;
     public static bool isNormalDifficulty = true;
-    public static int helmetHP = 20;
-    public static int armorHP = 15;
+    public static int helmetHP = maxHelmetHP;
+    public static int armorHP = maxArmorHP;
+    public static int lavaBootsHP = 50;
     public static BonusTypes playerBonusType = BonusTypes.None;
     public static bool playerHasLavaBoots = false;
 
@@ -49,11 +58,16 @@ public class LevelController : MonoBehaviour
             playerHp = 0;
             playerHasBow = false;
             playerHasSword = false;
+            playerHasShield = false;
             playerHasHelmet = false;
+            playerHasAchillesArmor = false;
+            playerHasAchillesHelmet = false;
+            playerHasArmor = false;
+            playerHasLavaBoots = false;
             isBossLevel = false;
             isNormalDifficulty = true;
         }
-
+        aliveEnemies = 0;
         if (sceneName.Contains("Boss")) SetBossLevel();
     }
 
@@ -72,22 +86,38 @@ public class LevelController : MonoBehaviour
     {
         playerHp = FindObjectOfType<Player>().currentHealth;
 
-        if (playerHasHelmet)
+        if (playerHasHelmet || playerHasAchillesHelmet)
         {
             helmetHP--;
             if (helmetHP <= 0)
             {
-                FindObjectOfType<Player>().GetComponent<PlayerMovement>().helmet.gameObject.SetActive(false);
-                playerHasHelmet = false;
+                if (playerHasHelmet)
+                {
+                    FindObjectOfType<Player>().GetComponent<PlayerMovement>().helmet.gameObject.SetActive(false);
+                    playerHasHelmet = false;
+                }
+                else if (playerHasAchillesHelmet)
+                {
+                    FindObjectOfType<Player>().RemoveAchillesHelmet();
+                    playerHasAchillesHelmet = false;
+                }
             }
         }
-        if (playerHasArmor)
+        if (playerHasArmor || playerHasAchillesArmor)
         {
             armorHP--;
             if (armorHP <= 0)
             {
-                FindObjectOfType<Player>().RemoveArmor();
-                playerHasArmor = false;
+                if (playerHasAchillesArmor)
+                {
+                    FindObjectOfType<Player>().RemoveAchillesArmor();
+                    playerHasAchillesArmor = false;
+                }
+                else if (playerHasArmor)
+                {
+                    FindObjectOfType<Player>().RemoveArmor();
+                    playerHasArmor = false;
+                }
             }
         }
     }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3429202732224066380}
   - component: {fileID: 5299341600661177827}
   - component: {fileID: 5377022314989115010}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Boss3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 1877340270850764688}
   - component: {fileID: 1634478234819251949}
   - component: {fileID: 306502085513966066}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 6564680584205591237}
   - component: {fileID: 2282556839173218275}
   - component: {fileID: 210951481046554003}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HP-Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4005850765509708950}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: FireballSpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 8970872836263182465}
   - component: {fileID: 1865444791667336722}
   - component: {fileID: 4699719687017941}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -7,18 +7,32 @@ public class PandoraBox : MonoBehaviour
     public GameObject interactButton;
     public GameObject[] dropItems;
     public Transform[] lootSpawns;
+    public Sprite openedSprite;
     private bool canIteract = false;
+    private bool boxRevealed = false;
+    private bool boxOpened = false;
+
+    private void Start()
+    {
+        HideBox();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        canIteract = true;
-        interactButton.SetActive(true);
+        if (boxRevealed && !boxOpened)
+        {
+            canIteract = true;
+            interactButton.SetActive(true);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        canIteract = false;
-        interactButton.SetActive(false);
+        if (boxRevealed && !boxOpened)
+        {
+            canIteract = false;
+            interactButton.SetActive(false);
+        }
     }
 
     private void Update()
@@ -27,7 +41,7 @@ public class PandoraBox : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                OpenBox();
+                if (!boxOpened) OpenBox();
             }
         }
     }
@@ -41,5 +55,23 @@ public class PandoraBox : MonoBehaviour
             int rnd = Random.Range(0, dropItems.Length);
             Instantiate(dropItems[rnd], t.position, t.rotation);
         }
+
+        GetComponent<SpriteRenderer>().sprite = openedSprite;
+        boxOpened = true;
+        interactButton.SetActive(false);
+    }
+
+    public void RevealBox()
+    {
+        boxRevealed = true;
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
+    }
+
+    public void HideBox()
+    {
+        boxRevealed = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 }

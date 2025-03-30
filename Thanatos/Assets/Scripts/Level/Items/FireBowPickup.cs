@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FireBowPickup : MonoBehaviour, IPickupableWeapon
 {
@@ -22,18 +23,19 @@ public class FireBowPickup : MonoBehaviour, IPickupableWeapon
 
     public virtual void Pickup()
     {
-        if (LevelController.playerHasBow) return;
         PlayerPrefs.SetInt("HasFireBow", 1);
         PlayerPrefs.Save();
-        LevelController.playerHasBow = true;
+        if (LevelController.playerHasBow && SceneManager.GetActiveScene().buildIndex == 1) return;
+        LevelController.playerHasBow = false;
+        LevelController.playerHasFireBow = true;
         LevelController.currentPlayerWeapon = this;
-        LevelController.playerPickupItemEvent.Invoke();
         LevelController.playerWeapons.Add(this);
+        LevelController.playerPickupItemEvent.Invoke();
         Destroy(gameObject);
     }
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("HasFireBow") == 0) gameObject.SetActive(false);
+        if (PlayerPrefs.GetInt("HasFireBow") == 0 && SceneManager.GetActiveScene().buildIndex != 16) gameObject.SetActive(false);
     }
 }

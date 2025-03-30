@@ -107,7 +107,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1928116525
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 617ee57a2146bfd4d8f0a4b3f40d001e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -131,20 +131,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ea4f7233f042b4097c054f60cf3075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDropChance: 20
+  itemDropChance: 80
   dropItems:
   - {fileID: 33841420135341204, guid: 4e3cb97225af53942a45c979d7a68d6d, type: 3}
   - {fileID: 1053340612470127474, guid: b34f3f8e102507641ad27c3c1564d35c, type: 3}
   - {fileID: 7819326001113033101, guid: 7764afdc9fcd53f43919fb78589e736d, type: 3}
+  - {fileID: 2594602861398474934, guid: b12e571ae13316549a1a90eb5350c0e5, type: 3}
+  - {fileID: 7764764626976366879, guid: 9412c81ef9da33c4599e0d0465f698a7, type: 3}
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   isBoss: 0
-  minHealth: 4
-  maxHealth: 5
+  minHealth: 5
+  maxHealth: 6
   attackIntervalMin: 3
   attackIntervalMax: 4
-  damage: 1.5
-  moveSpeedMin: 2.5
-  moveSpeedMax: 4
+  damage: 2.5
+  moveSpeedMin: 3.5
+  moveSpeedMax: 5
   obstacleDetectSize: 5
   player: {fileID: 0}
   attackRange: 6
@@ -163,8 +165,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDrag: 1
+  m_Mass: 200
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

@@ -80,11 +80,10 @@ public class ShootingEnemy : Enemy
         Vector2 diff = player.transform.position - transform.position;
         if (shootAhead) diff = ((Vector2)player.transform.position + player.GetComponent<Rigidbody2D>().velocity*0.3f) - (Vector2)transform.position;
         float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        float spreadAngle = angle + Random.Range(-ammoSpread, ammoSpread + 1);
+        float spreadAngle = angle + Random.Range(LevelController.playerHasAchillesHelmet ? -ammoSpread*2 : -ammoSpread, LevelController.playerHasAchillesHelmet ? ammoSpread*2 + 1 : ammoSpread + 1);
         Vector2 direction = Quaternion.AngleAxis(spreadAngle - angle, Vector3.forward) * diff.normalized;
 
         if (!spriteRenderer.flipX && direction.x < 0)
-
             spriteRenderer.flipX = true;
         else if (spriteRenderer.flipX && direction.x > 0)
             spriteRenderer.flipX = false;

@@ -22,8 +22,9 @@ public class BowPickup : MonoBehaviour, IPickupableWeapon
 
     public virtual void Pickup()
     {
-        if (LevelController.playerHasBow) return;
+        if (LevelController.playerHasBow || LevelController.playerHasSword || LevelController.playerHasFireBow) return;
         LevelController.playerHasBow = true;
+        LevelController.playerHasFireBow = false;
         LevelController.currentPlayerWeapon = this;
         LevelController.playerPickupItemEvent.Invoke();
         LevelController.playerWeapons.Add(this);

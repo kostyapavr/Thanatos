@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1005360532510417381}
   - component: {fileID: 4427781438607361214}
   - component: {fileID: 6643429711940440693}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 3822559351924061919}
   - component: {fileID: 7892291045828755284}
   - component: {fileID: 5507760336078473348}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 6366919672162470193}
   - component: {fileID: 6200398569751955081}
   - component: {fileID: 7027660234300913663}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: HP-Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4223531046982877345}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: FireballSpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 8309290163721638265}
   - component: {fileID: 1231178815454012159}
   - component: {fileID: 5482720286418264370}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Boss1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -455,6 +455,8 @@ MonoBehaviour:
   ammoSpeedMax: 90
   ammoSpread: 5
   ammoPrefab: {fileID: 7703349128565279827, guid: 6637c78fca72a3c4183529d615053b79, type: 3}
+  normalSprite: {fileID: 0}
+  aimSprite: {fileID: 0}
   shootingRange: 60
   PlayerMask:
     serializedVersion: 2
@@ -466,6 +468,7 @@ MonoBehaviour:
   fireballGrowPosition: {fileID: 4223531046982877345}
   fireballGrow: {fileID: 7703349128565279827, guid: 2b45daf21d7239843afec94b9283b484, type: 3}
   maxGrowSize: 0.19
+  lavaBoots: {fileID: 0}
 --- !u!50 &1231178815454012159
 Rigidbody2D:
   serializedVersion: 4

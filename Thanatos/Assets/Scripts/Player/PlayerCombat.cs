@@ -26,6 +26,9 @@ public class PlayerCombat : MonoBehaviour
     private float attackDelay = 1.0f;
     private float time = 0.0f;
 
+    [HideInInspector]
+    public bool isAttacking = false;
+
     //private ItemManager itemManager;
 
     private void Start()
@@ -54,14 +57,17 @@ public class PlayerCombat : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (currentWeapon == null)
+            if (LevelController.currentPlayerWeapon == null)
             {
                 Debug.Log("Current weapon is null!");
                 return;
             }
-            enemy.GetComponent<Enemy>().TakeDamage(currentWeapon.Damage);
+            enemy.GetComponent<Enemy>().TakeDamage(LevelController.currentPlayerWeapon.Damage);
         }
 
+        //Debug.Log($"Enemies: {LevelController.aliveEnemies}");
+
+        isAttacking = true;
         animator.enabled = true;
         //animator.SetBool("IsSwordAttack", true);
         Invoke("StopAnim", 0.25f);
@@ -69,6 +75,7 @@ public class PlayerCombat : MonoBehaviour
 
     void StopAnim()
     {
+        isAttacking = false;
         animator.enabled = false;
         //animator.SetBool("IsSwordAttack", false);
         GetComponent<SpriteRenderer>().sprite = swordPlayerSprite;
