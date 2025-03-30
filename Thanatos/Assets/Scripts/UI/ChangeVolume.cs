@@ -20,7 +20,6 @@ public class ChangeVolume : MonoBehaviour
 
     public void Change(float value)
     {
-        Debug.Log(value);
         mixer.SetFloat("MusicVol", Mathf.Log10(value) * 20);
         musicVolume = value;
     }

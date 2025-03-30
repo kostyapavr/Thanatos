@@ -40,9 +40,11 @@ public class Bow : MonoBehaviour
 
     void Update()
     {
+        bowSprite.enabled = false;
         if (LevelController.playerHasBow)
         {
             bowSprite.enabled = true;
+            bowSprite.sprite = normalSprite;
         }
         if (LevelController.playerHasFireBow)
         {
@@ -98,12 +100,12 @@ public class Bow : MonoBehaviour
     {
         float boost = chargeTime / (LevelController.playerHasHelmet ? maxChargeTime - 1.5f : maxChargeTime);
         Rigidbody2D rb;
-        if (LevelController.currentPlayerWeapon.Name == "Fire Bow") rb = Instantiate(FireArrow, point.position, point.rotation).GetComponent<Rigidbody2D>();
+        if (LevelController.playerHasFireBow) rb = Instantiate(FireArrow, point.position, point.rotation).GetComponent<Rigidbody2D>();
         else rb = Instantiate(Arrow, point.position, point.rotation).GetComponent<Rigidbody2D>();
         rb.GetComponent<Arrow>().OwnerType = "Player";
         rb.GetComponent<Arrow>().OwnerID = gameObject.GetInstanceID();
         rb.GetComponent<Arrow>().Damage += boost;
-        if (LevelController.currentPlayerWeapon.Name == "Fire Bow") rb.GetComponent<Arrow>().damageEffect = DamageEffects.StopOneShot;
+        if (LevelController.playerHasFireBow) rb.GetComponent<Arrow>().damageEffect = DamageEffects.StopOneShot;
         rb.AddForce(direction * arrowSpeed * (1 + boost) + (Vector3)player.GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
         player.TakeArrow();
     }

@@ -5,18 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    
-    void Start()
-    {
-        
-    }
-
+    public GameObject settingsPanel;
+    [HideInInspector]
+    public bool isInSettings = false;
     
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Unpause();
+            if (isInSettings) CloseSettings();
+            else Unpause();
         }
     }
 
@@ -24,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         gameObject.SetActive(false);
+        isInSettings = false;
     }
 
     public void ToMenu()
@@ -32,5 +31,17 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         LevelController.DestroyController();
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void OpenSettings()
+    {
+        settingsPanel.SetActive(true);
+        isInSettings = true;
+    }
+
+    public void CloseSettings()
+    {
+        settingsPanel.SetActive(false);
+        isInSettings = false;
     }
 }

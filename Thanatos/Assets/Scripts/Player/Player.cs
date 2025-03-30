@@ -86,15 +86,18 @@ public class Player : MonoBehaviour, IDamageable
             BookScript bs = FindObjectOfType<BookScript>();
             if (bs == null || !bs.isOpen)
             {
-                if (pauseMenu.activeSelf)
+                if (!pauseMenu.GetComponent<PauseMenu>().isInSettings)
                 {
-                    pauseMenu.SetActive(false);
-                    Time.timeScale = 1;
-                }
-                else
-                {
-                    pauseMenu.SetActive(true);
-                    Time.timeScale = 0;
+                    if (pauseMenu.activeSelf)
+                    {
+                        pauseMenu.SetActive(false);
+                        Time.timeScale = 1;
+                    }
+                    else
+                    {
+                        pauseMenu.SetActive(true);
+                        Time.timeScale = 0;
+                    }
                 }
             }
         }

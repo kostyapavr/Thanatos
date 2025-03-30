@@ -12,22 +12,73 @@ public class BowPickup : MonoBehaviour, IPickupableWeapon
 
     public float Damage { get => damage; }
 
+    public GameObject interactButton;
+    private bool canInteract = false;
+    public GameObject swordPrefab;
+    public GameObject fireBowPrefab;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            Pickup();
+            ShowInteract();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            HideInteract();
         }
     }
 
     public virtual void Pickup()
     {
-        if (LevelController.playerHasBow || LevelController.playerHasSword || LevelController.playerHasFireBow) return;
         LevelController.playerHasBow = true;
+        CheckSwitch();
+        LevelController.playerHasSword = false;
         LevelController.playerHasFireBow = false;
         LevelController.currentPlayerWeapon = this;
         LevelController.playerPickupItemEvent.Invoke();
         LevelController.playerWeapons.Add(this);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().SelectWeapon(this);
         Destroy(gameObject);
+    }
+
+    void ShowInteract()
+    {
+        interactButton.SetActive(true);
+        canInteract = true;
+    }
+
+    void HideInteract()
+    {
+        interactButton.SetActive(false);
+        canInteract = false;
+    }
+
+    private void LateUpdate()
+    {
+        if (canInteract)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Pickup();
+            }
+        }
+    }
+
+    private void CheckSwitch()
+    {
+        var p = transform.position;
+        if (LevelController.playerHasSword)
+        {
+            Instantiate(swordPrefab, p, Quaternion.identity);
+        }
+        if (LevelController.playerHasFireBow)
+        {
+            Instantiate(fireBowPrefab, p, Quaternion.identity);
+        }
     }
 }

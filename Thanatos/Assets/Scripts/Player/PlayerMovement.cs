@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform helmet;
     public Transform bowShootPos;
     public Player player;
+    public Shield shield;
 
     private int slowAcceleration = 1;
     private int puddleAcceleration = 2;
@@ -40,11 +41,11 @@ public class PlayerMovement : MonoBehaviour
     {
         inputVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
-        if (inputVector.x < 0.0f && !hasFlipped && !bow.GetComponent<Bow>().isCharging)
+        if (inputVector.x < 0.0f && !hasFlipped && !bow.GetComponent<Bow>().isCharging && !shield.anim)
         {
             FlipPlayer();
         }
-        else if (inputVector.x > 0.0f && hasFlipped && !bow.GetComponent<Bow>().isCharging)
+        else if (inputVector.x > 0.0f && hasFlipped && !bow.GetComponent<Bow>().isCharging && !shield.anim)
         {
             UnflipPlayer();
         }

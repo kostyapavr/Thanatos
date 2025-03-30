@@ -10,17 +10,18 @@ public class Shield : MonoBehaviour
     bool shieldVisible = false;
     bool shieldActive = false;
 
-    private float attackDelay = 2f;
+    private float attackDelay = 1.5f;
     private float time = 0.0f;
 
-    private bool anim = false;
+    [HideInInspector]
+    public bool anim = false;
     private int animCnt = 0;
     private int animMaxCnt = 8;
 
     private float animFrameInterval = 0.2f;
     private float animTime = 0.0f;
 
-    private Vector3 animMoveVector = new Vector3(0.25f, 0, 0);
+    private Vector3 animMoveVector = new Vector3(0.4f, 0, 0);
     private int vectMult = 1;
 
     public void HideShield()
@@ -80,11 +81,11 @@ public class Shield : MonoBehaviour
                 if (animCnt >= animMaxCnt / 2)
                 {
 
-                    transform.position -= animMoveVector * vectMult;
+                    transform.localPosition -= animMoveVector * vectMult;
                 }
                 else
                 {
-                    transform.position += animMoveVector * vectMult;
+                    transform.localPosition += animMoveVector * vectMult;
                 }
 
                 animCnt++;
@@ -95,7 +96,7 @@ public class Shield : MonoBehaviour
 
     void Attack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 3f, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 4f, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {

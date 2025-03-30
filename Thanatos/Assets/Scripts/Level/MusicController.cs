@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,19 @@ public class MusicController : MonoBehaviour
 
     void CheckScene(Scene arg0, LoadSceneMode arg1)
     {
+        var x = FindObjectsOfType<MusicController>();
+        if (x.Length > 1)
+        {
+            for (int i = 0; i < x.Length - 1; i++)
+            {
+                if (x[i] != this)
+                    Destroy(x[i].gameObject);
+            }
+            return;
+        }
+
+        if (audioSource.IsDestroyed()) return;
+
         if (arg0.buildIndex <= 1 && audioSource.clip != menuClip)
         {
             audioSource.Stop();

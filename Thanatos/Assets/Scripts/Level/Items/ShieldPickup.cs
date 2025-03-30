@@ -19,21 +19,20 @@ public class ShieldPickup : MonoBehaviour, IPickupableWeapon
     {
         if (collision.tag == "Player")
         {
-            Pickup();
+            DisplayInteract();
         }
     }
 
-    /*private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            if (canInteract) HideInteract();
+            HideInteract();
         }
-    }*/
+    }
 
     public void Pickup()
     {
-        if (LevelController.playerHasShield) return;
         /*if (LevelController.playerHas)
         {
             DisplayInteract();
@@ -69,14 +68,27 @@ public class ShieldPickup : MonoBehaviour, IPickupableWeapon
         switchButton.SetActive(false);
     }
 
-    /*private void LateUpdate()
+    private void LateUpdate()
     {
         if (canInteract)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                SwitchHelmets();
+                Pickup();
             }
+        }
+    }
+
+    /*private void CheckSwitch()
+    {
+        var p = transform.position;
+        if (LevelController.playerHasBow)
+        {
+            Instantiate(bowPrefab, p, Quaternion.identity);
+        }
+        if (LevelController.playerHasSword)
+        {
+            Instantiate(swordPrefab, p, Quaternion.identity);
         }
     }*/
 }
