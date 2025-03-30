@@ -16,13 +16,15 @@ public class Shield : MonoBehaviour
     [HideInInspector]
     public bool anim = false;
     private int animCnt = 0;
-    private int animMaxCnt = 8;
+    private int animMaxCnt = 12;
 
-    private float animFrameInterval = 0.2f;
+    private float animFrameInterval = 0.1f;
     private float animTime = 0.0f;
 
-    private Vector3 animMoveVector = new Vector3(0.4f, 0, 0);
+    private Vector3 animMoveVector = new Vector3(0.15f, 0, 0);
     private int vectMult = 1;
+
+    public GameObject defendShieldPos;
 
     public void HideShield()
     {
@@ -42,7 +44,7 @@ public class Shield : MonoBehaviour
     {
         if (shieldVisible)
         {
-            if (time <= 0.0f && Input.GetMouseButtonDown(0))
+            if (time <= 0.0f && Input.GetMouseButtonDown(0) && !shieldActive)
             {
                 Attack();
                 time = attackDelay;
@@ -55,6 +57,8 @@ public class Shield : MonoBehaviour
             if (Input.GetMouseButton(1))
             {
                 shieldActive = true;
+                defendShieldPos.SetActive(true);
+                spriteRenderer.enabled = false;
                 LevelController.playerShieldActive = true;
                 player.GetComponent<PlayerMovement>().SlowDown();
             }
@@ -62,6 +66,8 @@ public class Shield : MonoBehaviour
             if (Input.GetMouseButtonUp(1))
             {
                 shieldActive = false;
+                defendShieldPos.SetActive(false);
+                spriteRenderer.enabled = true;
                 LevelController.playerShieldActive = false;
                 player.GetComponent<PlayerMovement>().ReturnToNormalSpeed();
             }
@@ -96,7 +102,7 @@ public class Shield : MonoBehaviour
 
     void Attack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 4f, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, 5f, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {

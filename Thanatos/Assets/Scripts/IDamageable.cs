@@ -9,4 +9,4 @@ public interface IDamageable
     public void TakeDamage(float damage, GameObject sender = null, DamageEffects damageEffect = DamageEffects.Nothing);
 }
 
-public enum DamageEffects { Nothing, SlowDown, StopOneShot, SetOnFire }
+public enum DamageEffects { Nothing, SlowDown, StopOneShot, SetOnFire, BypassShield }

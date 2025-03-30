@@ -210,7 +210,7 @@ public class Player : MonoBehaviour, IDamageable
     {
         if (gameObject == sender || godMode) return;
 
-        if (LevelController.playerShieldActive) return;
+        if (LevelController.playerShieldActive && damageEffect != DamageEffects.BypassShield) return;
 
         if (miasmaEffect) damage += 0.5f;
         if (ambrosiaEffect)

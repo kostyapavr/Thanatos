@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform bow;
     public Transform helmet;
     public Transform bowShootPos;
+    public Transform defendShieldPos;
     public Player player;
     public Shield shield;
 
@@ -85,6 +86,9 @@ public class PlayerMovement : MonoBehaviour
         player.shield.transform.localPosition = new Vector3(-player.shield.transform.localPosition.x, player.shield.transform.localPosition.y, 0);
         player.shield.gameObject.GetComponent<SpriteRenderer>().flipX = true;
 
+        defendShieldPos.localPosition = new Vector3(-defendShieldPos.localPosition.x, defendShieldPos.localPosition.y, 0);
+        defendShieldPos.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 170);
 
@@ -122,6 +126,9 @@ public class PlayerMovement : MonoBehaviour
 
         player.shield.transform.localPosition = new Vector3(-player.shield.transform.localPosition.x, player.shield.transform.localPosition.y, 0);
         player.shield.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
+        defendShieldPos.localPosition = new Vector3(-defendShieldPos.localPosition.x, defendShieldPos.localPosition.y, 0);
+        defendShieldPos.gameObject.GetComponent<SpriteRenderer>().flipX = false;
 
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 58);

@@ -66,7 +66,7 @@ public class Fireball : MonoBehaviour, IShootable
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 4f, transform.position, 0);
         if (hits.Where(x => x.collider != null && x.collider.GetComponent<Player>()).Count() > 0)
         {
-            hits.First(x => x.collider.GetComponent<Player>()).collider.GetComponent<Player>().TakeDamage(0.5f, gameObject);
+            hits.First(x => x.collider.GetComponent<Player>()).collider.GetComponent<Player>().TakeDamage(0.5f, gameObject, DamageEffects.BypassShield);
         }
     }
 

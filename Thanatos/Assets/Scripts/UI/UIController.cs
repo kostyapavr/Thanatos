@@ -39,7 +39,7 @@ public class UIController : MonoBehaviour
             }
         }
 
-        if (LevelController.playerHasBow)
+        if (LevelController.playerHasBow || LevelController.playerHasFireBow)
         {
             arrowIcon.SetActive(true);
         }
