@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform helmet;
     public Transform bowShootPos;
     public Transform defendShieldPos;
+    public Transform harpeSwordPos;
+    public Transform peleusSwordPos;
     public Player player;
     public Shield shield;
 
@@ -89,6 +91,12 @@ public class PlayerMovement : MonoBehaviour
         defendShieldPos.localPosition = new Vector3(-defendShieldPos.localPosition.x, defendShieldPos.localPosition.y, 0);
         defendShieldPos.gameObject.GetComponent<SpriteRenderer>().flipX = true;
 
+        harpeSwordPos.localPosition = new Vector3(-harpeSwordPos.localPosition.x, harpeSwordPos.localPosition.y, 0);
+        harpeSwordPos.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
+        peleusSwordPos.localPosition = new Vector3(-peleusSwordPos.localPosition.x, peleusSwordPos.localPosition.y, 0);
+        peleusSwordPos.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 170);
 
@@ -129,6 +137,12 @@ public class PlayerMovement : MonoBehaviour
 
         defendShieldPos.localPosition = new Vector3(-defendShieldPos.localPosition.x, defendShieldPos.localPosition.y, 0);
         defendShieldPos.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
+        harpeSwordPos.localPosition = new Vector3(-harpeSwordPos.localPosition.x, harpeSwordPos.localPosition.y, 0);
+        harpeSwordPos.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
+        peleusSwordPos.localPosition = new Vector3(-peleusSwordPos.localPosition.x, peleusSwordPos.localPosition.y, 0);
+        peleusSwordPos.gameObject.GetComponent<SpriteRenderer>().flipX = false;
 
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 58);

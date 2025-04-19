@@ -14,6 +14,8 @@ public class LevelController : MonoBehaviour
     public static float playerHp = 0;
     public static bool playerHasBow;
     public static bool playerHasSword;
+    public static bool playerHasHarpeSword;
+    public static bool playerHasPeleusSword;
     public static bool playerHasHelmet;
     public static bool playerHasAchillesHelmet;
     public static bool playerHasAchillesArmor;
