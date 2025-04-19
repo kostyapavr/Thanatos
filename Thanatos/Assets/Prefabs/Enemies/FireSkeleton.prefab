@@ -173,9 +173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveIntervalMin: 1.5
-  moveIntervalMax: 3
+  moveIntervalMax: 2.5
   moveSpeed: 7
-  moveDistance: 15
+  moveDistance: 20
 --- !u!50 &1231178815454012159
 Rigidbody2D:
   serializedVersion: 4

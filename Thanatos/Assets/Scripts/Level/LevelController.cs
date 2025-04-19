@@ -56,6 +56,7 @@ public class LevelController : MonoBehaviour
         {
             aliveEnemies = 0;
             playerHp = 0;
+            playerHasFireBow = false;
             playerHasBow = false;
             playerHasSword = false;
             playerHasShield = false;
