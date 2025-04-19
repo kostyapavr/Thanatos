@@ -1,34 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class RandomMovement : MonoBehaviour
+public class EnemyArcherMovement : MonoBehaviour
 {
-    public float moveIntervalMin = 2.0f;
-    public float moveIntervalMax = 5.0f;
-    public float moveSpeed = 5;
-    public float moveDistance = 5;
+    public float moveIntervalMin;
+    public float moveIntervalMax;
+    public float moveSpeed;
+    public float moveDistance;
 
     private Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
+    private Transform playerTransform;
     private int obstacleMask;
 
-    public void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         obstacleMask = LayerMask.GetMask("Obstacle");
-        InvokeRepeating("MoveRandomly", moveIntervalMin, Random.Range(moveIntervalMin, moveIntervalMax));
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        InvokeRepeating("MoveTowardsPlayer", moveIntervalMin, Random.Range(moveIntervalMin, moveIntervalMax));
     }
 
-    private void MoveRandomly()
+    private void MoveTowardsPlayer()
     {
-        Vector2 direction = GenDirection();
+        Vector2 direction = GetDirectionToPlayer();
         float distance = Random.Range(moveDistance / 2, moveDistance);
 
         rb.velocity = direction * moveSpeed;
-
         Invoke("StopMoving", distance / moveSpeed);
     }
 
@@ -37,21 +35,11 @@ public class RandomMovement : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    Vector2 GenDirection()
+    Vector2 GetDirectionToPlayer()
     {
-        Vector2 direction = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction, 15, obstacleMask);
-        if (!hit) return direction;
+        if (playerTransform == null)
+            return Vector2.zero;
 
-        int iter = 0;
-        while (hit.collider != null)
-        {
-            if (iter >= 10) break;
-            direction = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
-            hit = Physics2D.Raycast((Vector2)transform.position, direction, 15, obstacleMask);
-            iter++;
-        }
-        
-        return direction;
+        return (playerTransform.position - transform.position).normalized;
     }
 }
