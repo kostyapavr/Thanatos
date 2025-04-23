@@ -89,6 +89,17 @@ public class Bow : MonoBehaviour
                 if (LevelController.playerHasFireBow) bowSprite.sprite = fireBowSprite;
                 bowShootPosition.SetActive(false);
             }
+            if (Input.GetMouseButtonUp(1) && isCharging)
+            {
+                delay = delayLength;
+                bowCharge.fillAmount = 0;
+                chargeTime = 0;
+                isCharging = false;
+                player.GetComponent<PlayerMovement>().ReturnToNormalSpeed();
+                bowSprite.enabled = true;
+                if (LevelController.playerHasFireBow) bowSprite.sprite = fireBowSprite;
+                bowShootPosition.SetActive(false);
+            }
         }
         else
         {
@@ -127,6 +138,7 @@ public class Bow : MonoBehaviour
     public void HideBow()
     {
         canShoot = false;
+        bowSprite.enabled = false;
         gameObject.SetActive(false);
     }
 
@@ -134,7 +146,8 @@ public class Bow : MonoBehaviour
     {
         canShoot = true;
         gameObject.SetActive(true);
-        player.GetComponent<SpriteRenderer>().sprite = normalSprite;
+        bowSprite.enabled = true;
+        bowSprite.sprite = normalSprite;
         if (LevelController.currentPlayerWeapon.Name == "Fire Bow")
         {
             bowSprite.sprite = fireBowSprite;

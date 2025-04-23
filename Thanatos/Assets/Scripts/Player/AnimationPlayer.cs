@@ -7,7 +7,7 @@ public class AnimationPlayer : MonoBehaviour
     private PlayerMovement player;
     private bool isRunning = false;
     private float tmr = 0.0f;
-    private float animDelay = 0.25f;
+    private float animDelay = 0.075f;
     private int curSprite = 0;
 
     public SpriteRenderer legs;
@@ -25,14 +25,23 @@ public class AnimationPlayer : MonoBehaviour
         {
             if (tmr <= 0.0f)
             {
-                legs.sprite = legSprites[(curSprite + 1) % legSprites.Count];
-                tmr = animDelay;
+                if (curSprite >= legSprites.Count) curSprite = 0;
+                legs.sprite = legSprites[curSprite];
+                tmr = animDelay / (player.acceleration/7.0f);
+                curSprite++;
             }
-            else tmr -= Time.fixedDeltaTime;
+            else tmr -= Time.deltaTime;
         }
-        else
-        {
-            if (legs != null && legs.sprite != legSprites[0]) legs.sprite = legSprites[0];
-        }
+    }
+
+    public void SetRunning()
+    {
+        isRunning = true;
+    }
+
+    public void SetStopped()
+    {
+        isRunning = false;
+        if (legs != null && legs.sprite != legSprites[0]) legs.sprite = legSprites[0];
     }
 }

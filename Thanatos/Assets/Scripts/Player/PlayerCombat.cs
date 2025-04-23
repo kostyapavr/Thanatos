@@ -68,9 +68,9 @@ public class PlayerCombat : MonoBehaviour
         //Debug.Log($"Enemies: {LevelController.aliveEnemies}");
 
         isAttacking = true;
-        animator.enabled = true;
+        //animator.enabled = true;
         //animator.SetBool("IsSwordAttack", true);
-        Invoke("StopAnim", 0.25f);
+        //Invoke("StopAnim", 0.25f);
     } 
 
     void StopAnim()
@@ -84,13 +84,13 @@ public class PlayerCombat : MonoBehaviour
     public void HideSword()
     {
         //swordSprite.SetActive(false);
-        GetComponent<SpriteRenderer>().sprite = normalSprite;
+        //GetComponent<SpriteRenderer>().sprite = normalSprite;
         isHidden = true;
     }
 
     public void ShowSword()
     {
-        GetComponent<SpriteRenderer>().sprite = swordPlayerSprite;
+        //GetComponent<SpriteRenderer>().sprite = swordPlayerSprite;
         //swordSprite.SetActive(true);
         isHidden = false;
     }

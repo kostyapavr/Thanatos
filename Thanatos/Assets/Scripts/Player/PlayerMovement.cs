@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 inputVector = new Vector2(0.0f, 0.0f);
     [HideInInspector] public int acceleration;
+    public AnimationPlayer playerAnim;
     public Transform attackPoint;
     public Transform bow;
     public Transform helmet;
@@ -14,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform defendShieldPos;
     public Transform harpeSwordPos;
     public Transform peleusSwordPos;
+    public Transform legs;
     public Player player;
     public Shield shield;
 
@@ -97,6 +99,9 @@ public class PlayerMovement : MonoBehaviour
         peleusSwordPos.localPosition = new Vector3(-peleusSwordPos.localPosition.x, peleusSwordPos.localPosition.y, 0);
         peleusSwordPos.gameObject.GetComponent<SpriteRenderer>().flipX = true;
 
+        legs.localPosition = new Vector3(-legs.localPosition.x, legs.localPosition.y, 0);
+        legs.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 170);
 
@@ -144,6 +149,9 @@ public class PlayerMovement : MonoBehaviour
         peleusSwordPos.localPosition = new Vector3(-peleusSwordPos.localPosition.x, peleusSwordPos.localPosition.y, 0);
         peleusSwordPos.gameObject.GetComponent<SpriteRenderer>().flipX = false;
 
+        legs.localPosition = new Vector3(-legs.localPosition.x, legs.localPosition.y, 0);
+        legs.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
         //swordSpritePos.localPosition = new Vector3(-swordSpritePos.localPosition.x, swordSpritePos.localPosition.y, 0);
         //swordSpritePos.eulerAngles = new Vector3(0, 0, 58);
 
@@ -152,6 +160,9 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckAcceleration()
     {
+        if (inputVector != Vector2.zero) playerAnim.SetRunning();
+        else playerAnim.SetStopped();
+
         if (isSlowedDown) return;
         if ((LevelController.playerHasBow || LevelController.playerHasFireBow) && LevelController.currentPlayerWeapon.Name.Contains("Bow"))
         {
