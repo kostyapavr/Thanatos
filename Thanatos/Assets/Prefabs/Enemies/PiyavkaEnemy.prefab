@@ -132,7 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDropChance: 15
-  dropItems: []
+  dropItems:
+  - {fileID: 1053340612470127474, guid: b34f3f8e102507641ad27c3c1564d35c, type: 3}
+  - {fileID: 6404024829451550928, guid: 6f60b46247ca0e548b184a850537f5cb, type: 3}
+  - {fileID: 6185606649841456735, guid: 742f1f1d027de85429466a8b7ad73f7b, type: 3}
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   isBoss: 0
   minHealth: 1
@@ -149,8 +152,8 @@ MonoBehaviour:
   secondSprite: {fileID: 0}
   walkAnimTime: 0
   slowAreaPrefab: {fileID: 5624788143054952788, guid: 465750694b57a7f4aadca5573c4ab4c4, type: 3}
-  spawnInterval: 0.1
-  lifeTime: 5
+  spawnInterval: 0.075
+  lifeTime: 6
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4

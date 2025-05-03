@@ -135,8 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Garnet
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 4341048507190764863, guid: f0ac2121f21cbe44d9397f1b9c500924, type: 3}
   bonusType: 4
+  pickupEffectMaterial: {fileID: 2100000, guid: 8b2795b810c22d146973191139daeef5, type: 2}
   interactButton: {fileID: 5940683279030617289}
 --- !u!1 &2768145959337500944
 GameObject:

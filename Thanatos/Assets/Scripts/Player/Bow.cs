@@ -131,6 +131,7 @@ public class Bow : MonoBehaviour
         if (LevelController.playerHasApolloBow) rb.GetComponent<Arrow>().damageEffect = DamageEffects.FreezeInPlace;
         rb.AddForce(direction * arrowSpeed * (1 + boost) + (Vector3)player.GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
         player.TakeArrow();
+        player.PlayBowSound();
     }
 
     void CheckFlip(float angle)

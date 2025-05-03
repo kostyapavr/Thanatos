@@ -137,6 +137,7 @@ MonoBehaviour:
   - {fileID: 6185606649841456735, guid: 742f1f1d027de85429466a8b7ad73f7b, type: 3}
   - {fileID: 33841420135341204, guid: 4e3cb97225af53942a45c979d7a68d6d, type: 3}
   - {fileID: 2594602861398474934, guid: b12e571ae13316549a1a90eb5350c0e5, type: 3}
+  - {fileID: 6404024829451550928, guid: 6f60b46247ca0e548b184a850537f5cb, type: 3}
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   isBoss: 0
   minHealth: 2

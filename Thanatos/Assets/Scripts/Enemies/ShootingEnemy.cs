@@ -35,7 +35,7 @@ public class ShootingEnemy : Enemy
     protected int ammoSpeed;
 
     private bool stopOneShot = false;
-    public bool freeze = false;
+    [HideInInspector] public bool freeze = false;
 
     public override void Start()
     {

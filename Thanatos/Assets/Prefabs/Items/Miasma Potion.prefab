@@ -269,8 +269,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Miasma Potion
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 4341048507190764863, guid: f0ac2121f21cbe44d9397f1b9c500924, type: 3}
   bonusType: 6
+  pickupEffectMaterial: {fileID: 2100000, guid: 4f8bf598b7a4bce479291d9badb4d2fe, type: 2}
   interactButton: {fileID: 6969064523416254669}
 --- !u!1 &6969064523416254669
 GameObject:

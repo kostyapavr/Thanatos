@@ -390,8 +390,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Aridane's Thread
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 4341048507190764863, guid: f0ac2121f21cbe44d9397f1b9c500924, type: 3}
   bonusType: 10
+  pickupEffectMaterial: {fileID: 2100000, guid: 1dd438335858e3548b6e270eaf2615a5, type: 2}
   interactButton: {fileID: 8097381712544333689}
 --- !u!1 &8535441642846602713
 GameObject:

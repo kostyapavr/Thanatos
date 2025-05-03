@@ -269,8 +269,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Flask Of Ichor
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 4341048507190764863, guid: f0ac2121f21cbe44d9397f1b9c500924, type: 3}
   bonusType: 7
+  pickupEffectMaterial: {fileID: 2100000, guid: e4600c0d9ec791e41a173f3d8d56cbc4, type: 2}
   interactButton: {fileID: 5888224468460065495}
 --- !u!1 &5888224468460065495
 GameObject:
