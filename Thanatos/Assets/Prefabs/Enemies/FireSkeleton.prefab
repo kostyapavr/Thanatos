@@ -142,6 +142,8 @@ MonoBehaviour:
   - {fileID: 7819326001113033101, guid: 7764afdc9fcd53f43919fb78589e736d, type: 3}
   - {fileID: 8351605167315825785, guid: e3e2d4863c116374799c86f230242b3a, type: 3}
   - {fileID: 2594602861398474934, guid: b12e571ae13316549a1a90eb5350c0e5, type: 3}
+  - {fileID: 6404024829451550928, guid: 6f60b46247ca0e548b184a850537f5cb, type: 3}
+  - {fileID: 5401902329984564299, guid: 4989822f77898154a9e6adf2dec3f4ce, type: 3}
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   isBoss: 0
   minHealth: 3
@@ -160,6 +162,7 @@ MonoBehaviour:
     m_Bits: 128
   shootAhead: 0
   playerDamageEffect: 0
+  freeze: 0
 --- !u!114 &-596522518200358092
 MonoBehaviour:
   m_ObjectHideFlags: 0

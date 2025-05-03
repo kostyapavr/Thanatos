@@ -16,7 +16,12 @@ public class ResourceManager : MonoBehaviour
     public int rocksToSpawn;
 
     [HideInInspector] public int MaxPlayerHP {  
-        get { return LevelController.isNormalDifficulty ? maxPlayerHP : maxPlayerHP_Hard; }  
+        get 
+        { 
+            int baseHp = LevelController.isNormalDifficulty ? maxPlayerHP : maxPlayerHP_Hard;
+            if (LevelController.playerBoostHp > 0) baseHp += LevelController.playerBoostHp;
+            return baseHp;
+        }  
     }
 
     [HideInInspector]

@@ -20,6 +20,6 @@ public interface IPickupableAttire
 public interface IPickupableBonus
 {
     public string Name { get; }
-    public ParticleSystem PickupEffect { get; }
+    public GameObject PickupEffect { get; }
     public void Pickup();
 }

@@ -8,12 +8,13 @@ public class BonusPickup : MonoBehaviour, IPickupableBonus
     private string _name;
 
     [SerializeField]
-    private ParticleSystem pickupEffect;
+    private GameObject pickupEffect;
 
     public BonusTypes bonusType;
     public string Name { get => _name; }
 
-    public ParticleSystem PickupEffect { get => pickupEffect; }
+    public GameObject PickupEffect { get => pickupEffect; }
+    public Material pickupEffectMaterial;
 
     public GameObject interactButton;
     bool canInteract = false;
@@ -57,7 +58,16 @@ public class BonusPickup : MonoBehaviour, IPickupableBonus
         {
             if (canInteract)
             {
-                //if (pickupEffect != null) Instantiate(pickupEffect, collision.transform);
+                if (pickupEffect != null)
+                {
+                    GameObject go = Instantiate(pickupEffect, GameObject.FindGameObjectWithTag("Player").transform);
+                    ParticleSystemRenderer ps = go.GetComponent<ParticleSystem>().GetComponent<ParticleSystemRenderer>();
+                    if (ps != null)
+                    {
+                        ps.material = pickupEffectMaterial;
+                    }
+                    Destroy(go, 2f);
+                }
                 Pickup();
             }
         }
@@ -72,6 +82,5 @@ public class BonusPickup : MonoBehaviour, IPickupableBonus
         }
     }
 }
-
 
 public enum BonusTypes { None, Baytulus, Moli, Cornucopia, Garnet, Panacea, Miasma, FlaskOfIchor, Ambrosia, ContentionApple, AriadneThread, Omphalos }

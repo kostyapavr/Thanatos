@@ -492,6 +492,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Cornucopia
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 4341048507190764863, guid: f0ac2121f21cbe44d9397f1b9c500924, type: 3}
   bonusType: 3
+  pickupEffectMaterial: {fileID: 2100000, guid: 7a8154966667cb846a46d4a4deb880e1, type: 2}
   interactButton: {fileID: 7315663920060450422}

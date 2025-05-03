@@ -237,8 +237,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Baytulus
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 4341048507190764863, guid: f0ac2121f21cbe44d9397f1b9c500924, type: 3}
   bonusType: 1
+  pickupEffectMaterial: {fileID: 2100000, guid: 04097c46d83cd8d4ba6fa7645894d125, type: 2}
   interactButton: {fileID: 7763719737039193959}
 --- !u!1 &4335687757622509164
 GameObject:

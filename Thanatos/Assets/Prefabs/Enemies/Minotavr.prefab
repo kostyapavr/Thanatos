@@ -138,6 +138,9 @@ MonoBehaviour:
   - {fileID: 7819326001113033101, guid: 7764afdc9fcd53f43919fb78589e736d, type: 3}
   - {fileID: 2594602861398474934, guid: b12e571ae13316549a1a90eb5350c0e5, type: 3}
   - {fileID: 7764764626976366879, guid: 9412c81ef9da33c4599e0d0465f698a7, type: 3}
+  - {fileID: 6404024829451550928, guid: 6f60b46247ca0e548b184a850537f5cb, type: 3}
+  - {fileID: 5401902329984564299, guid: 4989822f77898154a9e6adf2dec3f4ce, type: 3}
+  - {fileID: 6185606649841456735, guid: 742f1f1d027de85429466a8b7ad73f7b, type: 3}
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   isBoss: 0
   minHealth: 5
@@ -153,6 +156,7 @@ MonoBehaviour:
   firstSprite: {fileID: 21300000, guid: 617ee57a2146bfd4d8f0a4b3f40d001e, type: 3}
   secondSprite: {fileID: 21300000, guid: 85ebdb7813bc0f74cbec882eba9d0be1, type: 3}
   walkAnimTime: 0.3
+  dmgEffect: 0
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4

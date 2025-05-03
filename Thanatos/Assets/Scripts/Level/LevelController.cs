@@ -34,6 +34,7 @@ public class LevelController : MonoBehaviour
     public static int lavaBootsHP = 40;
     public static BonusTypes playerBonusType = BonusTypes.None;
     public static bool playerHasLavaBoots = false;
+    public static int playerBoostHp = 0;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();

@@ -36,6 +36,10 @@ public class Portal : MonoBehaviour
     public virtual void LoadNextLevel()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
+        if (currentSceneName.Contains("Boss") && LevelController.playerBoostHp > 0)
+        {
+            LevelController.playerBoostHp = 0;
+        }
         SceneManager.LoadScene(getNextSceneName(currentSceneName));
     }
 

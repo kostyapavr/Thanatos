@@ -371,8 +371,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Ambrosia
-  pickupEffect: {fileID: 0}
+  pickupEffect: {fileID: 4341048507190764863, guid: f0ac2121f21cbe44d9397f1b9c500924, type: 3}
   bonusType: 8
+  pickupEffectMaterial: {fileID: 2100000, guid: 4d0b46e11c86c3046a78121d556e241a, type: 2}
   interactButton: {fileID: 7840756131417106741}
 --- !u!1 &7840756131417106741
 GameObject:
