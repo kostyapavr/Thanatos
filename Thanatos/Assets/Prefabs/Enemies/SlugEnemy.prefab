@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 146428320603020434}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.78, y: -1.63, z: 0}
+  m_LocalPosition: {x: -2.1, y: -0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,11 +41,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1028213964165987354}
   - component: {fileID: 5375973863377520444}
-  - component: {fileID: 7954183220553699385}
+  - component: {fileID: 2288272508029283383}
   - component: {fileID: 9136374743361488656}
-  - component: {fileID: 5608685521264924298}
+  - component: {fileID: 5853366461179282412}
   m_Layer: 6
-  m_Name: MeduzaEnemy
+  m_Name: SlugEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,7 +108,7 @@ SpriteRenderer:
   m_SortingLayerID: 1928116525
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 4f252937d9f0d37438898d792c2d4d45, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b5fe644d804856a4b89a7ded6b245bd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,7 +119,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7954183220553699385
+--- !u!114 &2288272508029283383
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,31 +128,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 6107204645674273283}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11ea4f7233f042b4097c054f60cf3075, type: 3}
+  m_Script: {fileID: 11500000, guid: db97d86f03e85d947b97dfd3246e3915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemDropChance: 30
-  dropItems:
-  - {fileID: 1053340612470127474, guid: b34f3f8e102507641ad27c3c1564d35c, type: 3}
-  - {fileID: 6185606649841456735, guid: 742f1f1d027de85429466a8b7ad73f7b, type: 3}
-  - {fileID: 33841420135341204, guid: 4e3cb97225af53942a45c979d7a68d6d, type: 3}
-  - {fileID: 2594602861398474934, guid: b12e571ae13316549a1a90eb5350c0e5, type: 3}
+  itemDropChance: 15
+  dropItems: []
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   isBoss: 0
-  minHealth: 2
-  maxHealth: 3
+  minHealth: 1
+  maxHealth: 1.5
   attackIntervalMin: 1.25
   attackIntervalMax: 2
-  damage: 1
-  moveSpeedMin: 7
-  moveSpeedMax: 15
-  obstacleDetectSize: 3
+  damage: 0.5
+  moveSpeedMin: 6
+  moveSpeedMax: 9
+  obstacleDetectSize: 2
   player: {fileID: 0}
-  attackRange: 5.6
+  attackRange: 4
   firstSprite: {fileID: 0}
   secondSprite: {fileID: 0}
   walkAnimTime: 0
-  dmgEffect: 7
+  slowAreaPrefab: {fileID: 5624788143054952788, guid: 465750694b57a7f4aadca5573c4ab4c4, type: 3}
+  spawnInterval: 0.1
+  lifeTime: 5
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4
@@ -165,8 +163,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 8
-  m_LinearDrag: 1
+  m_Mass: 6
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -180,7 +178,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &5608685521264924298
+--- !u!70 &5853366461179282412
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,6 +210,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.80067396, y: -0.029292503}
-  m_Size: {x: 4.6157694, y: 4.61577}
-  m_Direction: 0
+  m_Offset: {x: -0.5886597, y: -0.26163343}
+  m_Size: {x: 3.4938092, y: 1.8306736}
+  m_Direction: 1

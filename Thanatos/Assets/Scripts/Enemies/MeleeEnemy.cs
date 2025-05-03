@@ -41,6 +41,8 @@ public class MeleeEnemy : Enemy
 
     public float walkAnimTime;
 
+    public DamageEffects dmgEffect;
+
     private SpriteRenderer spriteRenderer;
 
     private bool freeze = true;
@@ -70,7 +72,7 @@ public class MeleeEnemy : Enemy
                     Player player = hit.GetComponent<Player>();
                     if (player != null)
                     {
-                        player.TakeDamage(damage, gameObject, DamageEffects.Nothing);
+                        player.TakeDamage(damage, gameObject, dmgEffect);
                     }
                 }
             }

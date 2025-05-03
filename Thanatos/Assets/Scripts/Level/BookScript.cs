@@ -10,12 +10,15 @@ public class BookScript : MonoBehaviour
     public GameObject interactTip;
     public GameObject nextButton;
     public GameObject prevButton;
+    public GameObject emptyText;
 
     public List<GameObject> itemDescriptions;
     public List<GameObject> armorDescriptions;
     bool canInteract = false;
     [HideInInspector]
     public bool isOpen = false;
+    private int cnt = 0;
+    private int cntArmor = 0;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -52,15 +55,30 @@ public class BookScript : MonoBehaviour
         Time.timeScale = 0;
         panels.SetActive(true);
         isOpen = true;
+        cnt = 0;
+        cntArmor = 0;
 
         for (int i = 0; i < itemDescriptions.Count; i++)
         {
-            if (PlayerPrefs.GetInt(itemDescriptions[i].name, 0) == 1) itemDescriptions[i].SetActive(true); 
+            if (PlayerPrefs.GetInt(itemDescriptions[i].name, 0) == 1)
+            {
+                itemDescriptions[i].SetActive(true);
+                cnt++;
+            }
         }
         for (int i = 0; i < armorDescriptions.Count; i++)
         {
-            if (PlayerPrefs.GetInt(armorDescriptions[i].name, 0) == 1) armorDescriptions[i].SetActive(true);
+            if (PlayerPrefs.GetInt(armorDescriptions[i].name, 0) == 1)
+            {
+                armorDescriptions[i].SetActive(true);
+                cntArmor++;
+            }
         }
+
+        if (cnt == 0) emptyText.SetActive(true);
+        else emptyText.SetActive(false);
+
+        if (cntArmor > 0 && cnt == 0) OpenSecondPage();
     }
 
     public void CloseBook()
@@ -91,6 +109,8 @@ public class BookScript : MonoBehaviour
         bookPanel2.SetActive(false);
         nextButton.SetActive(true);
         prevButton.SetActive(false);
+        if (cnt == 0) emptyText.SetActive(true);
+        else emptyText.SetActive(false);
     }
 
     public void OpenSecondPage()
@@ -99,5 +119,7 @@ public class BookScript : MonoBehaviour
         bookPanel2.SetActive(true);
         nextButton.SetActive(false);
         prevButton.SetActive(true);
+        if (cntArmor == 0) emptyText.SetActive(true);
+        else emptyText.SetActive(false);
     }
 }

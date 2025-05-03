@@ -212,7 +212,7 @@ public class Player : MonoBehaviour, IDamageable
 
         if (LevelController.playerShieldActive && damageEffect != DamageEffects.BypassShield) return;
 
-        if (miasmaEffect) damage += 0.5f;
+        if (miasmaEffect) damage *= 1.5f;
         if (ambrosiaEffect)
         {
             RemoveAmbrosiaEffect();
@@ -235,6 +235,17 @@ public class Player : MonoBehaviour, IDamageable
             damage /= 2f;
             ShowArmorTakeDamage();
         }
+
+        if (damageEffect == DamageEffects.Bleed)
+        {
+            Invoke("Bleed", 1f);
+            Invoke("Bleed", 3f);
+            Invoke("Bleed", 5f);
+        }
+        if (damageEffect == DamageEffects.MeduzaBite)
+        {
+            bow.IncreaseDelayLength();
+        }
         
 
         if (currentHealth - damage > 0)
@@ -250,6 +261,11 @@ public class Player : MonoBehaviour, IDamageable
             LevelController.playerHpEvent.Invoke();
             Die();
         }
+    }
+
+    void Bleed()
+    {
+        TakeDamage(0.25f, null, DamageEffects.BypassShield);
     }
 
     void ResetItems()

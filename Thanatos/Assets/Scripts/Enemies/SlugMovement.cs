@@ -72,7 +72,7 @@ public class SlugMovement : Enemy
                     Player player = hit.GetComponent<Player>();
                     if (player != null)
                     {
-                        player.TakeDamage(damage, gameObject, DamageEffects.Nothing);
+                        player.TakeDamage(damage, gameObject, DamageEffects.Bleed);
                     }
                 }
             }

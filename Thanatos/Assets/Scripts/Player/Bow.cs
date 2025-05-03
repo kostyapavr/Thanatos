@@ -7,7 +7,7 @@ public class Bow : MonoBehaviour
 {
     private float delay;
     private float chargeTime;
-    private float maxChargeTime = 3.0f;
+    private float maxChargeTime = 2.5f;
     [HideInInspector] public bool isCharging = false;
     public float delayLength;
     public float offset;
@@ -168,5 +168,18 @@ public class Bow : MonoBehaviour
         {
             bowSprite.sprite = apolloBowSprite;
         }
+    }
+
+    public void IncreaseDelayLength()
+    {
+        delayLength = 1.5f;
+        maxChargeTime = 3f;
+        Invoke("ReturnDelayToNormal", 5f);
+    }
+
+    public void ReturnDelayToNormal()
+    {
+        delayLength = 0.2f;
+        maxChargeTime = 2.5f;
     }
 }
