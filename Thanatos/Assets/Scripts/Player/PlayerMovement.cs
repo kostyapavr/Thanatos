@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private int puddleAcceleration = 2;
     private int slowEffectAcceleration = 3;
     private int normalAcceleration = 7;
+    private int onFireAcceleration = 5;
     private int bothWeaponsAcceleration = 6;
     private int onlySwordAcceleration = 8;
     private int helmetAcceleration = 9;
@@ -208,5 +209,12 @@ public class PlayerMovement : MonoBehaviour
         }
         acceleration = normalAcceleration;
         isSlowedDown = false;
+    }
+
+    public void SetOnFire()
+    {
+        acceleration = onFireAcceleration;
+        isSlowedDown = true;
+        Invoke("ReturnToNormalSpeed", 5f);
     }
 }

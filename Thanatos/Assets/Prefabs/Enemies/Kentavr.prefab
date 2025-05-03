@@ -157,6 +157,7 @@ MonoBehaviour:
   secondSprite: {fileID: 21300000, guid: e2a68e6b36c220a48af794088393d4df, type: 3}
   walkAnimTime: 0.15
   dmgEffect: 0
+  fireEffectParticles: {fileID: 9047206775445842203, guid: d7667806c0a7b5c4badd5f6874b72f44, type: 3}
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4

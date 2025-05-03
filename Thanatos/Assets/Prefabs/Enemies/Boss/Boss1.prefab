@@ -463,6 +463,9 @@ MonoBehaviour:
     m_Bits: 128
   shootAhead: 0
   playerDamageEffect: 0
+  fireEffectParticles: {fileID: 9047206775445842203, guid: d7667806c0a7b5c4badd5f6874b72f44, type: 3}
+  freeze: 0
+  immuneToFire: 0
   hpBar: {fileID: 5672444032098536406}
   hpBarFill: {fileID: 5507760336078473348}
   fireballGrowPosition: {fileID: 4223531046982877345}

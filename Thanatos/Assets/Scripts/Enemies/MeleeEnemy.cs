@@ -42,10 +42,11 @@ public class MeleeEnemy : Enemy
     public float walkAnimTime;
 
     public DamageEffects dmgEffect;
+    public GameObject fireEffectParticles;
 
     private SpriteRenderer spriteRenderer;
 
-    private bool freeze = true;
+    private bool freeze = false;
     private float freezeTimer = 1.5f;
     private float frzTmr = 0.0f;
 
@@ -157,5 +158,19 @@ public class MeleeEnemy : Enemy
             freeze = true;
             frzTmr = freezeTimer;
         }
+        if (damageEffect == DamageEffects.SetOnFire)
+        {
+            Instantiate(fireEffectParticles, transform);
+            Invoke("FireDamage", 1f);
+            Invoke("FireDamage", 2f);
+            Invoke("FireDamage", 3f);
+            Invoke("FireDamage", 4f);
+            Invoke("FireDamage", 5f);
+        }
+    }
+
+    void FireDamage()
+    {
+        TakeDamage(0.2f, null, DamageEffects.Bleed);
     }
 }

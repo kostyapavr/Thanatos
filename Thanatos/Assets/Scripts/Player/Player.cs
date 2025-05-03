@@ -34,6 +34,17 @@ public class Player : MonoBehaviour, IDamageable
     public Shield shield;
     private bool godMode = false;
 
+    public AudioSource audioSource;
+    public AudioClip bowShootClip;
+    public AudioClip swordAttackClip;
+    public AudioClip bonusPickupClip;
+    public AudioClip deathAudioClip;
+    public AudioClip teleportAudioClip;
+    public AudioClip slowEffectSound;
+    public AudioClip shieldHitClip;
+
+    public GameObject fireEffectParticles;
+
     private float hpAddWhenNewLevel = 2f;
     private float hpAddWhenNewLevel_hard = 1f;
 
@@ -71,6 +82,8 @@ public class Player : MonoBehaviour, IDamageable
 
         if (LevelController.playerHasArmor) EquipArmor();
         if (LevelController.playerHasLavaBoots) EquipLavaBoots();
+
+        PlayAudio(teleportAudioClip);
     }
 
     private void Update()
@@ -137,6 +150,7 @@ public class Player : MonoBehaviour, IDamageable
         enemySlowEffectTime = enemySlowEffectDuration;
         slowEffectSprite.SetActive(true);
         GetComponent<PlayerMovement>().SlowDown_Effect();
+        PlayAudio(slowEffectSound);
     }
 
     public void SwitchWeapon(int n)
@@ -204,15 +218,20 @@ public class Player : MonoBehaviour, IDamageable
         ResetItems();
         deathPanel.SetActive(true);
         Time.timeScale = 0;
+        PlayAudio(deathAudioClip);
     }
 
     public void TakeDamage(float damage, GameObject sender = null, DamageEffects damageEffect = DamageEffects.Nothing)
     {
         if (gameObject == sender || godMode) return;
 
-        if (LevelController.playerShieldActive && damageEffect != DamageEffects.BypassShield) return;
+        if (LevelController.playerShieldActive && damageEffect != DamageEffects.BypassShield && damageEffect != DamageEffects.Bleed)
+        {
+            PlayAudio(shieldHitClip);
+            return;
+        }
 
-        if (miasmaEffect) damage *= 1.5f;
+        if (miasmaEffect && damageEffect != DamageEffects.Bleed) damage *= 1.5f;
         if (ambrosiaEffect)
         {
             RemoveAmbrosiaEffect();
@@ -245,11 +264,23 @@ public class Player : MonoBehaviour, IDamageable
         if (damageEffect == DamageEffects.MeduzaBite)
         {
             bow.IncreaseDelayLength();
+            PlayAudio(slowEffectSound);
         }
-        
+        if (damageEffect == DamageEffects.SetOnFire)
+        {
+            Instantiate(fireEffectParticles, transform);
+            Invoke("FireDamage", 1f);
+            Invoke("FireDamage", 2f);
+            Invoke("FireDamage", 3f);
+            Invoke("FireDamage", 4f);
+            Invoke("FireDamage", 5f);
+            bow.IncreaseDelayLength();
+            GetComponent<PlayerMovement>().SetOnFire();
+        }
+
 
         if (currentHealth - damage > 0)
-        { 
+        {
             if (damageEffect == DamageEffects.SlowDown) ApplyEnemySlowEffect();
             currentHealth -= damage;
             LevelController.playerHpEvent.Invoke();
@@ -265,7 +296,12 @@ public class Player : MonoBehaviour, IDamageable
 
     void Bleed()
     {
-        TakeDamage(0.25f, null, DamageEffects.BypassShield);
+        TakeDamage(0.25f, null, DamageEffects.Bleed);
+    }
+
+    void FireDamage()
+    {
+        TakeDamage(0.2f, null, DamageEffects.Bleed);
     }
 
     void ResetItems()
@@ -299,14 +335,15 @@ public class Player : MonoBehaviour, IDamageable
         switch (LevelController.playerBonusType)
         {
             case BonusTypes.None: break;
-            case BonusTypes.Moli: AddHealth(0.5f); LevelController.playerBonusType = BonusTypes.None; break;
-            case BonusTypes.Baytulus: AddHealth(2f); LevelController.playerBonusType = BonusTypes.None; break;
-            case BonusTypes.Cornucopia: AddHealth(1f); LevelController.playerBonusType = BonusTypes.None; break;
-            case BonusTypes.Miasma: ApplyMiasmaEffect(); break;
-            case BonusTypes.Ambrosia: ApplyAmbrosiaEffect(); break;
+            case BonusTypes.Moli: AddHealth(0.5f); LevelController.playerBonusType = BonusTypes.None; PlayAudio(bonusPickupClip); break;
+            case BonusTypes.Baytulus: AddHealth(2f); LevelController.playerBonusType = BonusTypes.None; PlayAudio(bonusPickupClip); break;
+            case BonusTypes.Cornucopia: AddHealth(1f); LevelController.playerBonusType = BonusTypes.None; PlayAudio(bonusPickupClip); break;
+            case BonusTypes.Miasma: ApplyMiasmaEffect(); PlayAudio(bonusPickupClip); break;
+            case BonusTypes.Ambrosia: ApplyAmbrosiaEffect(); PlayAudio(bonusPickupClip); break;
             case BonusTypes.Garnet: ApplyGarnetEffect(); LevelController.playerBonusType = BonusTypes.None; break;
-            case BonusTypes.FlaskOfIchor: maxHealth += 2; currentHealth += 1; LevelController.playerHp = currentHealth; LevelController.playerBoostHp = 2; ui.UpdateForMoreHp(); break;
-            case BonusTypes.Panacea: maxHealth += 1; LevelController.playerBoostHp = 1; ui.UpdateForMoreHp(); break;
+            case BonusTypes.AriadneThread: PlayAudio(bonusPickupClip); break;
+            case BonusTypes.FlaskOfIchor: maxHealth += 2; currentHealth += 1; LevelController.playerHp = currentHealth; LevelController.playerBoostHp = 2; ui.UpdateForMoreHp(); PlayAudio(bonusPickupClip); break;
+            case BonusTypes.Panacea: maxHealth += 1; LevelController.playerBoostHp = 1; ui.UpdateForMoreHp(); PlayAudio(bonusPickupClip); break;
         }
     }
 
@@ -366,7 +403,11 @@ public class Player : MonoBehaviour, IDamageable
     private void ApplyGarnetEffect()
     {
         int rnd = Random.Range(0, 100);
-        if (rnd < 50) AddHealth(5);
+        if (rnd < 50)
+        {
+            AddHealth(5);
+            PlayAudio(bonusPickupClip);
+        }
         else TakeDamage(10);
     }
 
@@ -420,5 +461,23 @@ public class Player : MonoBehaviour, IDamageable
     {
         achillesHelmetSprite.SetActive(false);
         achillesHelmetEffect = false;
+    }
+
+    public void PlayAudio(AudioClip audio)
+    {
+        audioSource.Stop();
+        audioSource.clip = audio;
+        audioSource.Play();
+    }
+
+    public void PlayBowSound()
+    {
+        audioSource.clip = bowShootClip;
+        audioSource.Play();
+    }
+    public void PlaySwordSound()
+    {
+        audioSource.clip = swordAttackClip;
+        audioSource.Play();
     }
 }

@@ -26,6 +26,7 @@ public class ShootingEnemy : Enemy
 
     public bool shootAhead;
     public DamageEffects playerDamageEffect;
+    public GameObject fireEffectParticles;
 
     protected Player player;
     protected SpriteRenderer spriteRenderer;
@@ -36,6 +37,7 @@ public class ShootingEnemy : Enemy
 
     private bool stopOneShot = false;
     [HideInInspector] public bool freeze = false;
+    public bool immuneToFire = false;
 
     public override void Start()
     {
@@ -46,6 +48,11 @@ public class ShootingEnemy : Enemy
         spriteRenderer = GetComponent<SpriteRenderer>();
         InvokeRepeating("Aim", shootInterval-0.75f, shootInterval-0.75f);
         InvokeRepeating("Shoot", shootInterval+1, shootInterval);
+
+        if (immuneToFire && !isBoss)
+        {
+            Instantiate(fireEffectParticles, transform);
+        }
     }
 
     protected bool PlayerInSight()
@@ -114,5 +121,20 @@ public class ShootingEnemy : Enemy
         base.TakeDamage(damage, sender, damageEffect);
         if (damageEffect == DamageEffects.StopOneShot) stopOneShot = true;
         if (damageEffect == DamageEffects.FreezeInPlace) freeze = true;
+        if (damageEffect == DamageEffects.SetOnFire && !immuneToFire)
+        {
+            Instantiate(fireEffectParticles, transform);
+            stopOneShot = true;
+            Invoke("FireDamage", 1f);
+            Invoke("FireDamage", 2f);
+            Invoke("FireDamage", 3f);
+            Invoke("FireDamage", 4f);
+            Invoke("FireDamage", 5f);
+        }
+    }
+
+    void FireDamage()
+    {
+        TakeDamage(0.2f, null, DamageEffects.Bleed);
     }
 }

@@ -127,7 +127,7 @@ public class Bow : MonoBehaviour
         rb.GetComponent<Arrow>().OwnerType = "Player";
         rb.GetComponent<Arrow>().OwnerID = gameObject.GetInstanceID();
         rb.GetComponent<Arrow>().Damage += boost;
-        if (LevelController.playerHasFireBow) rb.GetComponent<Arrow>().damageEffect = DamageEffects.StopOneShot;
+        if (LevelController.playerHasFireBow) rb.GetComponent<Arrow>().damageEffect = DamageEffects.SetOnFire;
         if (LevelController.playerHasApolloBow) rb.GetComponent<Arrow>().damageEffect = DamageEffects.FreezeInPlace;
         rb.AddForce(direction * arrowSpeed * (1 + boost) + (Vector3)player.GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
         player.TakeArrow();

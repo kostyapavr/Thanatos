@@ -108,7 +108,7 @@ SpriteRenderer:
   m_SortingLayerID: 1928116525
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: b5fe644d804856a4b89a7ded6b245bd3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7c3be95f25af0f44b37deed6e9404cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,25 +132,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDropChance: 15
-  dropItems: []
+  dropItems:
+  - {fileID: 1053340612470127474, guid: b34f3f8e102507641ad27c3c1564d35c, type: 3}
+  - {fileID: 6404024829451550928, guid: 6f60b46247ca0e548b184a850537f5cb, type: 3}
+  - {fileID: 7819326001113033101, guid: 7764afdc9fcd53f43919fb78589e736d, type: 3}
+  - {fileID: 7764764626976366879, guid: 9412c81ef9da33c4599e0d0465f698a7, type: 3}
   helmetPrefab: {fileID: 5279186712205504107, guid: 4c217f08d91cd2945b551c1fb96421a7, type: 3}
   isBoss: 0
-  minHealth: 1
-  maxHealth: 1.5
-  attackIntervalMin: 1.25
-  attackIntervalMax: 2
+  minHealth: 2
+  maxHealth: 3
+  attackIntervalMin: 0.7
+  attackIntervalMax: 1.5
   damage: 0.5
-  moveSpeedMin: 6
-  moveSpeedMax: 9
+  moveSpeedMin: 4
+  moveSpeedMax: 6
   obstacleDetectSize: 2
   player: {fileID: 0}
-  attackRange: 4
+  attackRange: 5
   firstSprite: {fileID: 0}
   secondSprite: {fileID: 0}
   walkAnimTime: 0
-  slowAreaPrefab: {fileID: 5624788143054952788, guid: 465750694b57a7f4aadca5573c4ab4c4, type: 3}
+  slowAreaPrefab: {fileID: 5624788143054952788, guid: 0395b845725c4634a9297c03a65cd1c7, type: 3}
   spawnInterval: 0.1
-  lifeTime: 5
+  lifeTime: 8
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4
@@ -210,6 +214,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5886597, y: -0.26163343}
-  m_Size: {x: 3.4938092, y: 1.8306736}
+  m_Offset: {x: -0.3385629, y: 0.5341314}
+  m_Size: {x: 4.175901, y: 2.1944697}
   m_Direction: 1

@@ -161,8 +161,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   shootAhead: 0
-  playerDamageEffect: 0
+  playerDamageEffect: 4
+  fireEffectParticles: {fileID: 9047206775445842203, guid: aefa8e5f0ff932d48b80331b5e5f97e4, type: 3}
   freeze: 0
+  immuneToFire: 1
 --- !u!114 &-596522518200358092
 MonoBehaviour:
   m_ObjectHideFlags: 0

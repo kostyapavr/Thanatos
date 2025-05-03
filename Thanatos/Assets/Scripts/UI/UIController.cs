@@ -65,7 +65,7 @@ public class UIController : MonoBehaviour
         {
             float d = Mathf.Clamp(hp, 0, 1);
             lives[i].fillAmount = d;
-            hp-=d;
+            hp -= d;
         }
     }
 

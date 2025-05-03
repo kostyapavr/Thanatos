@@ -43,11 +43,18 @@ public class SlugMovement : Enemy
 
     private SpriteRenderer spriteRenderer;
 
+    public DamageEffects dmgEffect;
+    public GameObject fireEffectParticles;
+
     [SerializeField] private GameObject slowAreaPrefab;
     [SerializeField] private float spawnInterval;
     [SerializeField] private float lifeTime;
 
     private float _timer;
+
+    private bool freeze = false;
+    private float freezeTimer = 1.5f;
+    private float frzTmr = 0.0f;
 
     public override void Start()
     {
@@ -165,5 +172,29 @@ public class SlugMovement : Enemy
         health = Random.Range(minHealth, maxHealth);
         attackInterval = Random.Range(attackIntervalMin, attackIntervalMax);
         moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
+    }
+
+    public override void TakeDamage(float damage, GameObject sender = null, DamageEffects damageEffect = DamageEffects.Nothing)
+    {
+        base.TakeDamage(damage, sender, damageEffect);
+        if (damageEffect == DamageEffects.FreezeInPlace)
+        {
+            freeze = true;
+            frzTmr = freezeTimer;
+        }
+        if (damageEffect == DamageEffects.SetOnFire)
+        {
+            Instantiate(fireEffectParticles, transform);
+            Invoke("FireDamage", 1f);
+            Invoke("FireDamage", 2f);
+            Invoke("FireDamage", 3f);
+            Invoke("FireDamage", 4f);
+            Invoke("FireDamage", 5f);
+        }
+    }
+
+    void FireDamage()
+    {
+        TakeDamage(0.2f, null, DamageEffects.Bleed);
     }
 }

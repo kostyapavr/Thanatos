@@ -150,7 +150,7 @@ MonoBehaviour:
   minHealth: 4
   maxHealth: 5
   shootIntervalMin: 1
-  shootIntervalMax: 1.7
+  shootIntervalMax: 1.5
   ammoSpeedMin: 50
   ammoSpeedMax: 60
   ammoSpread: 8
@@ -162,8 +162,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   shootAhead: 0
-  playerDamageEffect: 0
+  playerDamageEffect: 4
+  fireEffectParticles: {fileID: 9047206775445842203, guid: d7667806c0a7b5c4badd5f6874b72f44, type: 3}
   freeze: 0
+  immuneToFire: 0
 --- !u!114 &-596522518200358092
 MonoBehaviour:
   m_ObjectHideFlags: 0

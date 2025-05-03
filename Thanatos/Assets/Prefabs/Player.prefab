@@ -2040,7 +2040,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5866920982003487492}
         m_TargetAssemblyTypeName: ChangeVolume, Assembly-CSharp
-        m_MethodName: Change
+        m_MethodName: ChangeMusic
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3219,6 +3219,7 @@ GameObject:
   - component: {fileID: 5252139942418543028}
   - component: {fileID: 3545983317623436652}
   - component: {fileID: 3388499904054745234}
+  - component: {fileID: 3346071983665156883}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -3445,9 +3446,19 @@ MonoBehaviour:
   ambrosiaEffectSprite: {fileID: 6781079468199842255}
   miasmaEffectSprite: {fileID: 4699892073887504925}
   goldenArmorSprite: {fileID: 21300000, guid: 747f40d182da81949bfbaff353465127, type: 3}
+  ui: {fileID: 1811081279580927575}
   lavaBoots: {fileID: 3906921472784436896}
   bow: {fileID: 7847837925755157598}
   shield: {fileID: 1887669564524105776}
+  audioSource: {fileID: 3346071983665156883}
+  bowShootClip: {fileID: 8300000, guid: 870c19824c296c54fbdd87f948e15979, type: 3}
+  swordAttackClip: {fileID: 8300000, guid: 870c19824c296c54fbdd87f948e15979, type: 3}
+  bonusPickupClip: {fileID: 8300000, guid: 730cb505867309a4d9a3c44cc1a0db1d, type: 3}
+  deathAudioClip: {fileID: 8300000, guid: dc596e320857a3d43842bbfcdf335f39, type: 3}
+  teleportAudioClip: {fileID: 8300000, guid: 5e1c9da87660b0b4aa5c15dc579efa51, type: 3}
+  slowEffectSound: {fileID: 8300000, guid: 1ddfba9bcac2c224aa77e6b2b16f78a2, type: 3}
+  shieldHitClip: {fileID: 8300000, guid: 83c79a994a2ec4c419a7308ca00a5862, type: 3}
+  fireEffectParticles: {fileID: 9047206775445842203, guid: d7667806c0a7b5c4badd5f6874b72f44, type: 3}
   is_enemySlowEffect: 0
 --- !u!114 &5252139942418543028
 MonoBehaviour:
@@ -3505,6 +3516,102 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1e63dc0929d53ae4aa13249c132422d3, type: 3}
   - {fileID: 21300000, guid: 896391b1cd4cb0947bd2b53ec0b603ca, type: 3}
   - {fileID: 21300000, guid: 1884332bb8c04274dbe2d85c2c2ba01a, type: 3}
+--- !u!82 &3346071983665156883
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6208924275716043763}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5118760105610603085, guid: 2b0d0dcb76c6c8146b1109cb9c77d9a4, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6304566504942914055
 GameObject:
   m_ObjectHideFlags: 0
@@ -3999,7 +4106,7 @@ MonoBehaviour:
   m_CellSize: {x: 60, y: 60}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
-  m_ConstraintCount: 5
+  m_ConstraintCount: 7
 --- !u!1 &6622266520424910634
 GameObject:
   m_ObjectHideFlags: 0
@@ -5904,6 +6011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 2b0d0dcb76c6c8146b1109cb9c77d9a4, type: 2}
   musicSlider: {fileID: 8117237501280486771}
+  soundSlider: {fileID: 7169737730191187930}
 --- !u!1 &8329074718770338339
 GameObject:
   m_ObjectHideFlags: 0
@@ -6115,7 +6223,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5866920982003487492}
+        m_TargetAssemblyTypeName: ChangeVolume, Assembly-CSharp
+        m_MethodName: ChangeSound
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8584675381821955237
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6129091861140322009}
   - component: {fileID: 5667186017400026712}
   m_Layer: 0
-  m_Name: SlugPuddle
+  m_Name: SlugPuddle 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.7433963, g: 0.7433963, b: 0.7433963, a: 0.3019608}
+  m_Color: {r: 0.4249535, g: 0.6150943, b: 0.30986825, a: 0.3019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
