@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, IDamageable
     public GameObject miasmaEffectSprite;
 
     public Sprite goldenArmorSprite;
-
+    public UIController ui;
     public GameObject lavaBoots;
 
     public Bow bow;
@@ -305,6 +305,8 @@ public class Player : MonoBehaviour, IDamageable
             case BonusTypes.Miasma: ApplyMiasmaEffect(); break;
             case BonusTypes.Ambrosia: ApplyAmbrosiaEffect(); break;
             case BonusTypes.Garnet: ApplyGarnetEffect(); LevelController.playerBonusType = BonusTypes.None; break;
+            case BonusTypes.FlaskOfIchor: maxHealth += 2; currentHealth += 1; LevelController.playerHp = currentHealth; LevelController.playerBoostHp = 2; ui.UpdateForMoreHp(); break;
+            case BonusTypes.Panacea: maxHealth += 1; LevelController.playerBoostHp = 1; ui.UpdateForMoreHp(); break;
         }
     }
 
