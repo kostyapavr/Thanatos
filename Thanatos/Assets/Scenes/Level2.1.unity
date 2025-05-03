@@ -2662,9 +2662,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3975318791176842760, guid: 92c08d5bd98f94f46b4196469d99d0da, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 24.140015
+      objectReference: {fileID: 0}
     - target: {fileID: 6208924275716043763, guid: 92c08d5bd98f94f46b4196469d99d0da, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8198025453457764232, guid: 92c08d5bd98f94f46b4196469d99d0da, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.9335327
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2800,7 +2808,7 @@ PrefabInstance:
     - target: {fileID: 1505890048227891751, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: enemyPrefabs.Array.data[2]
       value: 
-      objectReference: {fileID: 7954183220553699385, guid: f018f856b20a00b4198fa498fe50bfe8, type: 3}
+      objectReference: {fileID: 2288272508029283383, guid: f018f856b20a00b4198fa498fe50bfe8, type: 3}
     - target: {fileID: 1505890048227891751, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: spawnPoints.Array.data[10]
       value: 

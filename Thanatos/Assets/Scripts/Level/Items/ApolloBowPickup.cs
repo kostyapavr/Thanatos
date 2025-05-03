@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FireBowPickup : MonoBehaviour, IPickupableWeapon
+public class ApolloBowPickup : MonoBehaviour, IPickupableWeapon
 {
     [SerializeField]
     private string _name;
@@ -18,7 +18,7 @@ public class FireBowPickup : MonoBehaviour, IPickupableWeapon
     public GameObject swordPrefab;
     public GameObject peleusSwordPrefab;
     public GameObject bowPrefab;
-    public GameObject apolloBowPrefab;
+    public GameObject fireBowPrefab;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,15 +38,15 @@ public class FireBowPickup : MonoBehaviour, IPickupableWeapon
 
     public virtual void Pickup()
     {
-        PlayerPrefs.SetInt("HasFireBow", 1);
+        PlayerPrefs.SetInt("HasApolloBow", 1);
         PlayerPrefs.Save();
 
-        LevelController.playerHasFireBow = true;
+        LevelController.playerHasApolloBow = true;
         CheckSwitch();
+        LevelController.playerHasFireBow = false;
         LevelController.playerHasBow = false;
-        LevelController.playerHasApolloBow = false;
-        LevelController.playerHasPeleusSword = false;
         LevelController.playerHasSword = false;
+        LevelController.playerHasPeleusSword = false;
         LevelController.currentPlayerWeapon = this;
         LevelController.playerWeapons.Add(this);
         LevelController.playerPickupItemEvent.Invoke();
@@ -56,7 +56,7 @@ public class FireBowPickup : MonoBehaviour, IPickupableWeapon
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("HasFireBow") == 0 && SceneManager.GetActiveScene().buildIndex != 16) gameObject.SetActive(false);
+        if (PlayerPrefs.GetInt("HasApolloBow") == 0 && SceneManager.GetActiveScene().buildIndex != 16) gameObject.SetActive(false);
     }
 
     void ShowInteract()
@@ -93,13 +93,13 @@ public class FireBowPickup : MonoBehaviour, IPickupableWeapon
         {
             Instantiate(swordPrefab, p, Quaternion.identity);
         }
-        if (LevelController.playerHasApolloBow)
-        {
-            Instantiate(apolloBowPrefab, p, Quaternion.identity);
-        }
         if (LevelController.playerHasPeleusSword)
         {
             Instantiate(peleusSwordPrefab, p, Quaternion.identity);
+        }
+        if (LevelController.playerHasFireBow)
+        {
+            Instantiate(fireBowPrefab, p, Quaternion.identity);
         }
     }
 }

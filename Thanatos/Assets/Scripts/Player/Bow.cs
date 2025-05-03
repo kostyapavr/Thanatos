@@ -14,6 +14,7 @@ public class Bow : MonoBehaviour
 
     public GameObject Arrow;
     public GameObject FireArrow;
+    public GameObject ApolloArrow;
     public Transform point;
 
     public int arrowSpeed;
@@ -27,6 +28,7 @@ public class Bow : MonoBehaviour
 
     public Sprite normalSprite;
     public Sprite fireBowSprite;
+    public Sprite apolloBowSprite;
 
     [HideInInspector] public bool canShoot = true;
 
@@ -51,12 +53,17 @@ public class Bow : MonoBehaviour
             bowSprite.enabled = true;
             bowSprite.sprite = fireBowSprite;
         }
+        if (LevelController.playerHasApolloBow)
+        {
+            bowSprite.enabled = true;
+            bowSprite.sprite = apolloBowSprite;
+        }
 
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float rotatez = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         point.rotation = Quaternion.Euler(0f, 0f, rotatez + offset);
 
-        if (delay <= 0f && (LevelController.playerHasBow || LevelController.playerHasFireBow) && player.GetCurrentArrows() > 0 && canShoot)
+        if (delay <= 0f && (LevelController.playerHasBow || LevelController.playerHasFireBow || LevelController.playerHasApolloBow) && player.GetCurrentArrows() > 0 && canShoot)
         {
             if (Input.GetMouseButton(0))
             {
@@ -76,6 +83,7 @@ public class Bow : MonoBehaviour
                 bowSprite.enabled = false;
                 bowShootPosition.SetActive(true);
                 if (LevelController.playerHasFireBow) bowShootPosition.GetComponent<SpriteRenderer>().sprite = fireBowSprite;
+                if (LevelController.playerHasApolloBow) bowShootPosition.GetComponent<SpriteRenderer>().sprite = apolloBowSprite;
             }
             if (Input.GetMouseButtonUp(0))
             {
@@ -87,6 +95,7 @@ public class Bow : MonoBehaviour
                 player.GetComponent<PlayerMovement>().ReturnToNormalSpeed();
                 bowSprite.enabled = true;
                 if (LevelController.playerHasFireBow) bowSprite.sprite = fireBowSprite;
+                if (LevelController.playerHasApolloBow) bowSprite.sprite = apolloBowSprite;
                 bowShootPosition.SetActive(false);
             }
             if (Input.GetMouseButtonUp(1) && isCharging)
@@ -98,6 +107,7 @@ public class Bow : MonoBehaviour
                 player.GetComponent<PlayerMovement>().ReturnToNormalSpeed();
                 bowSprite.enabled = true;
                 if (LevelController.playerHasFireBow) bowSprite.sprite = fireBowSprite;
+                if (LevelController.playerHasApolloBow) bowSprite.sprite = apolloBowSprite;
                 bowShootPosition.SetActive(false);
             }
         }
@@ -112,11 +122,13 @@ public class Bow : MonoBehaviour
         float boost = chargeTime / (LevelController.playerHasHelmet ? maxChargeTime - 1.5f : maxChargeTime);
         Rigidbody2D rb;
         if (LevelController.playerHasFireBow) rb = Instantiate(FireArrow, point.position, point.rotation).GetComponent<Rigidbody2D>();
+        else if (LevelController.playerHasApolloBow) rb = Instantiate(ApolloArrow, point.position, point.rotation).GetComponent<Rigidbody2D>();
         else rb = Instantiate(Arrow, point.position, point.rotation).GetComponent<Rigidbody2D>();
         rb.GetComponent<Arrow>().OwnerType = "Player";
         rb.GetComponent<Arrow>().OwnerID = gameObject.GetInstanceID();
         rb.GetComponent<Arrow>().Damage += boost;
         if (LevelController.playerHasFireBow) rb.GetComponent<Arrow>().damageEffect = DamageEffects.StopOneShot;
+        if (LevelController.playerHasApolloBow) rb.GetComponent<Arrow>().damageEffect = DamageEffects.FreezeInPlace;
         rb.AddForce(direction * arrowSpeed * (1 + boost) + (Vector3)player.GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
         player.TakeArrow();
     }
@@ -151,6 +163,10 @@ public class Bow : MonoBehaviour
         if (LevelController.currentPlayerWeapon.Name == "Fire Bow")
         {
             bowSprite.sprite = fireBowSprite;
+        }
+        else if (LevelController.currentPlayerWeapon.Name == "Apollo Bow")
+        {
+            bowSprite.sprite = apolloBowSprite;
         }
     }
 }

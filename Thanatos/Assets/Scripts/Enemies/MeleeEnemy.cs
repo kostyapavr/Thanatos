@@ -43,6 +43,10 @@ public class MeleeEnemy : Enemy
 
     private SpriteRenderer spriteRenderer;
 
+    private bool freeze = true;
+    private float freezeTimer = 1.5f;
+    private float frzTmr = 0.0f;
+
     public override void Start()
     {
         RandomiseProperties();
@@ -78,6 +82,16 @@ public class MeleeEnemy : Enemy
     {
         if (player != null)
         {
+            if (freeze)
+            {
+                if (frzTmr <= 0.0f) freeze = false;
+                else
+                {
+                    frzTmr -= Time.deltaTime;
+                    return;
+                }
+            }
+
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
             if (distanceToPlayer <= attackRange)
@@ -131,5 +145,15 @@ public class MeleeEnemy : Enemy
         health = Random.Range(minHealth, maxHealth);
         attackInterval = Random.Range(attackIntervalMin, attackIntervalMax);
         moveSpeed = Random.Range(moveSpeedMin, moveSpeedMax);
+    }
+
+    public override void TakeDamage(float damage, GameObject sender = null, DamageEffects damageEffect = DamageEffects.Nothing)
+    {
+        base.TakeDamage(damage, sender, damageEffect);
+        if (damageEffect == DamageEffects.FreezeInPlace)
+        {
+            freeze = true;
+            frzTmr = freezeTimer;
+        }
     }
 }

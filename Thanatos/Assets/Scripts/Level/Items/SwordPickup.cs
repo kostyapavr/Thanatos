@@ -15,7 +15,9 @@ public class SwordPickup : MonoBehaviour, IPickupableWeapon
     public GameObject interactButton;
     private bool canInteract = false;
     public GameObject bowPrefab;
+    public GameObject peleusSwordPrefab;
     public GameObject fireBowPrefab;
+    public GameObject apolloBowPrefab;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,6 +40,8 @@ public class SwordPickup : MonoBehaviour, IPickupableWeapon
         LevelController.playerHasSword = true;
         CheckSwitch();
         LevelController.playerHasBow = false;
+        LevelController.playerHasApolloBow = false;
+        LevelController.playerHasPeleusSword = false;
         LevelController.playerHasFireBow = false;
         LevelController.currentPlayerWeapon = this;
         LevelController.playerWeapons.Add(this);
@@ -79,6 +83,14 @@ public class SwordPickup : MonoBehaviour, IPickupableWeapon
         if (LevelController.playerHasFireBow)
         {
             Instantiate(fireBowPrefab, p, Quaternion.identity);
+        }
+        if (LevelController.playerHasApolloBow)
+        {
+            Instantiate(apolloBowPrefab, p, Quaternion.identity);
+        }
+        if (LevelController.playerHasPeleusSword)
+        {
+            Instantiate(peleusSwordPrefab, p, Quaternion.identity);
         }
     }
 }

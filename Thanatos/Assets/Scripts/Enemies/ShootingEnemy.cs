@@ -35,6 +35,7 @@ public class ShootingEnemy : Enemy
     protected int ammoSpeed;
 
     private bool stopOneShot = false;
+    public bool freeze = false;
 
     public override void Start()
     {
@@ -63,7 +64,7 @@ public class ShootingEnemy : Enemy
 
     protected void Aim()
     {
-        if (aimSprite == null) return;
+        if (aimSprite == null || freeze) return;
         spriteRenderer.sprite = aimSprite;
     }
 
@@ -74,6 +75,11 @@ public class ShootingEnemy : Enemy
         if (stopOneShot)
         {
             stopOneShot = false;
+            return;
+        }
+        if (freeze)
+        {
+            freeze = false;
             return;
         }
 
@@ -107,5 +113,6 @@ public class ShootingEnemy : Enemy
     {
         base.TakeDamage(damage, sender, damageEffect);
         if (damageEffect == DamageEffects.StopOneShot) stopOneShot = true;
+        if (damageEffect == DamageEffects.FreezeInPlace) freeze = true;
     }
 }

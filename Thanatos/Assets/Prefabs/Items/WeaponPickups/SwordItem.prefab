@@ -358,7 +358,9 @@ MonoBehaviour:
   damage: 1
   interactButton: {fileID: 376673342500244102}
   bowPrefab: {fileID: 2849356139015045520, guid: 9e406681f5b812f4cb449e9b5df9526c, type: 3}
+  peleusSwordPrefab: {fileID: 0}
   fireBowPrefab: {fileID: 751788392765690920, guid: c3325b49dc56400438f445ab097a8157, type: 3}
+  apolloBowPrefab: {fileID: 4058870630402235521, guid: 4b4ac54008f992f4d92e44089cbf7b4c, type: 3}
 --- !u!70 &7439632545916084830
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

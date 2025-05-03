@@ -13,6 +13,7 @@ public class LevelController : MonoBehaviour
     public static int aliveEnemies = 0;
     public static float playerHp = 0;
     public static bool playerHasBow;
+    public static bool playerHasApolloBow;
     public static bool playerHasSword;
     public static bool playerHasHarpeSword;
     public static bool playerHasPeleusSword;
@@ -65,6 +66,8 @@ public class LevelController : MonoBehaviour
             playerHasHelmet = false;
             playerHasAchillesArmor = false;
             playerHasAchillesHelmet = false;
+            playerHasApolloBow = false;
+            playerHasPeleusSword = false;
             playerHasArmor = false;
             playerHasLavaBoots = false;
             isBossLevel = false;
