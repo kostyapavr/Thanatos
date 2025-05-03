@@ -28,6 +28,19 @@ public class UIController : MonoBehaviour
         LevelController.playerArrowShootEvent.AddListener(UpdateArrows);
     }
 
+    public void UpdateForMoreHp()
+    {
+        Transform hpParent = transform.GetChild(0);
+        for (int i = 0; i < hpParent.childCount; i++)
+        {
+            Destroy(hpParent.GetChild(i).gameObject);
+        }
+        numberOFLives = ResourceManager.Instance.MaxPlayerHP;
+        lives = new Image[numberOFLives];
+        SpawnIcons();
+        Invoke("UpdateHealth", 0.1f);
+    }
+
     void SpawnIcons()
     {
         if (hpIcon != null)
@@ -39,7 +52,7 @@ public class UIController : MonoBehaviour
             }
         }
 
-        if (LevelController.playerHasBow || LevelController.playerHasFireBow)
+        if (LevelController.playerHasBow || LevelController.playerHasFireBow || LevelController.playerHasApolloBow)
         {
             arrowIcon.SetActive(true);
         }
