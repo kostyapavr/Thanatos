@@ -104,6 +104,7 @@ MonoBehaviour:
   interactButton: {fileID: 5826377239353190682}
   swordPrefab: {fileID: 4373393001991053460, guid: 1ac48aff3bf1cfb4ea3a22daeb80d0e4, type: 3}
   peleusSwordPrefab: {fileID: 4373393001991053460, guid: 0b2f6c072d709784385dc98717a49de4, type: 3}
+  harpeSwordPrefab: {fileID: 4373393001991053460, guid: 6075cbba67b95484080b08d909acaa02, type: 3}
   apolloBowPrefab: {fileID: 4058870630402235521, guid: 4b4ac54008f992f4d92e44089cbf7b4c, type: 3}
   fireBowPrefab: {fileID: 751788392765690920, guid: c3325b49dc56400438f445ab097a8157, type: 3}
   erosBowPrefab: {fileID: 3762410068233256482, guid: ae8529cc99575d849822c2cc3c9855f4, type: 3}

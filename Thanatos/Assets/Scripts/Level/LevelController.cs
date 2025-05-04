@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
-    public static int maxArmorHP = 20;
-    public static int maxHelmetHP = 25;
+    public static int maxArmorHP = 30;
+    public static int maxHelmetHP = 35;
 
     public static int aliveEnemies = 0;
     public static float playerHp = 0;
@@ -38,6 +38,7 @@ public class LevelController : MonoBehaviour
     public static int playerBoostHp = 0;
     public static bool playerEquippedDefaultSword = false;
     public static bool playerEquippedPeleusSword = false;
+    public static bool playerEquippedHarpeSword = false;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();
@@ -73,6 +74,7 @@ public class LevelController : MonoBehaviour
             playerHasApolloBow = false;
             playerHasErosBow = false;
             playerHasPeleusSword = false;
+            playerHasHarpeSword = false;
             playerHasArmor = false;
             playerHasLavaBoots = false;
             isBossLevel = false;

@@ -4026,7 +4026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: maxPlayerHP
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: rocksToSpawn
@@ -4038,7 +4038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: maxPlayerHP_Hard
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: enemiesToSpawnMax
@@ -4050,11 +4050,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: playerArrowsToGive
-      value: 80
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8988183197532652655, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: playerArrowsToGive_Hard
-      value: 70
+      value: 80
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4967257267314230895, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FireBowPickup : MonoBehaviour, IPickupableWeapon
+public class HarpeSwordPickup : MonoBehaviour, IPickupableWeapon
 {
     [SerializeField]
     private string _name;
@@ -15,10 +15,10 @@ public class FireBowPickup : MonoBehaviour, IPickupableWeapon
 
     public GameObject interactButton;
     private bool canInteract = false;
+    public GameObject bowPrefab;
     public GameObject swordPrefab;
     public GameObject peleusSwordPrefab;
-    public GameObject harpeSwordPrefab;
-    public GameObject bowPrefab;
+    public GameObject fireBowPrefab;
     public GameObject apolloBowPrefab;
     public GameObject erosBowPrefab;
 
@@ -40,27 +40,27 @@ public class FireBowPickup : MonoBehaviour, IPickupableWeapon
 
     public virtual void Pickup()
     {
-        PlayerPrefs.SetInt("HasFireBow", 1);
+        PlayerPrefs.SetInt("HasHarpeSword", 1);
         PlayerPrefs.Save();
 
-        LevelController.playerHasFireBow = true;
+        LevelController.playerHasHarpeSword = true;
         CheckSwitch();
         LevelController.playerHasBow = false;
-        LevelController.playerHasErosBow = false;
         LevelController.playerHasApolloBow = false;
+        LevelController.playerHasFireBow = false;
+        LevelController.playerHasErosBow = false;
         LevelController.currentPlayerWeapon = this;
         LevelController.playerWeapons.Add(this);
         LevelController.playerPickupItemEvent.Invoke();
-        if (LevelController.playerHasPeleusSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemovePeleusSword();
         if (LevelController.playerHasSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemoveDefaultSword();
-        if (LevelController.playerHasHarpeSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemoveHarpeSword();
+        if (LevelController.playerHasPeleusSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemovePeleusSword();
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().SelectWeapon(this);
         Destroy(gameObject);
     }
 
     private void Start()
     {
-        //if (PlayerPrefs.GetInt("HasFireBow") == 0 && !SceneManager.GetActiveScene().name.Contains("Boss")) gameObject.SetActive(false);
+        //if (PlayerPrefs.GetInt("HasPeleusSword") == 0) gameObject.SetActive(false);
     }
 
     void ShowInteract()
@@ -93,25 +93,25 @@ public class FireBowPickup : MonoBehaviour, IPickupableWeapon
         {
             Instantiate(bowPrefab, p, Quaternion.identity);
         }
-        if (LevelController.playerHasSword)
+        if (LevelController.playerHasFireBow)
         {
-            Instantiate(swordPrefab, p, Quaternion.identity);
+            Instantiate(fireBowPrefab, p, Quaternion.identity);
         }
         if (LevelController.playerHasApolloBow)
         {
             Instantiate(apolloBowPrefab, p, Quaternion.identity);
         }
-        if (LevelController.playerHasPeleusSword)
+        if (LevelController.playerHasSword)
         {
-            Instantiate(peleusSwordPrefab, p, Quaternion.identity);
+            Instantiate(swordPrefab, p, Quaternion.identity);
         }
         if (LevelController.playerHasErosBow)
         {
             Instantiate(erosBowPrefab, p, Quaternion.identity);
         }
-        if (LevelController.playerHasHarpeSword)
+        if (LevelController.playerHasPeleusSword)
         {
-            Instantiate(harpeSwordPrefab, p, Quaternion.identity);
+            Instantiate(peleusSwordPrefab, p, Quaternion.identity);
         }
     }
 }

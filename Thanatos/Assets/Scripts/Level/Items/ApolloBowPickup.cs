@@ -20,6 +20,7 @@ public class ApolloBowPickup : MonoBehaviour, IPickupableWeapon
     public GameObject bowPrefab;
     public GameObject fireBowPrefab;
     public GameObject erosBowPrefab;
+    public GameObject harpeSwordPrefab;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -52,6 +53,7 @@ public class ApolloBowPickup : MonoBehaviour, IPickupableWeapon
         LevelController.playerPickupItemEvent.Invoke();
         if (LevelController.playerHasPeleusSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemovePeleusSword();
         if (LevelController.playerHasSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemoveDefaultSword();
+        if (LevelController.playerHasHarpeSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemoveHarpeSword();
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().SelectWeapon(this);
         Destroy(gameObject);
     }
@@ -106,6 +108,10 @@ public class ApolloBowPickup : MonoBehaviour, IPickupableWeapon
         if (LevelController.playerHasErosBow)
         {
             Instantiate(erosBowPrefab, p, Quaternion.identity);
+        }
+        if (LevelController.playerHasHarpeSword)
+        {
+            Instantiate(harpeSwordPrefab, p, Quaternion.identity);
         }
     }
 }

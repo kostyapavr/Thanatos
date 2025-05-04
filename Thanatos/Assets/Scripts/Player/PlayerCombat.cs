@@ -12,10 +12,12 @@ public class PlayerCombat : MonoBehaviour
     public float bonusAttackRange;
     public float bonusAttackDelay;
     public float peleusAttackRange;
+    public float harpeAttackRange;
 
     public Bow bow;
     public Sprite defaultSwordSprite;
     public Sprite peleusSwordSprite;
+    public Sprite harpeSwordSprite;
     private bool isHidden = false;
 
     public IPickupableWeapon currentWeapon;
@@ -25,8 +27,10 @@ public class PlayerCombat : MonoBehaviour
 
     public SpriteRenderer defaultSpriteRenderer;
     public SpriteRenderer peleusSpriteRenderer;
+    public SpriteRenderer harpeSpriteRenderer;
     public Sprite[] defaultSwordSprites;
     public Sprite[] peleusSwordSprites;
+    public Sprite[] harpeSwordSprites;
 
     [HideInInspector]
     public bool anim = false;
@@ -61,11 +65,13 @@ public class PlayerCombat : MonoBehaviour
                     animTime = animFrameInterval;
                     if (LevelController.playerHasSword) defaultSpriteRenderer.sprite = defaultSwordSprite;
                     if (LevelController.playerHasPeleusSword) peleusSpriteRenderer.sprite = peleusSwordSprite;
+                    if (LevelController.playerHasHarpeSword) harpeSpriteRenderer.sprite = harpeSwordSprite;
                     isAttacking = false;
                 }
 
                 if (LevelController.playerHasSword) defaultSpriteRenderer.sprite = defaultSwordSprites[animCnt];
                 if (LevelController.playerHasPeleusSword) peleusSpriteRenderer.sprite = peleusSwordSprites[animCnt];
+                if (LevelController.playerHasHarpeSword) harpeSpriteRenderer.sprite = harpeSwordSprites[animCnt];
 
                 animCnt++;
                 animTime = animFrameInterval;
@@ -73,7 +79,7 @@ public class PlayerCombat : MonoBehaviour
             else animTime -= Time.deltaTime;
         }
 
-        if (time <= 0.0f && Input.GetKeyDown(KeyCode.Mouse0) && (LevelController.playerEquippedDefaultSword || LevelController.playerEquippedPeleusSword) && !bow.isCharging && !isHidden)
+        if (time <= 0.0f && Input.GetKeyDown(KeyCode.Mouse0) && (LevelController.playerEquippedDefaultSword || LevelController.playerEquippedPeleusSword || LevelController.playerEquippedHarpeSword) && !bow.isCharging && !isHidden)
         {
             Attack();
             time = attackDelay;
@@ -88,6 +94,7 @@ public class PlayerCombat : MonoBehaviour
     {
         float range = attackRange;
         if (LevelController.playerEquippedPeleusSword) range = peleusAttackRange;
+        if (LevelController.playerEquippedHarpeSword) range = harpeAttackRange;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, range, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
@@ -100,6 +107,7 @@ public class PlayerCombat : MonoBehaviour
 
             DamageEffects dmgEffect = DamageEffects.Nothing;
             if (LevelController.playerEquippedPeleusSword) dmgEffect = DamageEffects.StopOneShot;
+            if (LevelController.playerEquippedHarpeSword) dmgEffect = DamageEffects.SetOnFire;
             enemy.GetComponent<Enemy>().TakeDamage(LevelController.currentPlayerWeapon.Damage, gameObject, dmgEffect);
         }
 

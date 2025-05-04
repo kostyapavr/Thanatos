@@ -244,6 +244,7 @@ MonoBehaviour:
   bowPrefab: {fileID: 2849356139015045520, guid: 9e406681f5b812f4cb449e9b5df9526c, type: 3}
   fireBowPrefab: {fileID: 751788392765690920, guid: c3325b49dc56400438f445ab097a8157, type: 3}
   erosBowPrefab: {fileID: 3762410068233256482, guid: ae8529cc99575d849822c2cc3c9855f4, type: 3}
+  harpeSwordPrefab: {fileID: 4373393001991053460, guid: 6075cbba67b95484080b08d909acaa02, type: 3}
 --- !u!1 &5916014782142545804
 GameObject:
   m_ObjectHideFlags: 0

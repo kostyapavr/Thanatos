@@ -16,6 +16,7 @@ public class SwordPickup : MonoBehaviour, IPickupableWeapon
     private bool canInteract = false;
     public GameObject bowPrefab;
     public GameObject peleusSwordPrefab;
+    public GameObject harpeSwordPrefab;
     public GameObject fireBowPrefab;
     public GameObject apolloBowPrefab;
     public GameObject erosBowPrefab;
@@ -48,6 +49,7 @@ public class SwordPickup : MonoBehaviour, IPickupableWeapon
         LevelController.playerWeapons.Add(this);
         LevelController.playerPickupItemEvent.Invoke();
         if (LevelController.playerHasPeleusSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemovePeleusSword();
+        if (LevelController.playerHasHarpeSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemoveHarpeSword();
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().SelectWeapon(this);
         Destroy(gameObject);
     }
@@ -93,6 +95,10 @@ public class SwordPickup : MonoBehaviour, IPickupableWeapon
         if (LevelController.playerHasPeleusSword)
         {
             Instantiate(peleusSwordPrefab, p, Quaternion.identity);
+        }
+        if (LevelController.playerHasHarpeSword)
+        {
+            Instantiate(harpeSwordPrefab, p, Quaternion.identity);
         }
         if (LevelController.playerHasErosBow)
         {
