@@ -10,6 +10,7 @@ public class MusicController : MonoBehaviour
     public AudioClip level1;
     public AudioClip level2;
     public AudioClip level3;
+    public AudioClip level4;
     public AudioSource audioSource;
 
     void Awake()
@@ -51,10 +52,16 @@ public class MusicController : MonoBehaviour
             audioSource.clip = level2;
             audioSource.Play();
         }
-        else if (arg0.buildIndex > 11 && audioSource.clip != level3)
+        else if (arg0.buildIndex > 11 && arg0.buildIndex <= 16 && audioSource.clip != level3)
         {
             audioSource.Stop();
             audioSource.clip = level3;
+            audioSource.Play();
+        }
+        else if (arg0.buildIndex > 16 && audioSource.clip != level4)
+        {
+            audioSource.Stop();
+            audioSource.clip = level4;
             audioSource.Play();
         }
     }

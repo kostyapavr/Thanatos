@@ -152,6 +152,8 @@ MonoBehaviour:
   firstSprite: {fileID: 0}
   secondSprite: {fileID: 0}
   walkAnimTime: 0
+  dmgEffect: 5
+  fireEffectParticles: {fileID: 9047206775445842203, guid: d7667806c0a7b5c4badd5f6874b72f44, type: 3}
   slowAreaPrefab: {fileID: 5624788143054952788, guid: 0395b845725c4634a9297c03a65cd1c7, type: 3}
   spawnInterval: 0.1
   lifeTime: 8

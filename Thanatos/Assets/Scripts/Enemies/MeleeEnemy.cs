@@ -43,12 +43,18 @@ public class MeleeEnemy : Enemy
 
     public DamageEffects dmgEffect;
     public GameObject fireEffectParticles;
+    public GameObject confusionEffectParticles;
+    public Transform confusionEffectSpot;
+    public bool immuneToConfusion = false;
+    private bool isConfused = false;
 
     private SpriteRenderer spriteRenderer;
 
     private bool freeze = false;
     private float freezeTimer = 1.5f;
     private float frzTmr = 0.0f;
+
+    private bool isOnFire = false;
 
     public override void Start()
     {
@@ -117,11 +123,11 @@ public class MeleeEnemy : Enemy
         if (hit.collider != null && !hit.collider.GetComponent<Player>())
         {
             Vector2 newDirection = direction + Vector2.Perpendicular(direction)*2;
-            transform.position = Vector2.MoveTowards(transform.position, (Vector2)transform.position + newDirection, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, (Vector2)transform.position + newDirection, (isConfused ? moveSpeed / 2 : moveSpeed) * Time.deltaTime);
         }
         else
         {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, (isConfused ? moveSpeed / 2 : moveSpeed) * Time.deltaTime);
         }
 
         if (firstSprite == null || secondSprite == null) return;
@@ -166,11 +172,28 @@ public class MeleeEnemy : Enemy
             Invoke("FireDamage", 3f);
             Invoke("FireDamage", 4f);
             Invoke("FireDamage", 5f);
+            Invoke("StopOnFire", 5f);
+        }
+        if (damageEffect == DamageEffects.Confusion && !immuneToConfusion && !isConfused)
+        {
+            Instantiate(confusionEffectParticles, confusionEffectSpot);
+            isConfused = true;
+            Invoke("StopConfusion", 3f);
         }
     }
 
     void FireDamage()
     {
         TakeDamage(0.2f, null, DamageEffects.Bleed);
+    }
+
+    void StopOnFire()
+    {
+        isOnFire = false;
+    }
+
+    void StopConfusion()
+    {
+        isConfused = false;
     }
 }

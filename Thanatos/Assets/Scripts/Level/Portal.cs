@@ -28,7 +28,7 @@ public class Portal : MonoBehaviour
 
         if (collider.CompareTag("Player") && !isClosed)
         {
-            if (SceneManager.GetActiveScene().name == "Level4_Boss") ShowEndPanel(collider.GetComponent<Player>());
+            if (SceneManager.GetActiveScene().name == "Final_Boss") ShowEndPanel(collider.GetComponent<Player>());
             else LoadNextLevel();
         }
     }
@@ -36,9 +36,10 @@ public class Portal : MonoBehaviour
     public virtual void LoadNextLevel()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
-        if (currentSceneName.Contains("Boss") && LevelController.playerBoostHp > 0)
+        if (currentSceneName.Contains("Boss"))
         {
-            LevelController.playerBoostHp = 0;
+            if (LevelController.playerBoostHp > 0) LevelController.playerBoostHp = 0;
+            if (LevelController.playerHasLavaBoots) LevelController.playerHasLavaBoots = false;
         }
         SceneManager.LoadScene(getNextSceneName(currentSceneName));
     }
@@ -52,6 +53,8 @@ public class Portal : MonoBehaviour
         if (currentName == "Level2_Boss") return "Level3.1";
         if (currentName == "Level3.4") return "Level3_Boss";
         if (currentName == "Level3_Boss") return "Level4.1";
+        if (currentName == "Level4.3") return "Level4_Boss";
+        if (currentName == "Level4_Boss") return "Final_Boss";
 
         var splitResult = currentName.Split('.');
         int currentLevel = int.Parse(splitResult[0].Last().ToString());

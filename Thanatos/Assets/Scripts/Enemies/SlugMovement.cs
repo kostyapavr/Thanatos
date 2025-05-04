@@ -56,6 +56,8 @@ public class SlugMovement : Enemy
     private float freezeTimer = 1.5f;
     private float frzTmr = 0.0f;
 
+    private bool isOnFire = false;
+
     public override void Start()
     {
         RandomiseProperties();
@@ -91,6 +93,16 @@ public class SlugMovement : Enemy
     {
         if (player != null)
         {
+            if (freeze)
+            {
+                if (frzTmr <= 0.0f) freeze = false;
+                else
+                {
+                    frzTmr -= Time.deltaTime;
+                    return;
+                }
+            }
+
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
             if (distanceToPlayer <= attackRange)
@@ -190,11 +202,17 @@ public class SlugMovement : Enemy
             Invoke("FireDamage", 3f);
             Invoke("FireDamage", 4f);
             Invoke("FireDamage", 5f);
+            Invoke("StopOnFire", 5f);
         }
     }
 
     void FireDamage()
     {
         TakeDamage(0.2f, null, DamageEffects.Bleed);
+    }
+
+    void StopOnFire()
+    {
+        isOnFire = false;
     }
 }

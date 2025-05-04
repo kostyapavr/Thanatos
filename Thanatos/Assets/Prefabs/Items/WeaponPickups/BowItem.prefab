@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.23113635, y: -0.355, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2520972013482409948}
@@ -103,9 +103,10 @@ MonoBehaviour:
   damage: 1
   interactButton: {fileID: 5826377239353190682}
   swordPrefab: {fileID: 4373393001991053460, guid: 1ac48aff3bf1cfb4ea3a22daeb80d0e4, type: 3}
-  peleusSwordPrefab: {fileID: 0}
+  peleusSwordPrefab: {fileID: 4373393001991053460, guid: 0b2f6c072d709784385dc98717a49de4, type: 3}
   apolloBowPrefab: {fileID: 4058870630402235521, guid: 4b4ac54008f992f4d92e44089cbf7b4c, type: 3}
   fireBowPrefab: {fileID: 751788392765690920, guid: c3325b49dc56400438f445ab097a8157, type: 3}
+  erosBowPrefab: {fileID: 3762410068233256482, guid: ae8529cc99575d849822c2cc3c9855f4, type: 3}
 --- !u!70 &6425400296089965549
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,8 +139,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0889194, y: 4.656351}
-  m_Size: {x: 8.938978, y: 17.586353}
+  m_Offset: {x: -0.08891957, y: 0.91156006}
+  m_Size: {x: 8.938978, y: 25.075941}
   m_Direction: 0
 --- !u!1 &4518179950285268571
 GameObject:

@@ -40,6 +40,9 @@ public class Arrow : MonoBehaviour, IShootable
     [HideInInspector]
     public DamageEffects damageEffect = DamageEffects.Nothing;
 
+    [HideInInspector] public bool explodeOnImpact = false;
+    public GameObject explodeEffect;
+
     public virtual void Start()
     {
         GetComponent<Collider2D>().enabled = false;
@@ -70,8 +73,23 @@ public class Arrow : MonoBehaviour, IShootable
             damageable.TakeDamage(Damage, gameObject, damageEffect);
         }
 
+        if (explodeOnImpact)
+        {
+            DoExplosion();
+            Instantiate(explodeEffect, pos, Quaternion.identity);
+        }
+
         GameObject g = Instantiate(particles.gameObject, pos, Quaternion.identity);
         Destroy(g, 1);
         Destroy();
+    }
+
+    private void DoExplosion()
+    {
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 7f, transform.position, 0);
+        if (hits.Where(x => x.collider != null && x.collider.GetComponent<Enemy>()).Count() > 0)
+        {
+            hits.First(x => x.collider.GetComponent<Enemy>()).collider.GetComponent<Enemy>().TakeDamage(0.5f, gameObject, DamageEffects.Confusion);
+        }
     }
 }

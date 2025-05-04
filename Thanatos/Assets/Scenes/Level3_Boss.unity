@@ -2243,7 +2243,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 995444573676602496, guid: 09950920984456f45a87ddc289f66767, type: 3}
       propertyPath: dropItems.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 995444573676602496, guid: 09950920984456f45a87ddc289f66767, type: 3}
       propertyPath: lootSpawns.Array.size
@@ -3266,12 +3266,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3429202732224066380, guid: 4b8fc9c7e76111243901945e71dcba8b, type: 3}
       propertyPath: itemDropChance
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3429202732224066380, guid: 4b8fc9c7e76111243901945e71dcba8b, type: 3}
       propertyPath: dropItems.Array.size
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3429202732224066380, guid: 4b8fc9c7e76111243901945e71dcba8b, type: 3}
+      propertyPath: dropItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 5401902329984564299, guid: 4989822f77898154a9e6adf2dec3f4ce, type: 3}
+    - target: {fileID: 3429202732224066380, guid: 4b8fc9c7e76111243901945e71dcba8b, type: 3}
+      propertyPath: dropItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 2594602861398474934, guid: b12e571ae13316549a1a90eb5350c0e5, type: 3}
+    - target: {fileID: 3429202732224066380, guid: 4b8fc9c7e76111243901945e71dcba8b, type: 3}
+      propertyPath: dropItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 7819326001113033101, guid: 7764afdc9fcd53f43919fb78589e736d, type: 3}
+    - target: {fileID: 3429202732224066380, guid: 4b8fc9c7e76111243901945e71dcba8b, type: 3}
+      propertyPath: dropItems.Array.data[3]
+      value: 
+      objectReference: {fileID: 6785514057673531132, guid: 712627e6277b176419b2093da7a841c9, type: 3}
+    - target: {fileID: 3429202732224066380, guid: 4b8fc9c7e76111243901945e71dcba8b, type: 3}
+      propertyPath: dropItems.Array.data[4]
+      value: 
+      objectReference: {fileID: 4103270817670105215, guid: ba8703bd00dd2724a8c0939b8a85a707, type: 3}
+    - target: {fileID: 3429202732224066380, guid: 4b8fc9c7e76111243901945e71dcba8b, type: 3}
+      propertyPath: dropItems.Array.data[5]
+      value: 
+      objectReference: {fileID: 8892067519067675165, guid: baa99553c58f7d64caf44b17e5a76081, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

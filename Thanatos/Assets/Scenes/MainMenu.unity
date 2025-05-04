@@ -267,6 +267,7 @@ MonoBehaviour:
   level1: {fileID: 8300000, guid: 852207dfaf4b18b42845cd1365f88e05, type: 3}
   level2: {fileID: 8300000, guid: f13ce56cba62268469ade1e8c1dc7948, type: 3}
   level3: {fileID: 8300000, guid: 58c00b075669b3a45a9d9c405fac09f0, type: 3}
+  level4: {fileID: 8300000, guid: bc4d890b45679254d8e7ed34716a3e66, type: 3}
   audioSource: {fileID: 9905806}
 --- !u!1 &12914237
 GameObject:

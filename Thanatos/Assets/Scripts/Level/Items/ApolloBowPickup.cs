@@ -19,6 +19,7 @@ public class ApolloBowPickup : MonoBehaviour, IPickupableWeapon
     public GameObject peleusSwordPrefab;
     public GameObject bowPrefab;
     public GameObject fireBowPrefab;
+    public GameObject erosBowPrefab;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -43,20 +44,21 @@ public class ApolloBowPickup : MonoBehaviour, IPickupableWeapon
 
         LevelController.playerHasApolloBow = true;
         CheckSwitch();
-        LevelController.playerHasFireBow = false;
         LevelController.playerHasBow = false;
-        LevelController.playerHasSword = false;
-        LevelController.playerHasPeleusSword = false;
+        LevelController.playerHasErosBow = false;
+        LevelController.playerHasFireBow = false;
         LevelController.currentPlayerWeapon = this;
         LevelController.playerWeapons.Add(this);
         LevelController.playerPickupItemEvent.Invoke();
+        if (LevelController.playerHasPeleusSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemovePeleusSword();
+        if (LevelController.playerHasSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemoveDefaultSword();
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().SelectWeapon(this);
         Destroy(gameObject);
     }
 
     private void Start()
     {
-        if (PlayerPrefs.GetInt("HasApolloBow") == 0 && SceneManager.GetActiveScene().buildIndex != 16) gameObject.SetActive(false);
+        //if (PlayerPrefs.GetInt("HasApolloBow") == 0 && !SceneManager.GetActiveScene().name.Contains("Boss")) gameObject.SetActive(false);
     }
 
     void ShowInteract()
@@ -100,6 +102,10 @@ public class ApolloBowPickup : MonoBehaviour, IPickupableWeapon
         if (LevelController.playerHasFireBow)
         {
             Instantiate(fireBowPrefab, p, Quaternion.identity);
+        }
+        if (LevelController.playerHasErosBow)
+        {
+            Instantiate(erosBowPrefab, p, Quaternion.identity);
         }
     }
 }

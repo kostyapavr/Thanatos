@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,8 @@ public class ShootingEnemy : Enemy
     public bool shootAhead;
     public DamageEffects playerDamageEffect;
     public GameObject fireEffectParticles;
+    public GameObject confusionEffectParticles;
+    public Transform confusionEffectSpot;
 
     protected Player player;
     protected SpriteRenderer spriteRenderer;
@@ -38,6 +41,10 @@ public class ShootingEnemy : Enemy
     private bool stopOneShot = false;
     [HideInInspector] public bool freeze = false;
     public bool immuneToFire = false;
+    public bool immuneToConfusion = false;
+    private bool isOnFire = false;
+    private bool isConfused = false;
+    public bool shootScatterArrow = false;
 
     public override void Start()
     {
@@ -57,6 +64,7 @@ public class ShootingEnemy : Enemy
 
     protected bool PlayerInSight()
     {
+        if (isConfused) return false;
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
         if (distanceToPlayer <= shootingRange)
         {
@@ -71,7 +79,7 @@ public class ShootingEnemy : Enemy
 
     protected void Aim()
     {
-        if (aimSprite == null || freeze) return;
+        if (aimSprite == null || freeze || isConfused) return;
         spriteRenderer.sprite = aimSprite;
     }
 
@@ -92,6 +100,13 @@ public class ShootingEnemy : Enemy
 
         Vector2 diff = player.transform.position - transform.position;
         if (shootAhead) diff = ((Vector2)player.transform.position + player.GetComponent<Rigidbody2D>().velocity*0.3f) - (Vector2)transform.position;
+
+        if (shootScatterArrow)
+        {
+            ShootScatterArrow(diff);
+            return;
+        }
+
         float angle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         float spreadAngle = angle + Random.Range(LevelController.playerHasAchillesHelmet ? -ammoSpread*2 : -ammoSpread, LevelController.playerHasAchillesHelmet ? ammoSpread*2 + 1 : ammoSpread + 1);
         Vector2 direction = Quaternion.AngleAxis(spreadAngle - angle, Vector3.forward) * diff.normalized;
@@ -109,6 +124,23 @@ public class ShootingEnemy : Enemy
         rb.AddForce(direction * ammoSpeed + GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
     }
 
+    void ShootScatterArrow(Vector3 dir)
+    {
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        List<float> spreadAngles = new List<float> { angle - 12, angle, angle + 12 };
+
+        for (int i = 0; i < 3; i++)
+        {
+            Vector3 direction = Quaternion.AngleAxis(spreadAngles[i] - angle, Vector3.forward) * dir.normalized;
+            Rigidbody2D rb = Instantiate(ammoPrefab, transform.position, Quaternion.Euler(0, 0, spreadAngles[i] + 270)).GetComponent<Rigidbody2D>();
+            rb.GetComponent<Arrow>().OwnerType = "Enemy";
+            rb.GetComponent<Arrow>().OwnerID = gameObject.GetInstanceID();
+            rb.GetComponent<Arrow>().damageEffect = DamageEffects.Nothing;
+            rb.GetComponent<Arrow>().Damage = 0.75f;
+            rb.AddForce(direction * ammoSpeed + (Vector3)GetComponent<Rigidbody2D>().velocity, ForceMode2D.Impulse);
+        }
+    }
+
     protected virtual void RandomiseProperties()
     {
         health = Random.Range(minHealth, maxHealth);
@@ -121,20 +153,38 @@ public class ShootingEnemy : Enemy
         base.TakeDamage(damage, sender, damageEffect);
         if (damageEffect == DamageEffects.StopOneShot) stopOneShot = true;
         if (damageEffect == DamageEffects.FreezeInPlace) freeze = true;
-        if (damageEffect == DamageEffects.SetOnFire && !immuneToFire)
+        if (damageEffect == DamageEffects.SetOnFire && !immuneToFire && !isOnFire)
         {
             Instantiate(fireEffectParticles, transform);
+            isOnFire = true;
             stopOneShot = true;
             Invoke("FireDamage", 1f);
             Invoke("FireDamage", 2f);
             Invoke("FireDamage", 3f);
             Invoke("FireDamage", 4f);
             Invoke("FireDamage", 5f);
+            Invoke("StopOnFire", 5f);
+        }
+        if (damageEffect == DamageEffects.Confusion && !immuneToConfusion && !isConfused)
+        {
+            Instantiate(confusionEffectParticles, confusionEffectSpot);
+            isConfused = true;
+            Invoke("StopConfusion", 3f);
         }
     }
 
     void FireDamage()
     {
         TakeDamage(0.2f, null, DamageEffects.Bleed);
+    }
+
+    void StopOnFire()
+    {
+        isOnFire = false;
+    }
+
+    void StopConfusion()
+    {
+        isConfused = false;
     }
 }

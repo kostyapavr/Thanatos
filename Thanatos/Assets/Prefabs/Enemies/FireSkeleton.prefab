@@ -163,8 +163,12 @@ MonoBehaviour:
   shootAhead: 0
   playerDamageEffect: 4
   fireEffectParticles: {fileID: 9047206775445842203, guid: aefa8e5f0ff932d48b80331b5e5f97e4, type: 3}
+  confusionEffectParticles: {fileID: 0}
+  confusionEffectSpot: {fileID: 0}
   freeze: 0
   immuneToFire: 1
+  immuneToConfusion: 1
+  shootScatterArrow: 0
 --- !u!114 &-596522518200358092
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1117472076599316512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4763873813176446547}
+  m_Layer: 6
+  m_Name: ConfusionSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4763873813176446547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117472076599316512}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.34, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1028213964165987354}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6107204645674273283
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,7 +64,8 @@ Transform:
   m_LocalPosition: {x: 32.8, y: 19.4, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4763873813176446547}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5375973863377520444
@@ -161,7 +193,12 @@ MonoBehaviour:
   shootAhead: 0
   playerDamageEffect: 0
   fireEffectParticles: {fileID: 9047206775445842203, guid: d7667806c0a7b5c4badd5f6874b72f44, type: 3}
+  confusionEffectParticles: {fileID: 9047206775445842203, guid: be6914a73c782234aa2267c4c00d8728, type: 3}
+  confusionEffectSpot: {fileID: 4763873813176446547}
   freeze: 0
+  immuneToFire: 0
+  immuneToConfusion: 0
+  shootScatterArrow: 0
 --- !u!114 &-596522518200358092
 MonoBehaviour:
   m_ObjectHideFlags: 0

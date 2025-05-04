@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PeleusSwordPickup : MonoBehaviour, IPickupableWeapon
 {
@@ -18,6 +19,7 @@ public class PeleusSwordPickup : MonoBehaviour, IPickupableWeapon
     public GameObject swordPrefab;
     public GameObject fireBowPrefab;
     public GameObject apolloBowPrefab;
+    public GameObject erosBowPrefab;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -37,17 +39,26 @@ public class PeleusSwordPickup : MonoBehaviour, IPickupableWeapon
 
     public virtual void Pickup()
     {
+        PlayerPrefs.SetInt("HasPeleusSword", 1);
+        PlayerPrefs.Save();
+
         LevelController.playerHasPeleusSword = true;
         CheckSwitch();
         LevelController.playerHasBow = false;
         LevelController.playerHasApolloBow = false;
-        LevelController.playerHasSword = false;
         LevelController.playerHasFireBow = false;
+        LevelController.playerHasErosBow = false;
         LevelController.currentPlayerWeapon = this;
         LevelController.playerWeapons.Add(this);
         LevelController.playerPickupItemEvent.Invoke();
+        if (LevelController.playerHasSword) GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().RemoveDefaultSword();
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().SelectWeapon(this);
         Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        //if (PlayerPrefs.GetInt("HasPeleusSword") == 0) gameObject.SetActive(false);
     }
 
     void ShowInteract()
@@ -91,6 +102,10 @@ public class PeleusSwordPickup : MonoBehaviour, IPickupableWeapon
         if (LevelController.playerHasSword)
         {
             Instantiate(swordPrefab, p, Quaternion.identity);
+        }
+        if (LevelController.playerHasErosBow)
+        {
+            Instantiate(erosBowPrefab, p, Quaternion.identity);
         }
     }
 }

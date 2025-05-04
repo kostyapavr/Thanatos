@@ -21,7 +21,7 @@ public class AnimationPlayer : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (isRunning)
+        if (isRunning && !LevelController.playerHasLavaBoots)
         {
             if (tmr <= 0.0f)
             {

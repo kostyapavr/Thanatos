@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1028213964165987354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &1904784128969395225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 88678651066083970}
+  m_Layer: 6
+  m_Name: ConfusionSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &88678651066083970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904784128969395225}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.7, y: 2.98, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1028213964165987354}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6107204645674273283
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,6 +96,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7263925612673920242}
+  - {fileID: 88678651066083970}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5375973863377520444
@@ -152,12 +184,15 @@ MonoBehaviour:
   moveSpeedMax: 10
   obstacleDetectSize: 7
   player: {fileID: 0}
-  attackRange: 5.6
+  attackRange: 6
   firstSprite: {fileID: 21300000, guid: 1d01ceaad28e3d74c944f225feca06db, type: 3}
   secondSprite: {fileID: 21300000, guid: e2a68e6b36c220a48af794088393d4df, type: 3}
   walkAnimTime: 0.15
   dmgEffect: 0
   fireEffectParticles: {fileID: 9047206775445842203, guid: d7667806c0a7b5c4badd5f6874b72f44, type: 3}
+  confusionEffectParticles: {fileID: 9047206775445842203, guid: be6914a73c782234aa2267c4c00d8728, type: 3}
+  confusionEffectSpot: {fileID: 88678651066083970}
+  immuneToConfusion: 0
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4

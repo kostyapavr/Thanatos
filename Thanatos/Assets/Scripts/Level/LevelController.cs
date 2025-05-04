@@ -14,6 +14,7 @@ public class LevelController : MonoBehaviour
     public static float playerHp = 0;
     public static bool playerHasBow;
     public static bool playerHasApolloBow;
+    public static bool playerHasErosBow;
     public static bool playerHasSword;
     public static bool playerHasHarpeSword;
     public static bool playerHasPeleusSword;
@@ -35,6 +36,8 @@ public class LevelController : MonoBehaviour
     public static BonusTypes playerBonusType = BonusTypes.None;
     public static bool playerHasLavaBoots = false;
     public static int playerBoostHp = 0;
+    public static bool playerEquippedDefaultSword = false;
+    public static bool playerEquippedPeleusSword = false;
 
     public static UnityEvent enemyDeathEvent = new UnityEvent();
     public static UnityEvent enemySpawnEvent = new UnityEvent();
@@ -68,11 +71,14 @@ public class LevelController : MonoBehaviour
             playerHasAchillesArmor = false;
             playerHasAchillesHelmet = false;
             playerHasApolloBow = false;
+            playerHasErosBow = false;
             playerHasPeleusSword = false;
             playerHasArmor = false;
             playerHasLavaBoots = false;
             isBossLevel = false;
             isNormalDifficulty = true;
+            playerBoostHp = 0;
+            playerBonusType = BonusTypes.None;
         }
         aliveEnemies = 0;
         if (sceneName.Contains("Boss")) SetBossLevel();

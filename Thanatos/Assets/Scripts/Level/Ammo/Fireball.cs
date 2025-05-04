@@ -35,6 +35,7 @@ public class Fireball : MonoBehaviour, IShootable
     }
 
     public ParticleSystem particles;
+    [HideInInspector] public bool doAoa = true;
 
     public virtual void Start()
     {
@@ -66,7 +67,7 @@ public class Fireball : MonoBehaviour, IShootable
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, 4f, transform.position, 0);
         if (hits.Where(x => x.collider != null && x.collider.GetComponent<Player>()).Count() > 0)
         {
-            hits.First(x => x.collider.GetComponent<Player>()).collider.GetComponent<Player>().TakeDamage(0.5f, gameObject, DamageEffects.BypassShield);
+            hits.First(x => x.collider.GetComponent<Player>()).collider.GetComponent<Player>().TakeDamage(0.5f, gameObject, DamageEffects.Nothing);
         }
     }
 
@@ -89,7 +90,7 @@ public class Fireball : MonoBehaviour, IShootable
 			return;
 		}
 
-        DoAoA_Damage();
+        if (doAoa) DoAoA_Damage();
 
         if (damageable != null && collision.collider.tag != OwnerType)
         {

@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 376673342500244102}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.13, y: 0.13, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4604569986466523443}
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.21, y: 1.9}
+  m_AnchoredPosition: {x: -0.61, y: 2.71}
   m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &895552383836736788
@@ -284,7 +284,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.13045454, y: -0.41625, z: 0}
-  m_LocalScale: {x: 20, y: 22, z: 1}
+  m_LocalScale: {x: 13, y: 13, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6973308896503729937}
@@ -331,7 +331,7 @@ SpriteRenderer:
   m_SortingLayerID: 1928116525
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 1b2e1de5bbfcd3f4480f64025fdf9f05, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f71deb2df881e014ab3c256658c33f93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -374,8 +374,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0027747394, y: -0.1069719}
-  m_Size: {x: 0.38635984, y: 0.6190262}
+  m_Offset: {x: 0.014273094, y: 0.08055254}
+  m_Size: {x: 0.35226434, y: 0.986501}
   m_Direction: 0
 --- !u!114 &2331699894333387811
 MonoBehaviour:
@@ -390,12 +390,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Peleus Sword
-  damage: 1.5
+  damage: 2
   interactButton: {fileID: 376673342500244102}
   bowPrefab: {fileID: 2849356139015045520, guid: 9e406681f5b812f4cb449e9b5df9526c, type: 3}
   swordPrefab: {fileID: 4373393001991053460, guid: 1ac48aff3bf1cfb4ea3a22daeb80d0e4, type: 3}
   fireBowPrefab: {fileID: 751788392765690920, guid: c3325b49dc56400438f445ab097a8157, type: 3}
   apolloBowPrefab: {fileID: 4058870630402235521, guid: 4b4ac54008f992f4d92e44089cbf7b4c, type: 3}
+  erosBowPrefab: {fileID: 3762410068233256482, guid: ae8529cc99575d849822c2cc3c9855f4, type: 3}
 --- !u!1 &5292153412564076090
 GameObject:
   m_ObjectHideFlags: 0

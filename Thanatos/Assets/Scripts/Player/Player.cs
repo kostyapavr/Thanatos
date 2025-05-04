@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageable
 {
@@ -32,6 +33,8 @@ public class Player : MonoBehaviour, IDamageable
     public Bow bow;
     private PlayerCombat sword;
     public Shield shield;
+    public SpriteRenderer defaultSwordSprite;
+    public SpriteRenderer peleusSwordSprite;
     private bool godMode = false;
 
     public AudioSource audioSource;
@@ -60,6 +63,9 @@ public class Player : MonoBehaviour, IDamageable
     private bool hasLavaBoots = false;
     private bool achillesArmorEffect = false;
     private bool achillesHelmetEffect = false;
+    private bool hasPeleusSword = false;
+
+    private bool isBleeding = false;
 
     void Start()
     {
@@ -92,6 +98,26 @@ public class Player : MonoBehaviour, IDamageable
         {
             godMode = !godMode;
             LevelController.playerIsGod = godMode;
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            PlayerPrefs.SetInt("HasFireBow", 1);
+            PlayerPrefs.SetInt("HasApolloBow", 1);
+            PlayerPrefs.SetInt("HasErosBow", 1);
+            PlayerPrefs.SetInt("HasPeleusSword", 1);
+            PlayerPrefs.SetInt("HasHarpeSword", 1);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("MainMenu");
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PlayerPrefs.SetInt("HasFireBow", 0);
+            PlayerPrefs.SetInt("HasApolloBow", 0);
+            PlayerPrefs.SetInt("HasErosBow", 0);
+            PlayerPrefs.SetInt("HasPeleusSword", 0);
+            PlayerPrefs.SetInt("HasHarpeSword", 0);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("MainMenu");
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -153,25 +179,19 @@ public class Player : MonoBehaviour, IDamageable
         PlayAudio(slowEffectSound);
     }
 
-    public void SwitchWeapon(int n)
-    {
-        if (n == 1 && LevelController.playerHasBow && !sword.isAttacking && !LevelController.playerShieldActive) SelectBow();
-        else if (n == 0 && LevelController.playerHasSword && !bow.isCharging && !LevelController.playerShieldActive) SelectSword();
-        else if (n == 2 && LevelController.playerHasShield && !bow.isCharging && !sword.isAttacking) SelectShield();
-    }
-
     public void SelectWeapon(IPickupableWeapon weapon)
     {
         if (weapon == null) return;
-        if (weapon.Name.Contains("Sword") && LevelController.playerHasSword && !bow.isCharging && !LevelController.playerShieldActive) SelectSword();
-        else if (weapon.Name.Contains("Bow") && (LevelController.playerHasBow || LevelController.playerHasFireBow) && !sword.isAttacking && !LevelController.playerShieldActive) SelectBow();
+        if (weapon.Name.Contains("Sword") && (LevelController.playerHasSword || LevelController.playerHasPeleusSword) && !bow.isCharging && !LevelController.playerShieldActive) SelectSword();
+        else if (weapon.Name.Contains("Bow") && (LevelController.playerHasBow || LevelController.playerHasFireBow || LevelController.playerHasApolloBow || LevelController.playerHasErosBow) && !sword.isAttacking && !LevelController.playerShieldActive) SelectBow();
         else if (weapon.Name.Contains("Shield") && LevelController.playerHasShield && !bow.isCharging && !sword.isAttacking) SelectShield();
     }
 
     private void SelectSword()
     {
         bow.HideBow();
-        sword.ShowSword();
+        if (LevelController.playerHasSword) EquipDefaultSword();
+        else if (LevelController.playerHasPeleusSword) EquipPeleusSword();
         shield.HideShield();
         //selectedWeapon = 1;
         LevelController.currentPlayerWeapon = LevelController.playerWeapons.Find(x => x.Name.Contains("Sword"));
@@ -180,7 +200,8 @@ public class Player : MonoBehaviour, IDamageable
     private void SelectBow()
     {
         bow.ShowBow();
-        sword.HideSword();
+        if (LevelController.playerHasSword) HideDefaultSword();
+        else if (LevelController.playerHasPeleusSword) HidePeleusSword();
         shield.HideShield();
         //selectedWeapon = 0;
         LevelController.currentPlayerWeapon = LevelController.playerWeapons.Find(x => x.Name.Contains("Bow"));
@@ -189,7 +210,8 @@ public class Player : MonoBehaviour, IDamageable
     private void SelectShield()
     {
         bow.HideBow();
-        sword.HideSword();
+        if (LevelController.playerHasSword) HideDefaultSword();
+        else if (LevelController.playerHasPeleusSword) HidePeleusSword();
         shield.ShowShield();
         //selectedWeapon = 0;
         LevelController.currentPlayerWeapon = LevelController.playerWeapons.Find(x => x.Name.Contains("Shield"));
@@ -255,11 +277,12 @@ public class Player : MonoBehaviour, IDamageable
             ShowArmorTakeDamage();
         }
 
-        if (damageEffect == DamageEffects.Bleed)
+        if (damageEffect == DamageEffects.Bleed && !isBleeding)
         {
+            isBleeding = true;
             Invoke("Bleed", 1f);
             Invoke("Bleed", 3f);
-            Invoke("Bleed", 5f);
+            Invoke("StopBleed", 3f);
         }
         if (damageEffect == DamageEffects.MeduzaBite)
         {
@@ -299,6 +322,11 @@ public class Player : MonoBehaviour, IDamageable
         TakeDamage(0.25f, null, DamageEffects.Bleed);
     }
 
+    void StopBleed()
+    {
+        isBleeding = false;
+    }
+
     void FireDamage()
     {
         TakeDamage(0.2f, null, DamageEffects.Bleed);
@@ -314,6 +342,11 @@ public class Player : MonoBehaviour, IDamageable
         LevelController.playerHasAchillesArmor = false;
         LevelController.playerHasAchillesHelmet = false;
         LevelController.playerHasShield = false;
+        LevelController.playerHasApolloBow = false;
+        LevelController.playerHasHarpeSword = false;
+        LevelController.playerHasPeleusSword = false;
+        LevelController.playerBoostHp = 0;
+        LevelController.playerBonusType = BonusTypes.None;
     }
 
     public void ShowEndPanel()
@@ -331,6 +364,8 @@ public class Player : MonoBehaviour, IDamageable
         if (!hasArmor && LevelController.playerHasAchillesArmor) EquipAchillesArmor();
         if (!achillesHelmetEffect && LevelController.playerHasAchillesHelmet) EquipAchillesHelmet();
         if (!hasLavaBoots && LevelController.playerHasLavaBoots) EquipLavaBoots();
+        if (!hasPeleusSword && LevelController.playerHasPeleusSword) EquipPeleusSword();
+        if (LevelController.playerHasSword) EquipDefaultSword();
 
         switch (LevelController.playerBonusType)
         {
@@ -345,6 +380,7 @@ public class Player : MonoBehaviour, IDamageable
             case BonusTypes.FlaskOfIchor: maxHealth += 2; currentHealth += 1; LevelController.playerHp = currentHealth; LevelController.playerBoostHp = 2; ui.UpdateForMoreHp(); PlayAudio(bonusPickupClip); break;
             case BonusTypes.Panacea: maxHealth += 1; LevelController.playerBoostHp = 1; ui.UpdateForMoreHp(); PlayAudio(bonusPickupClip); break;
         }
+        LevelController.playerBonusType = BonusTypes.None;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -461,6 +497,45 @@ public class Player : MonoBehaviour, IDamageable
     {
         achillesHelmetSprite.SetActive(false);
         achillesHelmetEffect = false;
+    }
+
+    public void EquipDefaultSword()
+    {
+        defaultSwordSprite.enabled = true;
+        LevelController.playerEquippedDefaultSword = true;
+    }
+    public void HideDefaultSword()
+    {
+        defaultSwordSprite.enabled = false;
+        LevelController.playerEquippedDefaultSword = false;
+    }
+
+    public void RemoveDefaultSword()
+    {
+        defaultSwordSprite.enabled = false;
+        LevelController.playerEquippedDefaultSword = false;
+        LevelController.playerHasSword = false;
+    }
+
+    public void EquipPeleusSword()
+    {
+        peleusSwordSprite.enabled = true;
+        LevelController.playerEquippedPeleusSword = true;
+        hasPeleusSword = true;
+    }
+
+    public void HidePeleusSword()
+    {
+        peleusSwordSprite.enabled = false;
+        LevelController.playerEquippedPeleusSword = false;
+    }
+
+    public void RemovePeleusSword()
+    {
+        peleusSwordSprite.enabled = false;
+        LevelController.playerEquippedPeleusSword = false;
+        LevelController.playerHasPeleusSword = false;
+        hasPeleusSword = false;
     }
 
     public void PlayAudio(AudioClip audio)

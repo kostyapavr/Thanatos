@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1028213964165987354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!1 &3008558691322769060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2853269120072178636}
+  m_Layer: 6
+  m_Name: ConfusionSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2853269120072178636
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3008558691322769060}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.19, y: 0.41, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1028213964165987354}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6107204645674273283
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,6 +96,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7263925612673920242}
+  - {fileID: 2853269120072178636}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5375973863377520444
@@ -154,6 +186,9 @@ MonoBehaviour:
   walkAnimTime: 0.1
   dmgEffect: 0
   fireEffectParticles: {fileID: 9047206775445842203, guid: d7667806c0a7b5c4badd5f6874b72f44, type: 3}
+  confusionEffectParticles: {fileID: 9047206775445842203, guid: be6914a73c782234aa2267c4c00d8728, type: 3}
+  confusionEffectSpot: {fileID: 2853269120072178636}
+  immuneToConfusion: 0
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4
