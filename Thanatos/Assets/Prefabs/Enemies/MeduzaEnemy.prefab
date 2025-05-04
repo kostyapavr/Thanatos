@@ -151,14 +151,16 @@ MonoBehaviour:
   obstacleDetectSize: 3
   player: {fileID: 0}
   attackRange: 5.6
-  firstSprite: {fileID: 0}
-  secondSprite: {fileID: 0}
-  walkAnimTime: 0
+  firstSprite: {fileID: 21300000, guid: 4f252937d9f0d37438898d792c2d4d45, type: 3}
+  secondSprite: {fileID: 21300000, guid: 660141ccc5df7f3498257bb94030a3e8, type: 3}
+  walkAnimTime: 0.15
   dmgEffect: 7
   fireEffectParticles: {fileID: 9047206775445842203, guid: d7667806c0a7b5c4badd5f6874b72f44, type: 3}
   confusionEffectParticles: {fileID: 9047206775445842203, guid: be6914a73c782234aa2267c4c00d8728, type: 3}
   confusionEffectSpot: {fileID: 2252576078135334327}
   immuneToConfusion: 0
+  canTurnTransparent: 0
+  transparentChance: 0
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4

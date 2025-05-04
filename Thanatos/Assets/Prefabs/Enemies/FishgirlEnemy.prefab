@@ -216,7 +216,9 @@ MonoBehaviour:
   moveIntervalMin: 1.25
   moveIntervalMax: 2
   moveSpeed: 5
-  moveDistance: 20
+  moveDistance: 25
+  obstacleDetectSize: 6
+  detectionDistance: 6
 --- !u!50 &1231178815454012159
 Rigidbody2D:
   serializedVersion: 4

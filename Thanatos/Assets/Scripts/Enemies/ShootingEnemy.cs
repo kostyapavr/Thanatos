@@ -127,7 +127,7 @@ public class ShootingEnemy : Enemy
     void ShootScatterArrow(Vector3 dir)
     {
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        List<float> spreadAngles = new List<float> { angle - 12, angle, angle + 12 };
+        List<float> spreadAngles = new List<float> { angle - 15, angle, angle + 15 };
 
         for (int i = 0; i < 3; i++)
         {

@@ -35,6 +35,8 @@ public class ShootingBoss : ShootingEnemy
     public AudioSource audioSource;
     public AudioClip largeAttackClip;
 
+    private bool droppedLoot = false;
+
     protected override void Shoot()
     {
         if (skipAttacks)
@@ -145,13 +147,14 @@ public class ShootingBoss : ShootingEnemy
     {
         int rnd = Random.Range(0, 100);
         
-        if (rnd < itemDropChance)
+        if (rnd < itemDropChance && !droppedLoot)
         {
             int startInd = 0;
             if (LevelController.playerHasHelmet) startInd = 1;
             if (LevelController.playerHasArmor) startInd = 2;
             int rndInd = Random.Range(startInd, dropItems.Length);
             Instantiate(dropItems[rndInd], transform.position, Quaternion.identity);
+            droppedLoot = true;
         }
         
         if (lavaBoots != null)
@@ -162,6 +165,12 @@ public class ShootingBoss : ShootingEnemy
 
     public override void Die()
     {
+        if (FindObjectsOfType<ShootingBoss>().Length > 1)
+        {
+            SpawnRandomItem();
+            Destroy(gameObject);
+            return;
+        }
         LevelController.bossDeathEvent.Invoke();
         GameObject portal = GameObject.Find("ExitPortal");
         portal.GetComponent<SpriteRenderer>().enabled = true;

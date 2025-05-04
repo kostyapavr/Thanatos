@@ -141,8 +141,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveIntervalMin: 1.5
   moveIntervalMax: 2.5
-  moveSpeed: 8
+  moveSpeed: 10
   moveDistance: 20
+  obstacleDetectSize: 11
+  detectionDistance: 7
 --- !u!114 &2031522754797940865
 MonoBehaviour:
   m_ObjectHideFlags: 0

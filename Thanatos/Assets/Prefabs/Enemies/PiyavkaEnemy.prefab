@@ -148,9 +148,9 @@ MonoBehaviour:
   obstacleDetectSize: 2
   player: {fileID: 0}
   attackRange: 5
-  firstSprite: {fileID: 0}
-  secondSprite: {fileID: 0}
-  walkAnimTime: 0
+  firstSprite: {fileID: 21300000, guid: b5fe644d804856a4b89a7ded6b245bd3, type: 3}
+  secondSprite: {fileID: 21300000, guid: e6539a2cf7d2ed148bbe77c2e7954e02, type: 3}
+  walkAnimTime: 0.3
   dmgEffect: 0
   fireEffectParticles: {fileID: 9047206775445842203, guid: d7667806c0a7b5c4badd5f6874b72f44, type: 3}
   slowAreaPrefab: {fileID: 5624788143054952788, guid: 465750694b57a7f4aadca5573c4ab4c4, type: 3}

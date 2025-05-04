@@ -139,10 +139,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639b8ce7cb2f1184c90f312bba8a0944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveIntervalMin: 1.5
-  moveIntervalMax: 2.5
-  moveSpeed: 8
-  moveDistance: 20
+  moveIntervalMin: 1.2
+  moveIntervalMax: 2
+  moveSpeed: 10
+  moveDistance: 30
+  obstacleDetectSize: 11
+  detectionDistance: 7
 --- !u!114 &3429202732224066380
 MonoBehaviour:
   m_ObjectHideFlags: 0

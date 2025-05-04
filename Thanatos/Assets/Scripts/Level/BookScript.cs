@@ -7,13 +7,14 @@ public class BookScript : MonoBehaviour
     public GameObject panels;
     public GameObject bookPanel;
     public GameObject bookPanel2;
+    public GameObject bookPanel3;
     public GameObject interactTip;
-    public GameObject nextButton;
-    public GameObject prevButton;
     public GameObject emptyText;
+    public GameObject emptyText2;
 
     public List<GameObject> itemDescriptions;
     public List<GameObject> armorDescriptions;
+    public List<GameObject> weaponDescriptions;
     bool canInteract = false;
     [HideInInspector]
     public bool isOpen = false;
@@ -55,6 +56,8 @@ public class BookScript : MonoBehaviour
         Time.timeScale = 0;
         panels.SetActive(true);
         isOpen = true;
+        emptyText.SetActive(false);
+        emptyText2.SetActive(false);
         cnt = 0;
         cntArmor = 0;
 
@@ -74,11 +77,16 @@ public class BookScript : MonoBehaviour
                 cntArmor++;
             }
         }
+        for (int i = 0; i < weaponDescriptions.Count; i++)
+        {
+            if (PlayerPrefs.GetInt(weaponDescriptions[i].name, 0) == 1)
+            {
+                weaponDescriptions[i].SetActive(true);
+            }
+        }
 
         if (cnt == 0) emptyText.SetActive(true);
-        else emptyText.SetActive(false);
-
-        if (cntArmor > 0 && cnt == 0) OpenSecondPage();
+        if (cntArmor == 0) emptyText2.SetActive(true);
     }
 
     public void CloseBook()
@@ -107,19 +115,20 @@ public class BookScript : MonoBehaviour
     {
         bookPanel.SetActive(true);
         bookPanel2.SetActive(false);
-        nextButton.SetActive(true);
-        prevButton.SetActive(false);
-        if (cnt == 0) emptyText.SetActive(true);
-        else emptyText.SetActive(false);
+        bookPanel3.SetActive(false);
     }
 
     public void OpenSecondPage()
     {
         bookPanel.SetActive(false);
         bookPanel2.SetActive(true);
-        nextButton.SetActive(false);
-        prevButton.SetActive(true);
-        if (cntArmor == 0) emptyText.SetActive(true);
-        else emptyText.SetActive(false);
+        bookPanel3.SetActive(false);
+    }
+
+    public void OpenThirdPage()
+    {
+        bookPanel.SetActive(false);
+        bookPanel2.SetActive(false);
+        bookPanel3.SetActive(true);
     }
 }

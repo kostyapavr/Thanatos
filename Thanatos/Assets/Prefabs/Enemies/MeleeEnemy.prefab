@@ -189,6 +189,8 @@ MonoBehaviour:
   confusionEffectParticles: {fileID: 9047206775445842203, guid: be6914a73c782234aa2267c4c00d8728, type: 3}
   confusionEffectSpot: {fileID: 2853269120072178636}
   immuneToConfusion: 0
+  canTurnTransparent: 0
+  transparentChance: 0
 --- !u!50 &9136374743361488656
 Rigidbody2D:
   serializedVersion: 4

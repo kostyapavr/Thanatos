@@ -74,6 +74,9 @@ public class LevelController : MonoBehaviour
             playerHasApolloBow = false;
             playerHasErosBow = false;
             playerHasPeleusSword = false;
+            playerEquippedPeleusSword = false;
+            playerEquippedHarpeSword = false;
+            playerEquippedDefaultSword = false;
             playerHasHarpeSword = false;
             playerHasArmor = false;
             playerHasLavaBoots = false;

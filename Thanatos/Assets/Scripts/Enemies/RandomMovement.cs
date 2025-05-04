@@ -8,6 +8,8 @@ public class EnemyArcherMovement : MonoBehaviour
     public float moveIntervalMax;
     public float moveSpeed;
     public float moveDistance;
+    public float obstacleDetectSize;
+    public float detectionDistance;
 
     private Rigidbody2D rb;
     private Transform playerTransform;
@@ -32,8 +34,15 @@ public class EnemyArcherMovement : MonoBehaviour
         }
 
         Vector2 direction = GetDirectionToPlayer();
-        float distance = Random.Range(moveDistance / 2, moveDistance);
 
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, obstacleDetectSize, direction, detectionDistance, obstacleMask);
+        if (hit.collider != null && !hit.collider.GetComponent<Player>())
+        {
+            direction = direction + Vector2.Perpendicular(direction);
+            //transform.position = Vector2.MoveTowards(transform.position, (Vector2)transform.position + newDirection, moveSpeed * Time.deltaTime);
+        }
+
+        float distance = Random.Range(moveDistance / 1.5f, moveDistance);
         rb.velocity = direction * moveSpeed;
         Invoke("StopMoving", distance / moveSpeed);
     }

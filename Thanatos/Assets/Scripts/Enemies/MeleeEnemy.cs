@@ -56,6 +56,10 @@ public class MeleeEnemy : Enemy
 
     private bool isOnFire = false;
 
+    public bool canTurnTransparent = false;
+    public int transparentChance = 0;
+    private bool isTransparent = false;
+
     public override void Start()
     {
         RandomiseProperties();
@@ -101,6 +105,14 @@ public class MeleeEnemy : Enemy
                 }
             }
 
+            if (canTurnTransparent && !isTransparent)
+            {
+                if (Random.Range(0, 100) < transparentChance)
+                {
+                    StartTransparent();
+                }
+            }
+
             float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
             if (distanceToPlayer <= attackRange)
@@ -112,6 +124,23 @@ public class MeleeEnemy : Enemy
                 ChasePlayer();
             }
         }
+    }
+
+    void StartTransparent()
+    {
+        isTransparent = true;
+        GetComponent<Collider2D>().enabled = false;
+        Color spriteColor = GetComponent<SpriteRenderer>().color;
+        GetComponent<SpriteRenderer>().color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 0.4f);
+        Invoke("StopTransparent", 2f);
+    }
+
+    void StopTransparent()
+    {
+        GetComponent<Collider2D>().enabled = true;
+        Color spriteColor = GetComponent<SpriteRenderer>().color;
+        GetComponent<SpriteRenderer>().color = new Color(spriteColor.r, spriteColor.g, spriteColor.b, 1f);
+        isTransparent = false;
     }
 
     private float delayTime = 0.0f;

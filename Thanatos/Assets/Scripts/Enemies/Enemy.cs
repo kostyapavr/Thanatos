@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public GameObject[] dropItems;
     public GameObject helmetPrefab;
     public bool isBoss;
+    private bool itemSpawned = false;
 
     private float _currentHealth;
     private float _maxHealth;
@@ -79,12 +80,13 @@ public class Enemy : MonoBehaviour, IDamageable
             return;
         }
 
-        if (rnd <= itemDropChance)
+        if (rnd <= itemDropChance && !itemSpawned)
         {
             int rndInd = Random.Range(0, dropItems.Length);
             if (dropItems == null || dropItems.Length == 0) return;
             if (dropItems[rndInd].GetComponent<BonusPickup>().bonusType == BonusTypes.AriadneThread && LevelController.isBossLevel) return;
             Instantiate(dropItems[rndInd], transform.position, Quaternion.identity);
+            itemSpawned = true;
         }
     }
 

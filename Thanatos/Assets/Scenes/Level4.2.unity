@@ -1904,7 +1904,7 @@ PrefabInstance:
     - target: {fileID: 6668491944987300856, guid: 15a525ccc3566264fb08cffb89d345ed, type: 3}
       propertyPath: openSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2d202e30d9cf79445bfe8dad3b737a09, type: 3}
+      objectReference: {fileID: 21300000, guid: e2cb766f6afd8e94e8e503353440fdc7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2772,7 +2772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1505890048227891751, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: enemyPrefabs.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1505890048227891751, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: spawnPoints.Array.data[0]
@@ -2846,6 +2846,10 @@ PrefabInstance:
       propertyPath: enemyPrefabs.Array.data[7]
       value: 
       objectReference: {fileID: 2288272508029283383, guid: f018f856b20a00b4198fa498fe50bfe8, type: 3}
+    - target: {fileID: 1505890048227891751, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
+      propertyPath: enemyPrefabs.Array.data[8]
+      value: 
+      objectReference: {fileID: 7954183220553699385, guid: b7bcdd7e951ef764a84428f00ccec5c4, type: 3}
     - target: {fileID: 1505890048227891751, guid: 953aefed7c68f5f4f84c9f7c5994d7bc, type: 3}
       propertyPath: spawnPoints.Array.data[10]
       value: 

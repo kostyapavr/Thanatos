@@ -637,4 +637,6 @@ MonoBehaviour:
   moveIntervalMin: 2
   moveIntervalMax: 3
   moveSpeed: 8
-  moveDistance: 12
+  moveDistance: 15
+  obstacleDetectSize: 11
+  detectionDistance: 7

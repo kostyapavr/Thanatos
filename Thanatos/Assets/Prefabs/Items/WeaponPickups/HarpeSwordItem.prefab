@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: Harpe Sword
-  damage: 2
+  damage: 1.5
   interactButton: {fileID: 376673342500244102}
   bowPrefab: {fileID: 2849356139015045520, guid: 9e406681f5b812f4cb449e9b5df9526c, type: 3}
   swordPrefab: {fileID: 4373393001991053460, guid: 1ac48aff3bf1cfb4ea3a22daeb80d0e4, type: 3}

@@ -401,7 +401,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 995444573676602496, guid: 09950920984456f45a87ddc289f66767, type: 3}
       propertyPath: dropItems.Array.size
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 995444573676602496, guid: 09950920984456f45a87ddc289f66767, type: 3}
       propertyPath: lootSpawns.Array.size
@@ -418,7 +418,15 @@ PrefabInstance:
     - target: {fileID: 995444573676602496, guid: 09950920984456f45a87ddc289f66767, type: 3}
       propertyPath: dropItems.Array.data[2]
       value: 
-      objectReference: {fileID: 4373393001991053460, guid: 0b2f6c072d709784385dc98717a49de4, type: 3}
+      objectReference: {fileID: 3762410068233256482, guid: ae8529cc99575d849822c2cc3c9855f4, type: 3}
+    - target: {fileID: 995444573676602496, guid: 09950920984456f45a87ddc289f66767, type: 3}
+      propertyPath: dropItems.Array.data[3]
+      value: 
+      objectReference: {fileID: 4058870630402235521, guid: 4b4ac54008f992f4d92e44089cbf7b4c, type: 3}
+    - target: {fileID: 995444573676602496, guid: 09950920984456f45a87ddc289f66767, type: 3}
+      propertyPath: dropItems.Array.data[4]
+      value: 
+      objectReference: {fileID: 4373393001991053460, guid: 6075cbba67b95484080b08d909acaa02, type: 3}
     - target: {fileID: 995444573676602496, guid: 09950920984456f45a87ddc289f66767, type: 3}
       propertyPath: lootSpawns.Array.data[0]
       value: 
@@ -1134,7 +1142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3429202732224066380, guid: 1150f32220751534aac7d73bf90ee6dd, type: 3}
       propertyPath: dropItems.Array.size
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3429202732224066380, guid: 1150f32220751534aac7d73bf90ee6dd, type: 3}
       propertyPath: dropItems.Array.data[0]
@@ -1151,7 +1159,11 @@ PrefabInstance:
     - target: {fileID: 3429202732224066380, guid: 1150f32220751534aac7d73bf90ee6dd, type: 3}
       propertyPath: dropItems.Array.data[3]
       value: 
-      objectReference: {fileID: 5401902329984564299, guid: 4989822f77898154a9e6adf2dec3f4ce, type: 3}
+      objectReference: {fileID: 4373393001991053460, guid: 6075cbba67b95484080b08d909acaa02, type: 3}
+    - target: {fileID: 3429202732224066380, guid: 1150f32220751534aac7d73bf90ee6dd, type: 3}
+      propertyPath: dropItems.Array.data[4]
+      value: 
+      objectReference: {fileID: 751788392765690920, guid: c3325b49dc56400438f445ab097a8157, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1515,7 +1527,7 @@ PrefabInstance:
     - target: {fileID: 6668491944987300856, guid: 15a525ccc3566264fb08cffb89d345ed, type: 3}
       propertyPath: openSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2d202e30d9cf79445bfe8dad3b737a09, type: 3}
+      objectReference: {fileID: 21300000, guid: e2cb766f6afd8e94e8e503353440fdc7, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
