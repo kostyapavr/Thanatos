@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd8f15c04a785e140b11197087a1df6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Flask Of Ichor
+  _name: Flask_Of_Ichor
   pickupEffect: {fileID: 4341048507190764863, guid: f0ac2121f21cbe44d9397f1b9c500924, type: 3}
   bonusType: 7
   pickupEffectMaterial: {fileID: 2100000, guid: e4600c0d9ec791e41a173f3d8d56cbc4, type: 2}
