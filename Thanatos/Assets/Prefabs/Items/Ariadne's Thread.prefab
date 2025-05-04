@@ -389,7 +389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd8f15c04a785e140b11197087a1df6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: Aridane Thread
+  _name: Ariadne Thread
   pickupEffect: {fileID: 4341048507190764863, guid: f0ac2121f21cbe44d9397f1b9c500924, type: 3}
   bonusType: 10
   pickupEffectMaterial: {fileID: 2100000, guid: 1dd438335858e3548b6e270eaf2615a5, type: 2}
