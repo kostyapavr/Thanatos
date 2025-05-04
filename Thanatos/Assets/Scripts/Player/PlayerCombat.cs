@@ -79,10 +79,14 @@ public class PlayerCombat : MonoBehaviour
             else animTime -= Time.deltaTime;
         }
 
-        if (time <= 0.0f && Input.GetKeyDown(KeyCode.Mouse0) && (LevelController.playerEquippedDefaultSword || LevelController.playerEquippedPeleusSword || LevelController.playerEquippedHarpeSword) && !bow.isCharging && !isHidden)
+        if (time <= 0.0f && Input.GetKeyDown(KeyCode.Mouse0) && (LevelController.playerEquippedDefaultSword || LevelController.playerEquippedPeleusSword || LevelController.playerEquippedHarpeSword) && !bow.isCharging)
         {
-            Attack();
-            time = attackDelay;
+            GameObject go = GameObject.Find("Book");
+            if (go == null || go.GetComponent<BookScript>().isOpen)
+            {
+                Attack();
+                time = attackDelay;
+            }
         }
         else
         {
@@ -106,8 +110,8 @@ public class PlayerCombat : MonoBehaviour
             }
 
             DamageEffects dmgEffect = DamageEffects.Nothing;
-            if (LevelController.playerEquippedPeleusSword) dmgEffect = DamageEffects.StopOneShot;
-            if (LevelController.playerEquippedHarpeSword) dmgEffect = DamageEffects.SetOnFire;
+            if (LevelController.playerEquippedPeleusSword) dmgEffect = DamageEffects.SetOnFire;
+            if (LevelController.playerEquippedHarpeSword) dmgEffect = DamageEffects.StopOneShot;
             enemy.GetComponent<Enemy>().TakeDamage(LevelController.currentPlayerWeapon.Damage, gameObject, dmgEffect);
         }
 
